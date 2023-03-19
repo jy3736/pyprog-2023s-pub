@@ -1,0 +1,803 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Formative Assessment - Snakify Lesson 9</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script></head><body><article id="190f18a2-1c54-4a27-be0f-1dbaf452f4b5" class="page sans"><header><img class="page-cover-image" src="Formative%20Assessment%20-%20Snakify%20Lesson%209%20190f18a21c544a27be0f1dbaf452f4b5/1.png" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">📝</span></div><h1 class="page-title">Formative Assessment - Snakify Lesson 9</h1><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script></header><div class="page-body"><p id="35abec3a-fc7e-4ab0-a5f1-fff2b2e3e3d9" class="">
+</p><p id="c50cf5c7-a2ec-4f67-b1e0-138ad9c5a6e8" class="">This assessment measures your understanding of Snakify Lesson 11 (Arrays), which introduces the basics of lists in Python programming. The assessment consists of two parts: a basic section and an intermediate section, each with 10 multiple-choice questions. The basic section covers the essential concepts of lists that you learned in Lesson 11. The intermediate section tests your skills with more complex questions that demand deeper understanding of the lesson content.</p><p id="949cc6e6-651b-4dc6-a9ef-ac19de2387c7" class="">For each question, you will see a code snippet and four options. Choose the option that best answers the question based on your knowledge of the material. You can work at your own pace and read each question carefully before submitting your answer. We hope you have fun and learn a lot!</p><h2 id="09337796-c9ff-4b11-8e4b-60802e01ea9d" class="block-color-teal_background">Easy</h2><ol type="1" id="e83d5761-d1f6-4a40-8194-b79c8c505ba7" class="numbered-list" start="1"><li>What is the output of the following code snippet?<pre id="d91bf4b8-51e9-49b7-907f-1570ddaa52b8" class="code"><code>arr = [[1, 2], [3, 4], [5, 6]]
+print(arr[1][0])</code></pre><p id="f1b4abe0-68e2-4d10-b014-2ae25ce66c55" class="">A. 1
+B. 2
+C. 3
+D. 4</p><p id="c0ae8a1c-d7f8-42b7-819a-ec7239e03f23" class="">Answer: C</p><p id="dd0840be-e74c-48d5-9237-dcef8fc08f9c" class="">
+</p></li></ol><ol type="1" id="9f9a209e-3faa-47e8-aa64-b78e77518449" class="numbered-list" start="2"><li>What is the output of the following code snippet?<pre id="65eab186-5ca6-45e9-ac61-e03674dcedce" class="code"><code>arr = [[1, 2], [3, 4], [5, 6]]
+print(arr[2][-1])</code></pre><p id="81adab9c-8ff9-439a-9e79-3b231ce9efcc" class="">A. 1
+B. 2
+C. 5
+D. 6</p><p id="1bc97c32-6e59-4fe1-88b1-38c5a6eba652" class="">Answer: D</p><p id="c9f50137-fb58-49b3-bbc3-c7397c05dec2" class="">
+</p></li></ol><ol type="1" id="5a311842-a446-4434-b590-32f64b95da95" class="numbered-list" start="3"><li>What is the output of the following code snippet?<pre id="1f0e68d9-83d3-4de0-a939-51b69fc497a3" class="code"><code>arr = [[1, 2], [3, 4], [5, 6]]
+arr[1][1] = 0
+print(arr)</code></pre><p id="db25e155-56cc-454c-bfd3-efef2d4fe537" class="">A. [[1, 2], [3, 4], [5, 6]]
+B. [[1, 2], [3, 0], [5, 6]]
+C. [[1, 2], [0, 4], [5, 6]]
+D. [[1, 0], [3, 4], [5, 6]]</p><p id="d92832c4-4cdb-4045-bf95-2642a3f30d18" class="">Answer: B</p><p id="ae45f500-845e-4e03-8247-ee45257daac7" class="">
+</p></li></ol><ol type="1" id="26069d26-ec6f-445c-a2f1-09d80be1a4e8" class="numbered-list" start="4"><li>What is the output of the following code snippet?<pre id="0f226cd8-1bee-4877-8f16-bfb789a516e5" class="code"><code>arr = [[1, 2], [3, 4], [5, 6]]
+arr[0] = [0, 0]
+print(arr)</code></pre><p id="e92659ab-4e15-4d7f-a919-d1c48ed4f2a1" class="">A. [[0, 0], [3, 4], [5, 6]]
+B. [[1, 2], [3, 4], [5, 6]] 
+C. [[0, 0], [1, 2], [3, 4], [5, 6]]
+D. [[0, 0], [1, 2], [3, 4]]</p><p id="1254171c-def6-4a76-8cb9-4be5b297c9b0" class="">Answer: A</p><p id="86e099ef-6f5b-4b1a-b46c-907361d0ce36" class="">
+</p></li></ol><ol type="1" id="ae73ba00-4117-48fe-9a2c-da1fcce8837a" class="numbered-list" start="5"><li>What is the output of the following code snippet?<pre id="fae7caa5-f3d2-4693-851c-3b2270bc87f4" class="code"><code>arr = [[1, 2], [3, 4], [5, 6]]
+for row in arr:
+    print(row[1], end=&quot; &quot;)</code></pre><p id="27a338f4-bedf-41dc-bc6c-2d55404755f5" class="">A. 1 2
+B. 1 3 5
+C. 2 4 6
+D. 2 4</p><p id="736d9cb6-d9d1-485d-b50d-318e18d394d1" class="">Answer: C</p><p id="66bfe70a-59d7-437e-8e50-6dcecdb78ae0" class="">
+</p></li></ol><ol type="1" id="c7ce1403-1de8-4ce3-af60-5ff29b204204" class="numbered-list" start="6"><li>What is the output of the following code snippet?<pre id="e519bd47-ddc6-47dc-8f9b-526cfb30f3e5" class="code"><code>arr = [[1, 2], [3, 4], [5, 6]]
+for i in range(len(arr)):
+    arr[i][0] = 0
+print(arr)</code></pre><p id="e9082dc8-c6c2-45f6-9d8d-07609b16e5cc" class="">A. [[1, 2], [3, 4], [5, 6]]
+B. [[0, 2], [0, 4], [0, 6]]
+C. [[0, 2], [3, 0], [5, 0]]
+D. [[0, 0], [0, 0], [0, 0]]</p><p id="ef6de0a5-c543-440d-9ca5-ca969246efba" class="">Answer: B</p><p id="df8e749c-e2bf-4447-87da-3c1302fa6555" class="">
+</p></li></ol><ol type="1" id="54835658-3b62-41f9-a5c3-89cc3e5bf674" class="numbered-list" start="7"><li>What is the output of the following code snippet?<pre id="7cc201a3-461e-4208-89ee-1fe2d75fd6b1" class="code"><code>arr = [[1, 2], [3, 4], [5, 6]]
+new_arr = arr + [[7, 8]]
+print(new_arr)</code></pre><p id="9602c9ce-60ff-4839-8345-d0fc397a6f52" class="">A. [[1, 2], [3, 4], [5, 6]]
+B. [[3, 4], [5, 6], [7, 8]]
+C. [[7, 8], [1, 2], [3, 4], [5, 6]]
+D. [[1, 2], [3, 4], [5, 6], [7, 8]]</p><p id="35e9d731-1891-4ac0-a2ba-2bff9eafafd7" class="">Answer: D</p><p id="78f0ec3b-e161-4d20-868a-7d1830645b12" class="">
+</p></li></ol><ol type="1" id="6871b4ed-7c5f-4e09-b47d-a9a87a098997" class="numbered-list" start="8"><li>What is the output of the following code snippet?<pre id="ed9ef810-6946-46a5-aed1-369f84cefb71" class="code"><code>arr = [[1, 2], [3, 4], [5, 6]]
+new_arr = arr[:]
+new_arr[0][0] = 0
+print(arr)</code></pre><p id="a6a33072-43dc-47c7-8242-2c00fd1fd7ca" class="">A. [[1, 2], [3, 4], [5, 6]]
+B. [[0, 2], [3, 4], [5, 6]]
+C. [[0, 2], [3, 4], [5, 6], [0, 0]]
+D. An error will occur.</p><p id="0cd57496-64d3-4bca-85b5-c6b7fc6dcf9f" class="">Answer: B</p><p id="6c47b7bf-94a2-4d9d-a799-588fc38b27f7" class="">
+</p></li></ol><ol type="1" id="c05de114-b7b0-4550-a332-732ecc5d2d63" class="numbered-list" start="9"><li>What is the output of the following code snippet?<pre id="40447823-acb8-4b00-aae2-d03beeea2abc" class="code"><code>arr = [[1, 2], [3, 4], [5, 6]]
+new_arr = arr.copy()
+new_arr[0][0] = 0
+print(arr)</code></pre><p id="039ed522-2704-4869-9067-287b744b23af" class="">A. [[1, 2], [3, 4], [5, 6]]
+B. [[1, 0], [3, 4], [5, 6]]
+C. [[0, 2], [3, 4], [5, 6], [0, 0]]
+D. [[0, 2], [3, 4], [5, 6]]</p><p id="0874a167-d948-4981-bcbb-f5dcc18a64a7" class="">Answer: D</p><p id="53155810-7b3d-49ef-bfd9-a2b57204b681" class="">
+</p></li></ol><ol type="1" id="d727dbf2-dd3b-47a3-9c04-4a85b478af3a" class="numbered-list" start="10"><li>What is the output of the following code snippet?<pre id="bcd028a4-0bd9-46b3-941d-a22f8376b915" class="code"><code>arr = [[1, 2], [3, 4], [5, 6]]
+new_arr = [[0] * len(arr[0])] * len(arr)
+new_arr[0][0] = 1
+print(new_arr)</code></pre><p id="612a9aa1-d2c6-474b-a3b9-8214723eb956" class="">A. [[1, 0], [1, 0], [1, 0]]
+B. [[0, 2], [3, 4], [5, 6]]
+C. [[1, 2], [0, 0], [0, 0]]
+D. [[1, 2], [3, 4], [5, 6]]</p><p id="3fefff91-a9ba-4de5-92ac-87eb702d7972" class="">Answer: A</p></li></ol><h2 id="3cc163f4-a65f-4f82-8b54-f9a7cf9e9254" class="block-color-teal_background">Slightly Harder</h2><p id="1f407785-22a4-4d6b-b8df-964d8e27ae41" class="">
+</p><ol type="1" id="a7ab93aa-6678-4c57-9f9b-a698af58f720" class="numbered-list" start="1"><li>What is the output of the following code snippet?<pre id="1a80bc2c-fbbe-45d1-bdfe-f4c7dd5cc08c" class="code"><code>arr = [[i * j for j in range(3)] for i in range(4)]
+print(arr[2][2])</code></pre><p id="9accb478-b468-42eb-9c83-f211fba84eae" class="">A. 8
+B. 6
+C. 4
+D. 0</p><p id="9e85c254-c5b0-4261-aab5-939d54d3ccfb" class="">Answer: C</p><p id="84cce1de-bb32-45b7-a031-2173b8578e5b" class="">
+</p></li></ol><ol type="1" id="517f11a2-30ae-447d-b8bf-bfa30d4c8e1d" class="numbered-list" start="2"><li>What is the output of the following code snippet?<pre id="e02e1e8a-d514-4017-abba-2d190aa111f4" class="code"><code>arr = [[i + j for j in range(3)] for i in range(4)]
+arr[1][1] = 10
+print(arr[1][1])</code></pre><p id="b3585166-743d-4219-9bca-cb13a76726ff" class="">A. 1
+B. 2
+C. 5
+D. 10</p><p id="d7fd113f-6256-44d5-99e7-213005911500" class="">Answer: D</p><p id="4cacdda5-3980-4c41-88ae-83c9ec228a09" class="">
+</p></li></ol><ol type="1" id="2e9e34c5-64db-4b12-86a3-7459466fd1f0" class="numbered-list" start="3"><li>What is the output of the following code snippet?<pre id="f4af83a0-dfc1-41b3-a452-476928a4079f" class="code"><code>arr = [[i + j for j in range(3)] for i in range(4)]
+new_arr = [row[1] for row in arr]
+print(new_arr)</code></pre><p id="a2f841a0-852f-48d9-a342-231fd4fdc69f" class="">A. <code><strong>[0, 1, 2, 3]</strong></code>
+B. <code><strong>[1, 2, 3, 4]</strong></code>
+C. <code><strong>[1, 3, 5, 7]</strong></code>
+D. <code><strong>[2, 3, 4, 5]</strong></code></p><p id="0839a223-a8ac-4931-90cd-4ec76a3a2dce" class="">Answer: B</p><p id="b6e3e872-dbc3-4eb6-85cd-936b07372f57" class="">
+</p></li></ol><ol type="1" id="33250825-9a89-40bc-8d77-1f572cfcde03" class="numbered-list" start="4"><li>What is the output of the following code snippet?<pre id="2eee73ae-ccf0-443e-9d3f-2a44ba19fa3c" class="code"><code>arr = [[i + j for j in range(3)] for i in range(4)]
+new_arr = [row[1] for row in arr if row[1] % 2 == 0]
+print(new_arr)</code></pre><p id="fddd082b-e876-48c1-8dd2-dc00e28c5a35" class="">A. <code><strong>[2, 4]</strong></code>
+B. <code><strong>[1, 3, 5, 7]</strong></code>
+C. <code><strong>[0, 2, 4, 6]</strong></code>
+D. <code><strong>[1, 2, 3, 4]</strong></code></p><p id="72a32cf7-093e-4f82-a8aa-f6a99d7fd9dc" class="">Answer: A</p><p id="a73e79a0-4946-4dd6-be1a-5ca2df574a54" class="">
+</p></li></ol><ol type="1" id="99381a30-ba19-4009-a4da-7639ca0f33d1" class="numbered-list" start="5"><li>What is the output of the following code snippet?<pre id="6378afde-2110-48b7-b3a5-e7f4e3daf96d" class="code"><code>arr = [[1, 2], [3, 4]]
+for i in range(len(arr)):
+    for j in range(len(arr[0])):
+        arr[i][j] *= 2
+print(arr)</code></pre><p id="88640d8f-949d-4906-973b-90c20eb743fd" class="">A. <code><strong>[[1, 2], [3, 4]]</strong></code>
+B. <code><strong>[[4, 8], [12, 16]]</strong></code>
+C. <code><strong>[[2, 4], [6, 8]]</strong></code>
+D. <code><strong>[[2, 6], [4, 8]]</strong></code></p><p id="68a04f2e-d724-4ae0-9c22-b52d963dfaf2" class="">Answer: C</p><p id="de6bd881-8f0c-4d9d-89bd-28bbfc6eb4fe" class="">
+</p></li></ol><ol type="1" id="600bb9ab-a771-45bf-b99a-1b642bf485ce" class="numbered-list" start="6"><li>What is the output of the following code snippet?<pre id="9fdd0917-331a-4606-a715-5e192aeb23b5" class="code"><code>arr = [[1, 2], [3, 4]]
+new_arr = arr * 2
+print(new_arr)</code></pre><p id="409c9126-9573-47da-8578-99a669f96aa6" class="">A. <code><strong>[[1, 3], [2, 4]]</strong></code>
+B. <code><strong>[[2, 4], [6, 8]]</strong></code>
+C. <code><strong>[[2, 6], [4, 8]]</strong></code>
+D. <code><strong>[[1, 2], [3, 4], [1, 2], [3, 4]]</strong></code></p><p id="95e08792-afce-495d-8177-cc29ba5e3bd7" class="">Answer: D</p><p id="df48cca3-8f68-47fd-968f-344027950619" class="">
+</p></li></ol><ol type="1" id="7b091379-0d7a-4af0-90ba-4f748668dec1" class="numbered-list" start="7"><li>What is the output of the following code snippet?<pre id="209caf54-704e-46bb-9b45-5d4273f31151" class="code"><code>arr = [[1, 2], [3, 4]]
+new_arr = [sum(row) for row in arr]
+print(new_arr)</code></pre><p id="7998d9c5-dd44-47fb-8059-20c3f8e8c8b6" class="">A. <code><strong>[1, 3]</strong></code>
+B. <code><strong>[3, 7]</strong></code>
+C. <code><strong>[4, 6]</strong></code>
+D. <code><strong>[2, 4]</strong></code></p><p id="bd91f702-fd33-493c-b4a6-fb2baac2f2c5" class="">Answer: B</p><p id="b21a4cd3-94fb-41f5-8ce2-adc1f632cbb8" class="">
+</p></li></ol><ol type="1" id="6f927844-d52e-4b6a-9841-6d55a4bbcd82" class="numbered-list" start="8"><li>What is the output of the following code snippet?<pre id="bc492272-1b42-4448-8bd4-b05571f47a87" class="code"><code>arr = [[1, 2], [3, 4]]
+new_arr = []
+for i in range(len(arr)):
+    row = []
+    for j in range(len(arr[0])):
+        row.append(arr[j][i])
+    new_arr.append(row)
+print(new_arr)</code></pre><p id="41b2657e-18cd-4bba-afd3-49572eeb9548" class="">A. <code><strong>[[3, 1], [4, 2]]</strong></code>
+B. <code><strong>[[2, 4], [1, 3]]</strong></code>
+C. <code><strong>[[1, 2], [3, 4]]</strong></code>
+D. <code><strong>[[1, 3], [2, 4]]</strong></code></p><p id="c4d684e5-cb8e-4ac7-924e-f093981d8832" class="">Answer: D</p><p id="e70b0a9a-d56d-4ef6-963f-06f86862b566" class="">
+</p></li></ol><ol type="1" id="3e044af4-b649-4c3f-9cf7-e1c56cb6a8cc" class="numbered-list" start="9"><li>What is the output of the following code snippet?<pre id="ce906a76-aaaf-47a4-8dab-61813cd7e80e" class="code"><code>arr = [[1, 2, 3], [4, 5, 6]]
+new_arr = [[row[i] for row in arr] for i in range(len(arr[0]))]
+print(new_arr)</code></pre><p id="d23b40ed-5fff-4f9b-84dd-68385c9bf12a" class="">A. <code><strong>[[1, 4], [2, 5], [3, 6]]</strong></code>
+B. <code><strong>[[1, 2, 3], [4, 5, 6]]</strong></code>
+C. <code><strong>[[3, 6], [2, 5], [1, 4]]</strong></code>
+D. <code><strong>[[3, 2, 1], [6, 5, 4]]</strong></code></p><p id="ad7c7bed-3cfa-4589-a9cd-f72d6e5d94c3" class="">Answer: A</p><p id="d3f11ec0-9869-4a03-b839-d394ae830e50" class="">
+</p></li></ol><ol type="1" id="73deca1d-acfa-43c7-a679-3e2bbb4c35df" class="numbered-list" start="10"><li>What is the output of the following code snippet?<pre id="abf62794-7603-4ae5-8943-abb472f886de" class="code"><code>arr = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+for i in range(len(arr)):
+    for j in range(len(arr[0])):
+        if i == j:
+            arr[i][j] = 0
+print(arr)</code></pre><p id="e833efcf-253a-407f-897e-0aae9b5c5572" class="">A. <code><strong>[[1, 2, 3], [4, 5, 6], [7, 8, 9]]</strong></code>
+B. <code><strong>[[1, 0, 0], [0, 5, 0], [0, 0, 9]]</strong></code>
+C. <code><strong>[[0, 2, 3], [4, 0, 6], [7, 8, 0]]</strong></code>
+D. <code><strong>[[0, 0, 0], [0, 0, 0], [0, 0, 0]]</strong></code></p><p id="ec2789fb-f752-49cd-82e8-738d46fe9e3a" class="">Answer: C</p><p id="2ff99921-7eee-4737-9095-c5aab3f0f83c" class="">
+</p></li></ol><figure id="e237fda7-03ae-4f77-8225-53b3da5a788c" class="image"><a href="Formative%20Assessment%20-%20Snakify%20Lesson%209%20190f18a21c544a27be0f1dbaf452f4b5/%25E5%259C%2596%25E7%2589%25873.png"><img style="width:1322px" src="Formative%20Assessment%20-%20Snakify%20Lesson%209%20190f18a21c544a27be0f1dbaf452f4b5/%25E5%259C%2596%25E7%2589%25873.png"/></a></figure></div></article>
+<script>hljs.highlightAll();</script>
+</body></html>
