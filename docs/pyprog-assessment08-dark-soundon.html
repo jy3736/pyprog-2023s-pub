@@ -1,0 +1,878 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Formative Assessment - Snakify Lesson 8</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script></head><body><article id="f238fb70-9711-46f8-bcc5-a6207beb50fa" class="page sans"><header><img class="page-cover-image" src="Formative%20Assessment%20-%20Snakify%20Lesson%208%20f238fb70971146f8bcc5a6207beb50fa/1.png" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">📝</span></div><h1 class="page-title">Formative Assessment - Snakify Lesson 8</h1><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script></header><div class="page-body"><p id="f903c584-9960-4d29-99fb-e9ab31160b7e" class="">
+</p><p id="de964ca0-723f-499d-a891-8d7f8a428c91" class="">This formative assessment is designed to test your understanding of Snakify Lesson 8 (functions). The assessment consists of two parts: easy and harder. The easy part covers the basic concept of functions, such as how to define, call, and return values from them. The harder part requires more comprehensive knowledge application, such as how to use parameters, arguments, scope, and recursion. Each part has 10 multiple-choice questions based on the knowledge learned from the class and Snakify online material.</p><p id="5d9fd4c5-dad0-4342-99e6-3e50fd457216" class="">You should complete this assessment after finishing Snakify Lesson 8 (functions) and reviewing the relevant class notes. This assessment will help you prepare for the summative assessment and improve your programming skills.</p><h2 id="756852a2-0981-415f-9b1b-396f0ebc694a" class="block-color-teal_background">Easy</h2><ol type="1" id="39b851d4-074b-407f-85dd-55e0ecd9ad66" class="numbered-list" start="1"><li>What is the output of the following code snippet?<pre id="0fa3d243-a548-42a3-898c-8c55b2438ce5" class="code"><code>def multiply(a, b):
+    return a * b
+
+result = multiply(3, 4)
+print(result)</code></pre><p id="8da0a783-e119-41ed-aa12-37f33ae16ca4" class="">A. 7
+B. 10
+C. 12
+D. 34</p><p id="80f3b0ae-1342-41cd-a89a-83d220e972c2" class="">Answer: C</p><p id="8b093e17-1201-42d9-a426-c3b95f44429c" class="">
+</p></li></ol><ol type="1" id="c1ef025f-90f9-4544-b56c-b0fb4367d2b7" class="numbered-list" start="2"><li>What is the output of the following code snippet?<pre id="367a2bf9-4944-49bd-ac70-c26e3c16a611" class="code"><code>def say_hello(name):
+    print(&quot;Hello, &quot; + name + &quot;!&quot;)
+
+say_hello(&quot;John&quot;)</code></pre><p id="e9ff18ec-77ed-4be1-a879-fd1e84debca2" class="">A. Hello, John!
+B. Hello, name!
+C. Hello, World!
+D. Error</p><p id="46f1801c-9910-4eef-8bc2-1b05b37060a5" class="">Answer: A</p><p id="38e1d3a8-2af6-4d82-ae65-1dd6b866d18c" class="">
+</p></li></ol><ol type="1" id="c565e1b9-c6bd-489b-817d-ebc3f8b98a54" class="numbered-list" start="3"><li>What is the output of the following code snippet?<pre id="349eecb2-e85d-4c18-bb58-9115a27744c1" class="code"><code>def is_even(number):
+    if number % 2 == 0:
+        return True
+    else:
+        return False
+
+result = is_even(5)
+print(result)</code></pre><p id="15d0a77c-d1c1-4373-a449-87414864c420" class="">A. True
+B. False
+C. Error
+D. None</p><p id="8882a2b7-c78c-4ac3-8ac3-2a444d9c2d64" class="">Answer: B</p><p id="3a9867c3-c25b-4d7a-a1ec-2490a295c1be" class="">
+</p></li></ol><ol type="1" id="79646bd3-de05-4f0b-8087-f6f805ccc3e8" class="numbered-list" start="4"><li>What is the output of the following code snippet?<pre id="aa0f9dad-30d1-4674-be83-37cb493347c9" class="code"><code>def add(a, b):
+    return a + b
+
+result = add(2, 3) + add(4, 5)
+print(result)</code></pre><p id="948fa55b-677d-4a4b-af75-f4196fad40a5" class="">A. 11
+B. 12
+C. 13
+D. 14</p><p id="e4d03599-59bf-4ce7-996b-ed9d72b8593a" class="">Answer: D</p><p id="4048c068-eaa5-4288-83f2-89731b63973a" class="">
+</p></li></ol><ol type="1" id="4d9840c6-8589-40c8-93a8-f45f89734bd4" class="numbered-list" start="5"><li>What is the output of the following code snippet?<pre id="de78f05f-d996-4e92-ac77-063110fac810" class="code"><code>def greet(name):
+    print(&quot;Hello, &quot; + name + &quot;!&quot;)
+
+greet(&quot;John&quot;)
+greet(&quot;Sarah&quot;)</code></pre><p id="ecaa7487-0480-43be-b7ed-b1e482ff68ed" class="">A. Hello, John! Hello, Sarah!
+B. Hello, name! Hello, name!
+C. Hello, World! Hello, World!
+D. Error</p><p id="4ec0ea2e-4232-4464-b63a-34e5dfcf1b7e" class="">Answer: A</p><p id="3901748c-779f-4aec-ac84-683ec1193d34" class="">
+</p></li></ol><ol type="1" id="3454c691-cda2-40c6-92fd-57155b281f05" class="numbered-list" start="6"><li>What is the output of the following code snippet?<pre id="2f2dc944-58dc-4ba6-bff1-82695ec1cc03" class="code"><code>def multiply(a, b=2):
+    return a * b
+
+result1 = multiply(3)
+result2 = multiply(3, 4)
+print(result1, result2)</code></pre><p id="bf184604-5721-4eff-8029-a9b36bde10f1" class="">A. 3 4
+B. 6 12
+C. 6 4
+D. 3 8</p><p id="5e56026f-aa4a-4e00-8fe4-20472c81c328" class="">Answer: B</p><p id="6b08461f-1cf3-49de-81d9-3a73f2ba40cc" class="">
+</p></li></ol><ol type="1" id="4d8474d2-3d88-44fd-94a6-f809fc63bfc7" class="numbered-list" start="7"><li>What is the output of the following code snippet?<pre id="6cbe8338-86be-47f4-b7c6-b322c7bcebf5" class="code"><code>def square(number):
+    return number ** 2
+
+def cube(number):
+    return number ** 3
+
+result = square(2) + cube(2)
+print(result)</code></pre><p id="4bfb1f7c-29bd-405d-96c3-7bf333606a37" class="">A. 8
+B. 10
+C. 12
+D. 14</p><p id="7cc36c95-4430-4187-a13d-e7eef6606209" class="">Answer: C</p><p id="392ee1e9-84a9-4a18-8fb3-f44e4e93aec6" class="">
+</p></li></ol><ol type="1" id="40dda7af-9a32-476d-8600-c9483253738b" class="numbered-list" start="8"><li>What is the output of the following code snippet?<pre id="1c26a067-8672-4828-9c13-7dccc1ce5d79" class="code"><code>def sum(a, b):
+    result = a + b
+    return result
+
+print(sum(2, 3))</code></pre><p id="4ee207fa-aed9-4f1f-bbc8-9ff42efd9cbc" class="">A. 2
+B. 3
+C. 5
+D. Error</p><p id="dd981fcd-d8a9-4f04-9e2b-37ab1aa7664c" class="">Answer: C</p><p id="cb812623-0877-4242-95c7-b8ba3191bb30" class="">
+</p></li></ol><ol type="1" id="df7fb900-4869-4549-aadb-5ec9b0ebb6e1" class="numbered-list" start="9"><li>What is the output of the following code snippet?<pre id="3f2b1e0c-0f59-49e7-80a5-531b05d0ecc9" class="code"><code>def subtract(a, b):
+    return a - b
+
+result1 = subtract(5, 3)
+result2 = subtract(3, 5)
+print(result1, result2)</code></pre><p id="4a1c1fbc-cd82-453b-9dca-6e532db5678d" class="">A. 2 2
+B. 2 -2
+C. -2 -2
+D. -2 2</p><p id="ac64930b-6a41-43dc-a4f0-f845b63bbd52" class="">Answer: B</p><p id="43a5c2fb-cc3c-4e02-a6ad-d880c0cebf6f" class="">
+</p></li></ol><ol type="1" id="28ae2ce1-e1cd-41ba-98e4-f49d68b0b449" class="numbered-list" start="10"><li>What is the output of the following code snippet?<pre id="a27bedc6-33bf-4258-8c31-28e5eb97cbb3" class="code"><code>def multiply(a, b):
+    return a * b
+
+def square_and_multiply(a, b):
+    result1 = multiply(a, a)
+    result2 = multiply(result1, b)
+    return result2
+
+print(square_and_multiply(2, 3))</code></pre><p id="6e69dae2-8ade-4dad-91f4-3b47c9578e67" class="">A. 6
+B. 12
+C. 18
+D. 36</p><p id="59a58aaa-9bad-4079-9232-d010cd1dd25c" class="">Answer: B</p><p id="eb57ce15-09e2-431d-976e-17291d7fb68e" class="">
+</p></li></ol><h2 id="e7544df5-0f47-4287-9470-f7f46974799c" class="block-color-teal_background">Harder</h2><ol type="1" id="5fc40df0-2786-43da-ac8d-930e83bed3d2" class="numbered-list" start="1"><li>What is the output of the following code snippet?<pre id="e82e522e-0deb-4eb7-96b2-c4e71f182dd0" class="code"><code>def count_vowels(string):
+    vowels = &quot;aeiou&quot;
+    count = 0
+    for letter in string.lower():
+        if letter in vowels:
+            count += 1
+    return count
+
+result = count_vowels(&quot;Hello World&quot;)
+print(result)</code></pre><p id="4ff82caa-1556-4ec1-af37-7b5303ed9bbe" class="">A. 2
+B. 3
+C. 4
+D. 5</p><p id="da8d9597-c13c-4bce-b530-ce629c34a637" class="">Answer: B</p><p id="9db6462e-a0b2-412c-9271-92020ceb1dc9" class="">
+</p></li></ol><ol type="1" id="2327ee5d-df12-46d5-9482-5b472878b746" class="numbered-list" start="2"><li>What is the output of the following code snippet?<pre id="44adfb7e-cbe3-4c3b-9626-68e4986e3bb5" class="code"><code>def sum_nums(*args):
+    total = 0
+    for num in args:
+        total += num
+    return total
+
+result = sum_nums(1, 2, 3, 4, 5)
+print(result)</code></pre><p id="a6a98b0b-5e25-49f6-a8b6-1fa376161258" class="">A. 15
+B. 10
+C. 6
+D. 5</p><p id="6370728f-d968-41a0-82c4-d581d8944fd4" class="">Answer: A</p><p id="c741c811-bf5e-4839-ae38-7a98d1e6b081" class="">
+</p></li></ol><ol type="1" id="b6ecb604-199e-4e3f-9fb7-bef1c6a2a5a4" class="numbered-list" start="3"><li>What is the output of the following code snippet?<pre id="c67a8a6d-c556-46c2-bf1b-99fb81469edf" class="code"><code>def calculate(x, y):
+    a = x + y
+    b = x - y
+    c = x * y
+    d = x / y
+    return a, b, c, d
+
+result = calculate(10, 5)
+print(result[2])</code></pre><p id="b0d034d3-c1f7-48f1-984f-5269616296d2" class="">
+</p><p id="ca7cab48-4757-449e-ae54-d42b66962c87" class="">
+</p></li></ol><ol type="1" id="2f252788-ad30-4592-b6df-5d1cb2bd9890" class="numbered-list" start="4"><li>What is the output of the following code snippet?<pre id="fd1afc7e-bb30-4a6c-9e67-c0def5fb3f91" class="code"><code>def get_max(nums):
+    max_num = nums[0]
+    for num in nums:
+        if num &gt; max_num:
+            max_num = num
+    return max_num
+
+result = get_max([1, 4, 6, 2, 8])
+print(result)</code></pre><p id="4075d6a0-322e-4e46-a692-7957e8ebaf8f" class="">A. 4
+B. 6
+C. 8
+D. 2</p><p id="1fe8d544-cf91-4177-aea6-ce1aa850bbc8" class="">Answer: C</p><p id="98602faf-43b5-45bc-a6b5-d565302c0258" class="">
+</p></li></ol><ol type="1" id="6456a311-8889-4b4a-8a49-d0adc273feb3" class="numbered-list" start="5"><li>What is the output of the following code snippet?<pre id="7f732e52-3eb6-4486-84ac-303b5ab46e82" class="code"><code>def square_nums(nums):
+    squared_nums = []
+    for num in nums:
+        squared_nums.append(num ** 2)
+    return squared_nums
+
+result = square_nums([1, 2, 3, 4])
+print(result)</code></pre><p id="5393d0a4-6506-45f1-b894-7a156d8febcc" class="">A. [1, 4, 9, 16]
+B. [2, 4, 6, 8]
+C. [0, 1, 4, 9]
+D. [1, 2, 3, 4]</p><p id="9e5b9907-19a8-45ae-8f99-871a0a213833" class="">Answer: A</p><p id="059e3802-172c-4bf1-a519-86c011be13f7" class="">
+</p></li></ol><ol type="1" id="6ad8ddb5-0361-49e1-a66d-2389b315c3c5" class="numbered-list" start="6"><li>What is the output of the following code snippet?<pre id="74920c0d-decd-4717-a06d-53f123fb5eb8" class="code"><code>def calculate_average(*args):
+    total = 0
+    for num in args:
+        total += num
+    average = total / len(args)
+    return average
+
+result = calculate_average(2, 4, 6, 8, 10)
+print(result)</code></pre><p id="2f917d32-f2b2-4f13-9975-069a8c34fb0b" class="">A. 5.0
+B. 6.0
+C. 7.0
+D. 8.0</p><p id="db81e032-4add-4fa5-906d-3c9d38ccb44c" class="">Answer: B</p><p id="dc204bb0-e2b9-438b-af10-f1ee50526d6b" class="">
+</p></li></ol><ol type="1" id="89312b6e-d828-4282-9930-d2e00e9a195b" class="numbered-list" start="7"><li>What is the output of the following code snippet?<pre id="a83533e1-f15e-4f30-ab40-7427506e5c25" class="code"><code>def make_adder(x):
+    def adder(y):
+        return x + y
+    return adder
+
+add5 = make_adder(5)
+result = add5(3)
+print(result)</code></pre><p id="27060f2d-aa76-460a-8dcd-957904c1a31a" class="">A. 5
+B. 8
+C. 3
+D. 15</p><p id="b8c6c1e0-af16-4cee-bb9f-a8f9e2d3ccd8" class="">Answer: B</p><p id="fa3f44b4-f5f5-4db4-a3df-b2680def38ff" class="">
+</p></li></ol><ol type="1" id="9dec7eab-7933-40fc-bca7-6d8d4ae83d1b" class="numbered-list" start="8"><li>What is the output of the following code snippet?<pre id="4388cdc9-d437-4813-942e-536e4a60b148" class="code"><code>def apply_to_list(some_list, func):
+    return [func(x) for x in some_list]
+
+result = apply_to_list([1, 2, 3], lambda x: x ** 2)
+print(result)</code></pre><p id="419635ee-a1d7-4299-b0b3-911a7e7f678a" class="">A. [1, 2, 3]
+B. [1, 4, 9]
+C. [2, 4, 6]
+D. [1, 3, 5]</p><p id="ffaabd9b-5716-46fc-b8ed-6f3472fe83be" class="">Answer: B</p><p id="5020e274-b23a-490b-9798-0dc90f2efd20" class="">
+</p></li></ol><ol type="1" id="15f8d7c2-7709-46fa-b7fe-54fffd6953f3" class="numbered-list" start="9"><li>What is the output of the following code snippet?<pre id="dd98176f-1906-4dbd-b177-9e0955a65894" class="code"><code>def outer_function(x):
+    def inner_function(y):
+        return x + y
+    return inner_function
+
+add3 = outer_function(3)
+add5 = outer_function(5)
+
+result = add3(2) + add5(2)
+print(result)</code></pre><p id="c606e8f1-0772-44ee-8a6b-92c96d1595c4" class="">A. 7
+B. 10
+C. 8
+D. 12</p><p id="5d867c60-43e4-44c1-8cf7-bef4d32d33d3" class="">Answer: D</p><p id="6e2abd3f-324b-4faa-a0d6-74d877382b1e" class="">
+</p></li></ol><ol type="1" id="1d971bb1-db25-4007-8043-0ea82c12d0e6" class="numbered-list" start="10"><li>What is the output of the following code snippet?<pre id="4286a43f-b0a6-4c7f-98d8-ad8fd9f11955" class="code"><code>def is_palindrome(string):
+    if string == string[::-1]:
+        return True
+    else:
+        return False
+
+words = [&quot;radar&quot;, &quot;level&quot;, &quot;hello&quot;, &quot;racecar&quot;]
+palindromes = filter(is_palindrome, words)
+result = list(palindromes)
+print(result)</code></pre><p id="01fd0958-39dd-446e-b69e-017bd2b5e356" class="">A. [&quot;radar&quot;, &quot;level&quot;, &quot;racecar&quot;]
+B. [&quot;hello&quot;]
+C. [&quot;level&quot;]
+D. [&quot;radar&quot;, &quot;level&quot;, &quot;hello&quot;, &quot;racecar&quot;]</p><p id="2fd94251-ecb2-4e07-97ce-9a4faba144f1" class="">Answer: A</p><p id="1a86a747-55ee-4244-902a-d2670644ddcc" class="">
+</p></li></ol><p id="07739b70-3028-4a51-b990-cb6252730224" class="">
+</p><figure id="acb5c4f9-2fa9-4965-95bc-a4f7a85b38c5" class="image"><a href="Formative%20Assessment%20-%20Snakify%20Lesson%208%20f238fb70971146f8bcc5a6207beb50fa/%25E5%259C%2596%25E7%2589%25873.png"><img style="width:1322px" src="Formative%20Assessment%20-%20Snakify%20Lesson%208%20f238fb70971146f8bcc5a6207beb50fa/%25E5%259C%2596%25E7%2589%25873.png"/></a></figure></div></article>
+<script>hljs.highlightAll();</script>
+</body></html>
