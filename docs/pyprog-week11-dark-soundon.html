@@ -1,0 +1,821 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Python 物件導向程式設計(OOP) 1</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script></head><body><article id="9e1a7af4-16f0-4af4-a56f-f7e6786b1204" class="page sans"><header><img class="page-cover-image" src="Python%20%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88(OOP)%201%209e1a7af416f04af4a56ff7e6786b1204/notion-Python_(1).png" style="object-position:center 31.08%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Python%20%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88(OOP)%201%209e1a7af416f04af4a56ff7e6786b1204/yang01.png"/></div><h1 class="page-title">Python 物件導向程式設計(OOP) 1</h1><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script></header><div class="page-body"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="56f53d36-e82c-4c76-87f3-4376e2185bbe"><div style="font-size:1.5em"><span class="icon">💻</span></div><div style="width:100%">Object-oriented programming is a technique for writing programs that makes them easier to understand and organize. It involves grouping things that are similar or related into objects. An object can be a person with a name, age, and address, and things they can do, like walk, talk, breathe, and run. Another example of an object is an email with a list of recipients, a subject, a message, and functions like add attachments and send.<p id="a4435124-47c8-4b37-bc01-5fd1665c246c" class="">Object-oriented programming is useful for creating programs that deal with real-world things, such as cars or how things are connected, such as companies and employees, students, and teachers. Objects are used to store data and perform functions.</p><p id="921f88cb-8fab-4971-8a71-5f597c2a42df" class="">Procedural programming is another way to write programs. It&#x27;s like following a recipe, where the program is instructed what to do step by step using functions and code blocks to complete a task.</p><p id="4e73795d-2410-4805-8d51-97d24dc909da" class="">The most significant difference between object-oriented programming and procedural programming is that objects are the core of object-oriented programming in Python. Objects are not only data, as they are in procedural programming, but also the structure of the program.</p></div></figure><h1 id="ebe67757-3a41-47bf-8ba0-347bc9225d83" class="block-color-brown_background">參考資料 (References)</h1><h3 id="4168de42-fda4-46ff-9a3e-7779d203302d" class="block-color-yellow">Python 官方「參考資料」網站 (Python.org)</h3><figure id="699b7fbc-cd15-47ed-a445-04cb4d87474b"><a  target="_blank" href="https://docs.python.org/3/tutorial/classes.html" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">9. Classes</div><div class="bookmark-description">Classes provide a means of bundling data and functionality together. Creating a new class creates a new type of object, allowing new instances of that type to be made. Each class instance can have ...</div></div><div class="bookmark-href"><img src="https://docs.python.org/3/_static/py.svg" class="icon bookmark-icon"/>https://docs.python.org/3/tutorial/classes.html</div></div><img src="https://docs.python.org/3/_static/og-image.png" class="bookmark-image"/></a></figure><h3 id="c6c7c5f3-0c8d-48ad-b738-d5076a4c1bd5" class="block-color-yellow">Additional Online Resources</h3><figure id="a8ca8a21-a68d-40b4-8844-27d4df0530d2"><a  target="_blank" href="https://www.programiz.com/python-programming/object-oriented-programming" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Python Object Oriented Programming (With Examples)</div><div class="bookmark-description">In this tutorial, we’ll learn about Object-Oriented Programming (OOP) in Python with the help of examples.</div></div><div class="bookmark-href"><img src="https://www.programiz.com/sites/tutorial2program/files/favicon.png" class="icon bookmark-icon"/>https://www.programiz.com/python-programming/object-oriented-programming</div></div></a></figure><figure id="3b2d5251-3e82-41f1-8774-5767d1d5aeee"><a  target="_blank" href="https://realpython.com/python3-object-oriented-programming/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Object-Oriented Programming (OOP) in Python 3 – Real Python</div><div class="bookmark-description">In this tutorial, you&#x27;ll learn all about object-oriented programming (OOP) in Python. You&#x27;ll learn the basics of the OOP paradigm and cover concepts like classes and inheritance. You&#x27;ll also see to how instantiate an object from a class.</div></div><div class="bookmark-href"><img src="https://realpython.com/static/favicon.68cbf4197b0c.png" class="icon bookmark-icon"/>https://realpython.com/python3-object-oriented-programming/</div></div><img src="https://files.realpython.com/media/Object-Oriented-Programming-OOP-in-Python-3_Watermarked.0d29780806d5.jpg" class="bookmark-image"/></a></figure><h1 id="60e1c67f-acb2-4f29-98ab-7ec1259ff6e5" class="block-color-brown_background">課堂活動</h1><h3 id="cc601145-d51c-41bc-9eba-d5fa6cd9c944" class="block-color-gray_background">【課堂練習 1】Defining and Using Classes</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="82e2e7e5-5e47-4cd1-9055-d9d3ea91be54"><div style="font-size:1.5em"><img class="icon" src="Python%20%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88(OOP)%201%209e1a7af416f04af4a56ff7e6786b1204/yang02.png"/></div><div style="width:100%">One of the most important concepts in object-oriented programming is the class. A class is a blueprint for creating objects that have certain attributes and behaviors. In this practice, we will use student information as an example to learn how to define a class in python. We will also see how to create instances of the class and access their properties and methods. By the end of this practice, you should be able to write your own classes and use them in your programs.</div></figure><h3 id="9db4b30e-23cd-49ba-a354-556ec0530751" class="block-color-yellow"><strong>Class Declaration:</strong></h3><pre id="2f1f57b3-71b8-4f7a-bae8-01af83118819" class="code code-wrap"><code># Define the class
+class Student:
+    def __init__(self, name, age, major):
+        self.name = name
+        self.age = age
+        self.major = major
+
+    # Define a method to print student information
+    def print_info(self):
+        print(f&quot;Name: {self.name}&quot;)
+        print(f&quot;Age: {self.age}&quot;)
+        print(f&quot;Major: {self.major}&quot;)</code></pre><p id="74a3711d-b5bf-4935-8d94-78d8e74b3313" class="">In this section, we define the <code><strong>Student</strong></code> class with its attributes (<code><strong>name</strong></code>, <code><strong>age</strong></code>, and <code><strong>major</strong></code>) and its method (<code><strong>print_info</strong></code>). The <code><strong>__init__</strong></code> method is a special method in Python that is called when an object is created from the class.</p><h3 id="f4b6f635-9667-4539-b688-ed5da815e1d9" class="block-color-yellow"><strong>How to use the class to create objects:</strong></h3><pre id="b819530f-cd98-4fd0-a579-ebff1d9526d6" class="code"><code># Create instances of the class
+student1 = Student(&quot;Alice&quot;, 21, &quot;Computer Science&quot;)
+student2 = Student(&quot;Bob&quot;, 19, &quot;Mathematics&quot;)
+
+# Access the properties of the instances
+print(student1.name)   # Output: Alice
+print(student2.major)  # Output: Mathematics
+
+# Call the methods of the instances
+student1.print_info()  # Output: Name: Alice, Age: 21, Major: Computer Science
+student2.print_info()  # Output: Name: Bob, Age: 19, Major: Mathematics</code></pre><p id="3e7d7ec0-44f3-4700-bfb3-60eefd5fd20f" class="">In this section, we create two instances of the Student class (<code>student1</code> and <code>student2</code>) and access their properties (<code>name</code> and <code>major</code>) using the dot notation. We also call the <code>print_info</code> method on both instances to print their information to the console.</p><h3 id="59c6cbf5-96e2-465b-8792-d2fbdec4d44d" class="block-color-gray_background">【課堂練習 2】Adding email Attribute and Corresponding Access Methods</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="52ce67e5-e7cc-44ab-9717-c4065dc90133"><div style="font-size:1.5em"><img class="icon" src="Python%20%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88(OOP)%201%209e1a7af416f04af4a56ff7e6786b1204/yang02.png"/></div><div style="width:100%">This is a practice to improve the <code>student</code> class that we created in practice 1. We will add a new feature to store the <code>email</code> address of each student. We will also create methods to access and modify the values of each property (<code>name</code>, <code>age</code>, <code>major</code>, <code>email</code>). Finally, we will demonstrate how to use the improved student class in a simple program.</div></figure><h3 id="e942c015-3382-4476-8d49-15b59a6b6aee" class="block-color-yellow"><strong>Class Declaration:</strong></h3><pre id="3cad0d30-79a0-4bbc-8e26-25ab7345483a" class="code code-wrap"><code>class Student:
+    def __init__(self, name, age, major, email):
+        self.name = name
+        self.age = age
+        self.major = major
+        self.email = email
+
+    # Getter methods to access each property
+    def get_name(self):
+        return self.name
+
+    def get_age(self):
+        return self.age
+
+    def get_major(self):
+        return self.major
+
+    def get_email(self):
+        return self.email
+
+    # Setter methods to modify each property
+    def set_name(self, name):
+        self.name = name
+
+    def set_age(self, age):
+        self.age = age
+
+    def set_major(self, major):
+        self.major = major
+
+    def set_email(self, email):
+        self.email = email</code></pre><h3 id="3adc7f66-fe41-4648-ae9f-67ef841a97f5" class="block-color-yellow">Utilization<strong>:</strong></h3><pre id="f08cd82d-1306-4549-9ba3-f4d16a37a21c" class="code"><code>student1 = Student(&quot;John Doe&quot;, 20, &quot;Computer Science&quot;, &quot;john.doe@example.com&quot;)
+
+# Print initial values
+print(&quot;Name:&quot;, student1.get_name())
+print(&quot;Age:&quot;, student1.get_age())
+print(&quot;Major:&quot;, student1.get_major())
+print(&quot;Email:&quot;, student1.get_email())
+
+# Update values using setter methods
+student1.set_name(&quot;Jane Doe&quot;)
+student1.set_age(21)
+student1.set_major(&quot;Information Systems&quot;)
+student1.set_email(&quot;jane.doe@example.com&quot;)
+
+# Print updated values
+print(&quot;\nName:&quot;, student1.get_name())
+print(&quot;Age:&quot;, student1.get_age())
+print(&quot;Major:&quot;, student1.get_major())
+print(&quot;Email:&quot;, student1.get_email())</code></pre><h3 id="5ea8d140-18c6-4bcb-a9af-9c219f9cd59d" class="block-color-gray_background">【課堂練習 3】User-defined Complex Class</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="80c38bbe-57b5-47eb-86c1-ef17fa76a308"><div style="font-size:1.5em"><img class="icon" src="Python%20%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88(OOP)%201%209e1a7af416f04af4a56ff7e6786b1204/yang02.png"/></div><div style="width:100%">Let&#x27;s explore object-oriented programming in Python by creating a user-defined Complex class. Complex numbers are represented by a combination of a real and imaginary part, so we can define our Complex class with these two attributes. We will also define some methods to perform basic arithmetic operations with Complex objects. This exercise will help you gain a better understanding of classes, objects, attributes, and methods in Python.</div></figure><h3 id="c1c90046-3cb1-4b6b-bc4e-5b85c6909c49" class="block-color-yellow"><strong>Class Declaration:</strong></h3><pre id="1f313f3a-0885-4d1d-ad5a-b84bd4a4189c" class="code code-wrap"><code>class Complex:
+    def __init__(self, real, imag):
+        self.real = real
+        self.imag = imag
+    
+    def add(self, other):
+        real_sum = self.real + other.real
+        imag_sum = self.imag + other.imag
+        return Complex(real_sum, imag_sum)
+
+    def subtract(self, other):
+        real_diff = self.real - other.real
+        imag_diff = self.imag - other.imag
+        return Complex(real_diff, imag_diff)
+
+    def multiply(self, other):
+        real_prod = self.real * other.real - self.imag * other.imag
+        imag_prod = self.real * other.imag + self.imag * other.real
+        return Complex(real_prod, imag_prod)
+
+    def divide(self, other):
+        divisor = (other.real ** 2 + other.imag ** 2)
+        real_num = self.real * other.real + self.imag * other.imag
+        imag_num = self.imag * other.real - self.real * other.imag
+        return Complex(real_num/divisor, imag_num/divisor)
+
+    def __str__(self):
+        return &quot;{} + {}i&quot;.format(self.real, self.imag)</code></pre><h3 id="727d2d29-a30f-4d01-b65b-be4edc9b8795" class="block-color-yellow"><strong>Class Usage:</strong></h3><pre id="e2b6c4e6-00f5-491d-b77c-2f35cfdf5385" class="code code-wrap"><code># Create two Complex numbers
+c1 = Complex(2, 3)
+c2 = Complex(4, 5)
+
+# Add two Complex numbers
+result = c1.add(c2)
+print(result.real, result.imag) # Output: 6 8
+
+# Subtract two Complex numbers
+result = c1.subtract(c2)
+print(result.real, result.imag) # Output: -2 -2
+
+# Multiply two Complex numbers
+result = c1.multiply(c2)
+print(result.real, result.imag) # Output: -7 22
+
+# Divide two Complex numbers
+result = c1.divide(c2)
+print(result.real, result.imag) # Output: 0.5609756097560976 -0.0487804878048781</code></pre><h3 id="c8e47d0a-d3ab-4384-b5a9-592e1c9a0ab5" class="block-color-gray_background">【課堂練習 4】Complex Class with Operator Overloading</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="e592b071-2185-4a16-bab9-12f1d9de6545"><div style="font-size:1.5em"><img class="icon" src="Python%20%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88(OOP)%201%209e1a7af416f04af4a56ff7e6786b1204/yang02.png"/></div><div style="width:100%">In this practice, we will enhance the user-defined Complex class that we created in Practice 3 using the concept of <code>operator overloading</code>. Operator overloading allows us to define how the built-in operators like <code>+</code>, <code>-</code>, <code>*</code>, and <code>/</code> should behave with objects of our class. By overloading these operators, we can make the syntax for performing arithmetic operations on Complex objects more natural and intuitive. We will modify the <code>__add__</code>, <code>__sub__</code>, <code>__mul__</code>, and <code>__truediv__</code> methods to use operator overloading to perform addition, subtraction, multiplication, and division operations between the Complex objects. This exercise will help you understand how to overload operators in Python and make your code more concise and readable.</div></figure><h3 id="dc775e3c-5e77-4262-8f90-9bdfd61c7c3c" class="block-color-yellow"><strong>Class Declaration:</strong></h3><p id="bf8ed6d9-f876-4c79-91a9-68f28f945dea" class="">In this section, we define the <code><strong>Complex</strong></code> class which represents a complex number. We declare the class with the <code><strong>class</strong></code> keyword followed by the class name. The class has two attributes <code><strong>real</strong></code> and <code><strong>imag</strong></code> which represent the real and imaginary parts of the complex number. We define the <code><strong>__init__</strong></code> method which is a constructor that initializes the <code><strong>real</strong></code> and <code><strong>imag</strong></code> attributes when a new object of the class is created. We also define the <code><strong>__str__</strong></code> method which returns a string representation of the object.</p><pre id="dc8a5d6d-104b-4aaf-af3e-4a766e6be462" class="code code-wrap"><code>class Complex:
+    def __init__(self, real, imag):
+        self.real = real
+        self.imag = imag
+
+    def __str__(self):
+        return &quot;{} + {}i&quot;.format(self.real, self.imag)
+
+    def __add__(self, other):
+        return Complex(self.real + other.real, self.imag + other.imag)
+
+    def __sub__(self, other):
+        return Complex(self.real - other.real, self.imag - other.imag)
+
+    def __mul__(self, other):
+        return Complex(self.real * other.real - self.imag * other.imag,
+                       self.real * other.imag + self.imag * other.real)
+
+    def __truediv__(self, other):
+        denominator = other.real ** 2 + other.imag ** 2
+        return Complex((self.real * other.real + self.imag * other.imag) / denominator,
+                       (self.imag * other.real - self.real * other.imag) / denominator)</code></pre><h3 id="bd9e4036-beea-49fa-84c3-7a503b12e50b" class="block-color-yellow"><strong>Class Usage:</strong></h3><p id="b8779328-81dd-4685-ac44-b61f7d340f53" class="">In this section, we use the <code><strong>Complex</strong></code> class to create objects and perform some arithmetic operations with them. We create two Complex objects <code><strong>a</strong></code> and <code><strong>b</strong></code> by calling the class constructor with the real and imaginary parts as arguments. We then use the <code><strong>__add__</strong></code>, <code><strong>__sub__</strong></code>, <code><strong>__mul__</strong></code>, and <code><strong>__truediv__</strong></code> methods to perform addition, subtraction, multiplication, and division operations between the <code><strong>a</strong></code> and <code><strong>b</strong></code> objects.</p><pre id="a1f1c934-d631-45eb-9ef9-8efeed1a9886" class="code code-wrap"><code>a = Complex(1, 2)
+b = Complex(3, 4)
+
+print(&quot;a = {}&quot;.format(a))
+print(&quot;b = {}&quot;.format(b))
+print(&quot;a + b = {}&quot;.format(a + b))
+print(&quot;a - b = {}&quot;.format(a - b))
+print(&quot;a * b = {}&quot;.format(a * b))
+print(&quot;a / b = {}&quot;.format(a / b))</code></pre><h3 id="17d70a36-37f3-483f-8bc6-a47f8e85580b" class="block-color-yellow">The output of the above code will be:</h3><pre id="b7f1e69d-0272-4932-8d31-e6b178b6d14b" class="code code-wrap"><code>a = 1 + 2i
+b = 3 + 4i
+a + b = 4 + 6i
+a - b = -2 - 2i
+a * b = -5 + 10i
+a / b = 0.44 + 0.08i</code></pre><p id="db9c8f4a-7aac-49c8-905e-99ca7ee29326" class="">Here, we use the <code><strong>print()</strong></code> function to print the string representations of the Complex objects and the results of the arithmetic operations to the console. We use the <code><strong>format()</strong></code> method to insert the values of the objects and the results into the string.</p><h1 id="0b4a93ec-0f9a-4bd8-b429-93aa4daa363e" class="block-color-brown_background">課堂作業</h1><h3 id="bd7c9296-8cfb-4548-9f39-05f3cfc8d8d9" class="block-color-gray_background">【作業 1】Try Out PAIA: A Game-based Learning Tool</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="95c20741-9cea-4c9a-b63f-8794c02f823b"><div style="font-size:1.5em"><img class="icon" src="Python%20%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88(OOP)%201%209e1a7af416f04af4a56ff7e6786b1204/800x800.png"/></div><div style="width:100%">Let&#x27;s have some fun while learning programming with the PAIA desktop application. You can download it for free from GitHub and install it on your computer. PAIA is a game-based learning tool that allows you to create and play different games using either Blockly or Python. Blockly is a programming language that uses visual blocks to write code, while Python is a text-based language that you&#x27;ll learn in this class.<p id="2b82fc60-4c7f-48e9-bb8f-bd2c596ca7a7" class="">During this tutorial, we&#x27;ll use <code>Blockly</code> to play two games in PAIA: Arkanoid and Maze-Car. Arkanoid is a classic arcade game where you move a paddle to bounce a ball and break bricks. Maze-Car is a game where you drive a car through a maze while avoiding obstacles. There are three other games in Paia that you can also explore. It&#x27;s a fun way to practice your coding skills while having a good time!</p></div></figure><ul id="53cb7756-ba08-48f4-82be-606286052980" class="bulleted-list"><li style="list-style-type:disc"><a  target="_blank" href="https://www.paia-arena.com/">PAIA Official Website</a></li></ul><ul id="720cbee9-debd-41ae-8714-754e78456488" class="bulleted-list"><li style="list-style-type:disc"><a  target="_blank" href="https://github.com/PAIA-Playful-AI-Arena/Paia-Desktop/releases/download/v2.4.1/PAIA-Desktop-win32-x64-2.4.1.zip">Download PAIA Desktop Application</a></li></ul><p id="65724fe8-54f8-47d4-b13a-346e2c002736" class="">
+</p><figure id="5e402bbe-bef4-44ab-8e73-a8353c159e9f" class="image"><a href="Python%20%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88(OOP)%201%209e1a7af416f04af4a56ff7e6786b1204/%25E5%259C%2596%25E7%2589%25873.png"><img style="width:1322px" src="Python%20%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88(OOP)%201%209e1a7af416f04af4a56ff7e6786b1204/%25E5%259C%2596%25E7%2589%25873.png"/></a></figure></div></article>
+<script>hljs.highlightAll();</script>
+</body></html>
