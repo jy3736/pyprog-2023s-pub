@@ -1,0 +1,696 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>課程簡介 - Python 程式設計 (2023 Spring)</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script></head><body><article id="dfe998bc-bbce-4e56-a79a-4a0fe544ad60" class="page sans"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?ixlib=rb-4.0.3&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb" style="object-position:center 57.010000000000005%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="%E8%AA%B2%E7%A8%8B%E7%B0%A1%E4%BB%8B%20-%20Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%20(2023%20Spring)%20dfe998bcbbce4e56a79a4a0fe544ad60/yang01.png"/></div><h1 class="page-title">課程簡介 - Python 程式設計 (2023 Spring)</h1><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script></header><div class="page-body"><h3 id="79a2145e-f2b3-4b68-ab01-94bd50cf93ec" class="block-color-yellow_background">課程說明</h3><p id="0fc5eccb-1067-4dfc-abce-65a762bbf1b5" class="">Python 程式設計是基礎程式設計課程，內容涵蓋：基本語法(Basic Syntax)、資料類型(Data Types)、檔案處理(File Processing)、錯誤和異常處理(Exception Handling)、物件導向程式設計(Object-oriented Programming, OOP)簡介等主題。學生將通過專為主題設計的課堂習題和作業，循序漸進堆積基礎 Python 程式設計知識與技能，課程結束後學生應具備基本程式邏輯的應用，及運用 Python 程式設計解決簡易實務問題的能力。
+</p><p id="bd1a553e-b550-46b8-ab67-a14a16f83672" class="">這個課程旨在提供一個對 Python 程式設計的全面介紹。課程將包括以下主題：</p><ul id="f5877a04-5832-457e-a983-8d33a76581ef" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>基本語法：</strong></mark>學習如何在 Python 中宣告變數、使用運算子和控制流語句、及如何在 Python 中定義和呼叫函數。</li></ul><ul id="3d27a80b-a3fa-4d81-ad2f-484825591735" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>資料型態：</strong></mark>學習 Python 的資料型態，包括字符串、數字和布爾值等基本資料型態，以及列表、元組和字典等集合資料型態。</li></ul><ul id="d74051b6-d6e1-4b27-82c3-22a75993e68f" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>檔案處理：</strong></mark>學習如何在 Python 中處理檔案，包括如何打開、讀取和寫入檔案，以及如何檢索和操作檔案系統。</li></ul><ul id="f53f4984-39ea-43f5-9706-e4a072771128" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>錯誤和異常處理：</strong></mark>學習如何在 Python 中處理錯誤和異常，包括如何使用 try-except 區塊和 raise 語句。</li></ul><ul id="dde2a20c-5aea-4861-97b2-8055eb8fb56b" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>物件導向程式設計【選項】：</strong></mark>學習類別(classes)、物件(objects)、繼承(inheritance)、同名異式(polymorphism)等基本概念。</li></ul><figure id="f180dabe-e9e7-4629-a5e6-bca2321bb609" class="image"><a href="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730%27%20height=%2730%27/%3e"><img src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730%27%20height=%2730%27/%3e"/></a></figure><h3 id="30d45ec1-491f-40e2-a591-b5a39e032564" class="block-color-yellow_background">Course Description</h3><p id="6bece3b3-6941-4a36-a72d-7554608eab9d" class="">This course is an introductory course to Python programming, covering topics such as basic syntax, data types, file processing, exception handling and object-oriented programming. Students will gain a comprehensive understanding of the basics of Python programming by working through specifically designed class exercises and assignments. By the end of the course, students will have developed the ability to use Python to solve practical problems.</p><p id="1023fef8-547a-4cf2-a6c7-90de5e15cc97" class="">
+</p><ol type="1" id="0c962635-8697-4369-b020-d87f38a678bc" class="numbered-list" start="1"><li><mark class="highlight-yellow"><strong>Python Basic Syntax:</strong></mark><ul id="d6fec554-5774-4c0f-80ac-4cbac156840d" class="bulleted-list"><li style="list-style-type:disc">Variable declaration: Understanding and using various data types such as strings, numbers(integer, float), booleans, etc. in Python. Assigning values to variables and naming conventions.</li></ul><ul id="aef85e0f-a261-4a18-9b97-33ac4f29477f" class="bulleted-list"><li style="list-style-type:disc">Operators: Arithmetic, comparison, and logical operators, etc. Understanding the usage of each operator and how they work in different scenarios.</li></ul><ul id="d04f5886-aa68-48c6-a576-026c769cdd69" class="bulleted-list"><li style="list-style-type:disc">Control Flow: Conditional statements(if-else), loops(for, while) and their usage in controlling the flow of a program. Understanding how to create flow control in a program using different statements.</li></ul><ul id="ef5a08c6-a543-4a7c-8b5e-481979519684" class="bulleted-list"><li style="list-style-type:disc">Function: How to define and call functions in Python. Understanding the syntax for creating a function, passing arguments, and returning values.</li></ul><ul id="a39abf5f-acdf-4981-8fe9-98b19e566656" class="bulleted-list"><li style="list-style-type:disc">Data Types: Understanding the different types of data types available in Python, such as basic data types (strings, numbers, booleans), and collection data types (lists, tuples, dictionaries). Understanding the characteristics and operations of each data type.</li></ul></li></ol><ol type="1" id="b9ea4919-92c6-407c-b13a-2652dddb46d4" class="numbered-list" start="2"><li><strong><mark class="highlight-yellow">File Processing:</mark></strong><ul id="21f092ac-f209-40d3-97c3-21af3babc2e6" class="bulleted-list"><li style="list-style-type:disc">File handling: Understanding how to open, read, and write files in Python. Understanding the different modes of opening a file (e.g. read, write, append) and the various file operations.</li></ul><ul id="951bc0a2-8854-444b-a469-f3de0fcb1940" class="bulleted-list"><li style="list-style-type:disc">File System: Understanding how to navigate and manipulate the file system using Python. Understanding how to create, rename, delete, and move files and directories.</li></ul></li></ol><ol type="1" id="591ffd81-3b1f-42d5-8b2e-fd67e4adc1c5" class="numbered-list" start="3"><li><mark class="highlight-yellow"><strong>Error and Exception Handling:</strong></mark><ul id="a0672c48-8f46-471c-b8d0-38a525cb24e7" class="bulleted-list"><li style="list-style-type:disc">Understanding how to handle errors and exceptions in Python. Understanding how to use try-except blocks to catch and handle exceptions, and how to use the raise statement to throw exceptions.</li></ul><ul id="b8a00dfa-afae-4e4b-b87e-4989cadf9be9" class="bulleted-list"><li style="list-style-type:disc">Understanding the difference between exceptions and errors, and how to handle each appropriately.</li></ul></li></ol><ol type="1" id="92c76181-9bad-41d1-a22a-28e98d548844" class="numbered-list" start="4"><li><mark class="highlight-yellow"><strong>Object-Oriented Programming (OOP): [Optional]</strong></mark><ul id="081dbdeb-6bbe-4837-91aa-2785e08c43cb" class="bulleted-list"><li style="list-style-type:disc">Understanding the concepts of classes, objects, inheritance, polymorphism, etc. Understanding the benefits of OOP and how it is used in Python.</li></ul><ul id="f094c43f-5ecc-45be-9a65-a8a5fb2e56cb" class="bulleted-list"><li style="list-style-type:disc">Understanding how to create and use classes and objects in Python. Understanding how to define and use class variables, class methods, and instance methods.</li></ul></li></ol><h3 id="40ef61d7-011b-4f50-aca6-d209c7037ab7" class="block-color-yellow_background">上課規範 / 評分規則</h3><ul id="12b4faa2-5202-4036-b47c-bf090cb906ed" class="bulleted-list"><li style="list-style-type:disc">第一堂課鐘響 <strong><mark class="highlight-red">20分鐘後</mark></strong>，不定時使用 Zuvio 線上快速簽到(點名)。<ul id="4ed462b9-b55b-4ae3-a6e0-d65f548b81ff" class="bulleted-list"><li style="list-style-type:circle">缺曠只會影響你的出缺席紀錄，<mark class="highlight-red"><strong>與學習成績並無直接關聯</strong></mark>。</li></ul><ul id="ff70316f-82cb-41b1-9495-4c609a863d05" class="bulleted-list"><li style="list-style-type:circle">幫他人「代簽」、「遠距簽名」視為嚴重「違背誠信」，<mark class="highlight-red"><strong>扣【學期總成績】5分。</strong></mark></li></ul></li></ul><ul id="c99c13b6-1c66-4e75-b6b3-31e359810a0f" class="bulleted-list"><li style="list-style-type:disc"><strong><mark class="highlight-yellow">上課期間「干擾」0容忍!</mark></strong><ul id="981d7ded-09af-4e7e-9482-1cb00a3d27d0" class="bulleted-list"><li style="list-style-type:circle">課堂上嚴禁做其他「與本課程無關」之事務，例如：寫作業、看影片、上網閒逛、...等等。</li></ul><ul id="b3af4f5f-629d-44b5-99ab-1ec257c1177b" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-red"><strong>罰則：第一次「口頭警告」，再犯每次「扣平時【總成績】5分」。</strong></mark></li></ul></li></ul><ul id="ad3dd05f-7dd1-4121-83b0-7d5bb35514ae" class="bulleted-list"><li style="list-style-type:disc">評分規則<ul id="a6b6bc2b-5e99-45b6-a24e-ad7a148be08e" class="bulleted-list"><li style="list-style-type:circle"><strong><mark class="highlight-red">平時成績 (40%)</mark></strong> - 課堂練習、回家作業、 課堂形成性評量 (Zuvio)。</li></ul><ul id="a67088a5-a77f-4284-a70d-8ee7f31bc8c4" class="bulleted-list"><li style="list-style-type:circle"><strong><mark class="highlight-red">期中成績 (20%)</mark></strong> - 上機實作考試 / 大學社會責任行前準備。 (<strong><mark class="highlight-orange">多元評量，擇一完成</mark></strong>)</li></ul><ul id="19ef4632-e1c6-4b22-b066-9bf9e785b9d5" class="bulleted-list"><li style="list-style-type:circle"><strong><mark class="highlight-red">期末成績 (40%)</mark></strong> - 期末實務專題­ /上機實作考試 / 大學社會責任場域活動實踐報告。 (<strong><mark class="highlight-orange">多元評量，擇一完成</mark></strong>)</li></ul></li></ul><h3 id="8fb08c65-4cdc-4244-a8a9-dcae1c6a71d7" class="block-color-yellow_background">各週課程進度</h3><h3 id="06e91ec2-6f82-4b00-8b90-aefcfc04f8aa" class="block-color-yellow">授課期間會「彈性」調整</h3><table id="208c584a-7bfd-4ee0-9b9c-a304c33c8893" class="simple-table"><tbody><tr id="0159cee7-9d3c-48a8-8509-c95d74f16c37"><td id="is?n" class="block-color-yellow_background">週次</td><td id="uwNf" class="block-color-yellow_background" style="width:240px">單元與主題</td><td id="~^Yd" class="block-color-yellow_background">場域/業師課程</td><td id="Po_=" class="block-color-yellow_background">附註</td></tr><tr id="ba42c011-d971-433c-8623-95c466704959"><td id="is?n" class="">1</td><td id="uwNf" class="" style="width:240px">§  課程簡介
+§  認識大學社會責任(USR)</td><td id="~^Yd" class="">社會責任課程
+專業課程</td><td id="Po_=" class="">§  認識大學社會責任(USR)</td></tr><tr id="866459f7-0fda-4bbc-b907-61fcddd6ce4e"><td id="is?n" class="">2</td><td id="uwNf" class="" style="width:240px">§  Python 開發環境 (IDE)
+§  程式設計基礎概念</td><td id="~^Yd" class="">專業課程</td><td id="Po_=" class="">§  Python程式設計基礎 1/6</td></tr><tr id="1e5dac64-3f3c-43fc-8e50-64a4efb8436c"><td id="is?n" class="">3</td><td id="uwNf" class="" style="width:240px">§  變數 (variables) 
+§  認識運算子 (operators
+§  基本資料 (basic data)</td><td id="~^Yd" class="">專業課程</td><td id="Po_=" class="">§  Python程式設計基礎 2/6</td></tr><tr id="ccef311f-ba3e-4791-a056-54c69a5ca7ef"><td id="is?n" class="">4</td><td id="uwNf" class="" style="width:240px">§  流程控制 (control flow)</td><td id="~^Yd" class="">專業課程</td><td id="Po_=" class="">§  Python程式設計基礎 3/6</td></tr><tr id="98481e19-6935-4d07-ab12-72eac1ce7dc3"><td id="is?n" class="">5</td><td id="uwNf" class="" style="width:240px">§  函數 (functions)</td><td id="~^Yd" class="">專業課程</td><td id="Po_=" class="">§  Python程式設計基礎 4/6</td></tr><tr id="c0592a35-f791-4ae6-b697-69e9e6ef4c91"><td id="is?n" class="">6</td><td id="uwNf" class="" style="width:240px">§  集合資料 (collection data)</td><td id="~^Yd" class="">專業課程</td><td id="Po_=" class="">§  Python程式設計基礎 5/6</td></tr><tr id="379f3006-ed0b-470e-ac16-b83657fe1499"><td id="is?n" class="">7</td><td id="uwNf" class="" style="width:240px">§  檔案處理 (files)</td><td id="~^Yd" class="">專業課程</td><td id="Po_=" class="">§  Python程式設計基礎 6/6</td></tr><tr id="f1ce3c73-94d7-4526-a6ae-5856da512855"><td id="is?n" class="">8</td><td id="uwNf" class="" style="width:240px">§  聯合國永續發展目標(SDGs)</td><td id="~^Yd" class=""><strong>業師課程</strong></td><td id="Po_=" class="">§  認識永續發展目標(SDGs)</td></tr><tr id="109f2977-681a-42b9-b264-56331d4d46bf"><td id="is?n" class="block-color-gray_background">9</td><td id="uwNf" class="block-color-gray_background" style="width:240px">§  實作上機考試 (期中考)</td><td id="~^Yd" class="block-color-gray_background"></td><td id="Po_=" class="block-color-gray_background">§  決定是否參與USR場域實踐</td></tr><tr id="8ca3ad30-02d6-47e2-8e08-f2a330a47d9b"><td id="is?n" class="">10</td><td id="uwNf" class="" style="width:240px">§  USR方案與SDGs簡介
+§  體驗PAIA學習平台–Python 程式控制</td><td id="~^Yd" class="">社會責任課程
+專業課程</td><td id="Po_=" class="">§  中心提供期末報告格式
+§  本校USR方案與SDGs簡介</td></tr><tr id="0985ccc9-4f51-4cdb-bb3d-5595fc7aeee6"><td id="is?n" class="">11</td><td id="uwNf" class="" style="width:240px">§  用Python程式「玩遊戲」- 演算法走迷宮</td><td id="~^Yd" class="">社會責任課程
+專業課程</td><td id="Po_=" class="">§  Python 程式設計實務應用</td></tr><tr id="ef7ebb11-e6e6-414f-88e2-6c8fd726d8da"><td id="is?n" class="">12</td><td id="uwNf" class="" style="width:240px">§  用Python程式「玩遊戲」- 機器學習走迷宮</td><td id="~^Yd" class="">社會責任課程
+專業課程</td><td id="Po_=" class=""> §  Python 程式設計實務應用</td></tr><tr id="5c5e5dcc-d92b-4077-b45a-b92a448838b6"><td id="is?n" class="">13</td><td id="uwNf" class="" style="width:240px">§  用積木程式「玩遊戲」- 演算法走迷宮
+§  用積木程式「玩遊戲」- 機器學習走迷宮</td><td id="~^Yd" class="">社會責任課程</td><td id="Po_=" class="">§  USR場域實踐活動行前訓練</td></tr><tr id="819a1c68-10e8-4049-b8b3-020fef81a700"><td id="is?n" class="">14、
+15</td><td id="uwNf" class="" style="width:240px">§  遊戲式學習積木程式入門
+§  人工智慧(AI)機器學習(ML)初體驗
+§  SDGs目標導向「教具/專題」企畫書</td><td id="~^Yd" class="">場域課程</td><td id="Po_=" class="">§  參與場域活動學生：前往配合的國小課堂，實踐社會責任場域活動
+§  其他學生：以SDGs目標導向撰寫「教具/專題」企畫書</td></tr><tr id="6679ee05-af72-449c-9498-b8579f1d4016"><td id="is?n" class="">16</td><td id="uwNf" class="" style="width:240px">§  大學社會責任(USR)場域活動經驗分享
+§  SDGs目標導向「教具/專題」企劃分享</td><td id="~^Yd" class="">社會責任課程</td><td id="Po_=" class="">§  社會責任實踐及SDGs目標導向「企劃」分享</td></tr><tr id="9ff19c2f-10f3-4f70-94b3-f8fd7a17f57b"><td id="is?n" class="">17</td><td id="uwNf" class="" style="width:240px">§  中心施測日期
+§  期末SDGs微型專題討論</td><td id="~^Yd" class="">社會責任課程
+專業課程</td><td id="Po_=" class="">§  30分鐘社會責任問卷填寫</td></tr><tr id="63e71f2d-e185-437e-9ada-858bb2c226e2"><td id="is?n" class="block-color-gray_background">18</td><td id="uwNf" class="block-color-gray_background" style="width:240px">§  微型專題展示 (符合SDGs任何一項的專題企劃)
+§  實作上機考試 (期末考)</td><td id="~^Yd" class="block-color-gray_background"></td><td id="Po_=" class="block-color-gray_background">§  多元期末測驗選項，若有學生選擇SDGs微型專題，會利用期末考週展示。</td></tr></tbody></table><h3 id="3f28d728-6be0-487d-b936-b96293ba9e1e" class="block-color-yellow_background">認識大學社會責任(USR)</h3><p id="9db1cee0-01ce-43e0-bacc-330fa2e960f7" class="">大學社會責任(University Social Responsibility, USR)，是指大學在其社會角色中理應付出的責任，包括大學對於社會、環境、經濟等方面可能產出的貢獻，大學社會責任的主要目的，是確保大學在其社會責任中，貢獻社會福利並維護環境和社會的可持續發展。</p><h3 id="bf561fce-148d-48e0-9bfa-6c47692f6f62" class="block-color-yellow">大學社會責任(University Social Responsibility, USR)可以透過多種方式實現，包括但不限於以下事項:</h3><ol type="1" id="401f6824-4bcc-4fb7-9998-a71f4bee89a5" class="numbered-list" start="1"><li>環境保護: 大學可以透過採取環保措施，如能源效率提升、垃圾分類、綠色建築等，來保護環境。</li></ol><ol type="1" id="26a58e36-9ccd-4fc4-b6af-2592136c8b06" class="numbered-list" start="2"><li>社會參與: 大學可以透過參與社區服務、籌款活動、志工活動等，來幫助社區和弱勢族群。</li></ol><ol type="1" id="531bfba3-64f1-4e23-b998-272604567c93" class="numbered-list" start="3"><li><strong><mark class="highlight-yellow">教育與研究: </mark></strong><strong>大學可以透過開設課程、研究項目、專題研究等，來提升社會關注的議題的認知。</strong></li></ol><ol type="1" id="844fa8e0-7e2a-41ee-90ba-f570054a9d1d" class="numbered-list" start="4"><li>經濟貢獻: 大學可以透過舉辦商業活動、舉辦研討會等，來促進地區經濟發展。</li></ol><ol type="1" id="ee8ed77b-b883-4150-886b-57937855c73b" class="numbered-list" start="5"><li>就業: 大學可以透過提供就業機會、就業輔導等，來幫助畢業生就業。</li></ol><ol type="1" id="92fe7826-b564-4ab6-a6a6-038cbdf9cfdc" class="numbered-list" start="6"><li>跨文化交流: 大學可以透過舉辦國際會議、國際交流項目等，來促進文化交流。</li></ol><p id="99906e47-8b42-487d-8e0e-07d2553cd835" class="">這些事項可以讓大學與社會建立良好關係，並為社會做出貢獻。</p><h3 id="23d71519-e411-4d51-9d64-c2368d8a5750" class="block-color-yellow">推廣兒童資訊教育與大學社會責任有著密切的關係：</h3><p id="4060c65e-1abd-46e7-9bbb-942db596f368" class="">大學社會責任涵蓋了教育與研究的部分，透過提供兒童資訊教育推廣，大學可以履行其在教育與研究方面的責任，並為未來的社會培養有知識、有能力的人才。另一方面，提供兒童資訊教育推廣有助於社會的永續發展，因為教育是社會發展的重要基礎，而資訊科技是當今社會發展的重要驅動力。透過提供兒童資訊教育推廣，大學可以培養兒童對資訊科技的興趣，並培養他們對資訊科技的使用能力，從而為社會未來的發展作出貢獻。整體來說，提供兒童資訊教育推廣可以讓大學在教育與研究、社會永續發展等方面發揮其社會責任，並為社會做出貢獻。</p><h3 id="90134ee0-93ac-48ed-b0ba-b72a953b64f4" class="block-color-yellow">提升中小學資訊素養作為大學社會責任實踐的工作具有重要性及貢獻：</h3><p id="4c1f9df4-b4c2-4774-9650-e97a136f06b1" class="">資訊素養已經成為現今社會和未來發展的重要因素，中小學階段是培養學生資訊素養的關鍵時期，大學可以透過提升中小學資訊素養，幫助中小學生適應現代社會的需求，並培養他們對科技的興趣。此外，提升中小學資訊素養有助於社會的發展，因為培養具有資訊素養的學生，可以為社會未來的發展提供有力的支持。大學可以透過提供專業知識、技能培訓、研究項目等，來幫助中小學教師提升資訊素養教育水平。整體來說，提升中小學資訊素養是社會責任實踐的重要工作，大學可以藉此協助學生適應現代社會需求，並為社會發展做出貢獻。</p><h3 id="81fe73e5-61df-48e5-9c30-14a06c6cc02d" class="block-color-yellow">參與「大學社會責任」實踐的大學生，可習得許多不同的技能：</h3><ol type="1" id="4d793649-c3ee-4d98-9557-2e11272ed6f2" class="numbered-list" start="1"><li>領導力: 大學生可以學習如何領導一個團隊，如何舉辦和組織各種活動和項目。</li></ol><ol type="1" id="cff44e20-931b-4c4d-8140-16c8d4aa59c9" class="numbered-list" start="2"><li>溝通能力: 大學生可以學習如何與不同的人溝通，如何有效地和其他人溝通和互動。</li></ol><ol type="1" id="062b7947-2ac6-4ebf-998c-1c2abdbeae03" class="numbered-list" start="3"><li>協調能力: 大學生可以學習如何協調不同的人和資源，如何達成共同目標。</li></ol><ol type="1" id="e07a11a8-0b95-41e8-a400-55831ff35101" class="numbered-list" start="4"><li>創新思維: 大學生可以學習如何提出新點子和創新思路，如何應對不同的問題。</li></ol><ol type="1" id="25db7804-fe0a-4886-83d0-e43254dabf76" class="numbered-list" start="5"><li><strong>教育和研究: 大學生可以學習如何教授和研究各種議題，並在實際實踐中運用知識。</strong></li></ol><ol type="1" id="8059ab12-9d35-4e51-8c05-00af14c4a667" class="numbered-list" start="6"><li>慈善與社區服務: 大學生可以學習如何舉辦慈善活動，如何幫助弱勢群體，並瞭解社區需求。</li></ol><p id="7800e327-91f8-4312-9b56-1d263d9bd993" class="">這些技能不僅可以提升大學生就業競爭力，也能讓他們成為社會未來的優秀公民。</p><h3 id="9cbc04e1-8c90-4bda-8efa-7db92588a678" class="block-color-yellow">參與「提升中小學資訊素養」的大學生，可習得許多有關資訊素養教育的專業技能和能力：</h3><ol type="1" id="29735b5a-89d8-4c80-88d0-10066bc0cd15" class="numbered-list" start="1"><li>教學技能: 大學生可以學習如何設計與實施面向中小學生的資訊素養課程，如何使用不同的教學方法和工具。</li></ol><ol type="1" id="4c164d6d-309a-4876-a2ce-074e102c4a70" class="numbered-list" start="2"><li>資訊科技知識: 大學生可以學習關於資訊科技的最新知識，如程式設計、資料科學、人工智慧等，並在實際教學中將其運用到課程中。</li></ol><ol type="1" id="bcc7e69e-3544-45c0-abba-067036c2068d" class="numbered-list" start="3"><li>課程發展: 大學生可以學習如何發展和創建面向中小學生的資訊素養課程和教材，如何使用不同的教學資源。</li></ol><ol type="1" id="ebec20d6-7046-4c90-beac-ce87a9ffd561" class="numbered-list" start="4"><li><strong>教育研究: 大學生可以學習如何研究資訊素養教育相關議題，如課程效果、學習成效、教學方法等。</strong></li></ol><ol type="1" id="92dd2fd2-faf1-4847-b960-8c1628b2ed42" class="numbered-list" start="5"><li>教學評估: 大學生可以學習如何評估資訊素養課程和學習成果，如何收集和分析學習資料。</li></ol><ol type="1" id="ca63c531-78e9-4270-85c0-699bfb9ff295" class="numbered-list" start="6"><li>團隊合作: 大學生可以學習如何與教師、學校和其他大學生一起合作，如何協調資源和支援以實現共同目標。</li></ol><p id="cf9d7758-52df-4fa1-a7cc-ea9c658a69e5" class="">這些技能不僅可以提高大學生就業競爭力，也能使他們成為在教育領域中有所作為的專業人員。</p><p id="396f3ca3-f7c6-4ace-a265-b1a636fc0294" class="">
+</p><figure id="59ca235c-cf75-4c9a-a530-e1b8d2dcb06c" class="image"><a href="%E8%AA%B2%E7%A8%8B%E7%B0%A1%E4%BB%8B%20-%20Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%20(2023%20Spring)%20dfe998bcbbce4e56a79a4a0fe544ad60/end1.png"><img style="width:4538px" src="%E8%AA%B2%E7%A8%8B%E7%B0%A1%E4%BB%8B%20-%20Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%20(2023%20Spring)%20dfe998bcbbce4e56a79a4a0fe544ad60/end1.png"/></a></figure><p id="1de6e122-7ca4-47bd-a7ed-cb0322b882b9" class="">
+</p></div></article>
+<script>hljs.highlightAll();</script>
+
+<script>hljs.highlightAll();</script>
+</body></html>

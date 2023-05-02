@@ -1,0 +1,841 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Python 程式設計基礎入門 (2/6)</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="31d9f607-211b-440e-a7e5-103a45e5faf8" class="page sans"><header><img class="page-cover-image" src="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(1%206)%202b08444b0b90422d9b49eb26e8be99ce/notion-Python_(1).png" style="object-position:center 31.08%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(1%206)%202b08444b0b90422d9b49eb26e8be99ce/yang01.png"/></div><h1 class="page-title">Python 程式設計基礎入門 (2/6)</h1></header><div class="page-body"><p id="ae2289be-e523-454b-8674-dc04592825cc" class="">
+</p><p id="db609bc0-e9f3-4a9d-927f-50df09e4fb23" class="">This week, we will learn two topics:</p><ol type="1" id="a8f4e130-8711-422b-9189-f93bd6b97c1c" class="numbered-list" start="1"><li>Number data types (integer and float)</li></ol><ol type="1" id="2a765f2c-c0a0-48b2-80d6-885c4ebe0fab" class="numbered-list" start="2"><li>Conditional statements.</li></ol><p id="6d2bc974-ca69-4630-9fb9-59f313772351" class="">We will use Snakify&#x27;s problem sets to understand the fundamentals of these topics. Afterwards, students will be asked to practice the remaining Snakify online problems from Lessons 2 and 3.</p><h1 id="a7e04f4f-32b9-4dae-8b1b-8216fdf3c3b3" class="block-color-brown_background">參考資料 (References)</h1><h3 id="b4c50bb5-a7c6-4933-934b-a4f9630039eb" class="block-color-yellow">線上 Python 程式練習網站 (Snakify.org)</h3><figure id="8ebdccd4-6a7c-4512-a881-e6fc832fe6e1"><a href="https://snakify.org/en/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Snakify - Python 3 Interactive Course</div><div class="bookmark-description">Teach Python 3 and web design with 200+ exercises - Learn Python 3 - Snakify Welcome to our interactive manual of Python 3 programming language. This is an introductory course that is way different from the others.</div></div><div class="bookmark-href"><img src="https://snakify.org/static/favicon.ico?3c9fe09" class="icon bookmark-icon"/>https://snakify.org/en/</div></div><img src="https://snakify.org/static/images/pony.png" class="bookmark-image"/></a></figure><h3 id="06c7efb8-bf6b-4fa3-9495-2170e0f07f7f" class="block-color-yellow">Python 官方「參考資料」網站 (Python.org)</h3><figure id="c0c649fa-25c5-419b-8d48-f4156bbf6c25"><a href="https://docs.python.org/3/index.html" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">3.11.1 Documentation</div><div class="bookmark-description">Welcome! This is the official documentation for Python 3.11.1.</div></div><div class="bookmark-href"><img src="https://docs.python.org/favicon.ico" class="icon bookmark-icon"/>https://docs.python.org/3/index.html</div></div></a></figure><h1 id="e6fbe1fc-ad8d-420f-ab94-f5df28e37e78" class="block-color-brown_background">課堂活動</h1><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="dae72c9b-d65e-452f-87af-e8ea8bdb5f2f"><div style="font-size:1.5em"><img class="icon" src="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(2%206)%2031d9f607211b440ea7e5103a45e5faf8/yang02.png"/></div><div style="width:100%">This week&#x27;s topics:<ol type="1" id="8eaec238-291b-41f2-b519-f4c80d5e0c53" class="numbered-list" start="1"><li>An in-depth look at Python numbers, including integers and floating point numbers.</li></ol><ol type="1" id="8daa0675-029d-4230-8bf9-e7ad69e58831" class="numbered-list" start="2"><li>The use of condition statements, specifically if-then-else structure.</li></ol><ol type="1" id="4796b0eb-2ff9-4606-a2b3-5d9819f7b701" class="numbered-list" start="3"><li>Discussion and solving some of problems within Snakify Lesson 2 and 3.</li></ol><p id="e87b31e0-1059-424b-8508-3b037ff91fa5" class="">
+Source : Snakify.org
+<a href="https://snakify.org/en/lessons/integer_float_numbers/"><strong>Lesson 2 : Integer and float numbers</strong></a></p><p id="2ac22731-5355-451e-8a17-795d30c0f5f8" class=""><a href="https://snakify.org/en/lessons/if_then_else_conditions/"><strong>Lesson 3 : Conditions: if, then, else</strong></a></p></div></figure><h3 id="da37b228-8161-439a-ba77-3c0ee5d39492" class="block-color-gray_background">【課堂練習 1】<strong><strong>Merge two numbers</strong></strong></h3><div id="aa9ae4f1-d357-4484-a7af-9ed0a32e5b44" class="column-list"><div id="37c7523a-110b-46d3-8809-958a2c8345ae" style="width:50%" class="column"><ul id="79f61c10-6e0d-44d2-9866-d9cbfa5022cd" class="bulleted-list"><li style="list-style-type:disc">Given two two-digit numbers, merge their digits as shown in the tests below.</li></ul><ul id="41ef55b0-1002-4bd4-b315-641e424fd536" class="bulleted-list"><li style="list-style-type:disc">The input must be processed as integers and must not be converted to strings. </li></ul><ul id="bd3cc237-a98a-4417-b743-2c5ff1a0780e" class="bulleted-list"><li style="list-style-type:disc">It is not allowed to use string concatenation to solve this problem.</li></ul><p id="3c81f6a7-b9f1-409f-8d8a-61ec825e40ff" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="595d2f16-3141-4ae5-b61c-3ce272e84a40"><div style="font-size:1.5em"><span class="icon">🖥️</span></div><div style="width:100%">Snakify’s Model Solution</div></figure><pre id="9e22fba2-f76b-4409-9f76-e19ac21f4aa4" class="code"><code>a = int(input())
+b = int(input())
+tens_a = a // 10
+units_a = a % 10
+tens_b = b // 10
+units_b = b % 10
+print(tens_a * 1000 + tens_b * 100 + units_a * 10 + units_b)</code></pre><p id="8098dc14-aef7-45c3-b997-e3557530cb24" class="">
+</p></div><div id="2b5afa2f-4096-410e-bbdc-05c4d9695673" style="width:50.000000000000014%" class="column"><pre id="9159efd9-2bc2-46c2-8cdf-d35ddafbc3fe" class="code code-wrap"><code>Test case 1:
+Input:
+12
+34
+Output: 
+1324
+
+Test case 2:
+Input: 
+11
+22
+Output: 
+1212
+
+Test case 3:
+Input: 
+13
+24
+Output: 
+1234</code></pre></div></div><h3 id="6c989929-828a-4385-8234-220e691bb585" class="block-color-gray_background">【課堂練習 2】<strong><strong>Day of week</strong></strong></h3><div id="79dba2c6-f103-4073-9e89-6e7272a63a1a" class="column-list"><div id="3cf74087-ef9f-404a-b3cb-11062517547b" style="width:50%" class="column"><ul id="d2e7a7a3-5f9c-4d25-a90d-63bb4c267586" class="bulleted-list"><li style="list-style-type:disc">Given an integer K in the range 1 to 365, determine the day of the week for the K-th day of the year, assuming January 1 of that year is Thursday. </li></ul><ul id="cb22285b-17be-46b6-9786-a590554fc092" class="bulleted-list"><li style="list-style-type:disc">The days of the week are numbered as follows: Sunday is 0, Monday is 1, Tuesday is 2, ..., and Saturday is 6.</li></ul><p id="f358c8c3-5dfe-4045-bb74-bcde943e16f0" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="18e6900f-732d-4c68-b99e-591f678759dd"><div style="font-size:1.5em"><span class="icon">🖥️</span></div><div style="width:100%">Snakify’s Model Solution</div></figure><pre id="8d8d5c4c-42e8-49f0-b15a-8742ea5bcc0a" class="code"><code>k = int(input())
+print((k + 3) % 7)</code></pre><p id="6c3fe840-23e4-4577-9abf-1083e5bb97a0" class="">
+</p></div><div id="ec0be496-7971-46a4-a251-b745eb5b2456" style="width:50%" class="column"><pre id="fbcf1b4d-efc7-49c9-80b6-ff75168e0d00" class="code code-wrap"><code>Test case 1:
+Input: 1
+Output 4
+
+Test case 2:
+Input: 3
+Output 6
+
+Test case 3:
+Input: 205
+Output 5
+
+Test case 4:
+Input: 300
+Output 2</code></pre></div></div><h3 id="24d397aa-758b-4ddc-a94b-3b272ebe4f7a" class="block-color-gray_background">【課堂練習 3】<strong><strong>Snail</strong></strong></h3><figure id="afae10b4-1224-4edf-8878-3157acc5ad24"><div class="source"><a href="https://player.soundon.fm/p/8faaae18-d718-46a4-b9a8-8a17a7674c41/episodes/e1cfa958-7eb6-4372-86b0-6a1b2c9f0714">https://player.soundon.fm/p/8faaae18-d718-46a4-b9a8-8a17a7674c41/episodes/e1cfa958-7eb6-4372-86b0-6a1b2c9f0714</a></div></figure><div id="a6364fd6-a63a-47e1-b058-6fe5e3604877" class="column-list"><div id="03e0dd82-dfa6-4502-9284-dec0a4ed725d" style="width:50%" class="column"><ul id="de360e70-af62-43ab-9e8e-8c556e2e60a2" class="bulleted-list"><li style="list-style-type:disc">A snail goes up A feet during the day and falls B feet at night. How long does it take him to go up H feet?</li></ul><ul id="3804f67c-fd53-4bb1-934c-464e3b5a922d" class="bulleted-list"><li style="list-style-type:disc">Given three integer numbers H, A and B (A &gt; B), the program should output a number of days.</li></ul><pre id="0ba1ecf2-c342-4ee6-b38f-86e01cd04a1f" class="code code-wrap"><code>Test case 1:
+Input:
+10
+3
+2
+Output:
+8
+
+Test case 2:
+Input:
+20
+7
+3
+Output:
+5
+
+Test case 3:
+Input:
+19
+7
+3
+Output:
+4</code></pre></div><div id="433e0026-f4d2-434f-92e3-406a2fdf9ae6" style="width:50%" class="column"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="8bd12a50-5931-46f0-ba02-9b23d0181874"><div style="font-size:1.5em"><span class="icon">🖥️</span></div><div style="width:100%">Snakify’s Model Solutiion</div></figure><pre id="0ffed5bc-e351-477f-bc15-381198c0fd14" class="code"><code>from math import ceil
+
+h = int(input())
+a = int(input())
+b = int(input())
+print(ceil((h - a) / (a - b)) + 1)</code></pre><p id="a80aafea-483a-4b6e-bf12-4240a4838f39" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="beae44ef-e8b7-46a7-9733-834c652fa65d"><div style="font-size:1.5em"><img class="icon" src="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(2%206)%2031d9f607211b440ea7e5103a45e5faf8/yang02%201.png"/></div><div style="width:100%">Other ways to perform a ceiling function</div></figure><pre id="f14e2e66-7d47-46ae-a002-0e5d82f360ef" class="code"><code>h = int(input())
+a = int(input())
+b = int(input())
+
+print(-(-(h - a)//(a - b)) + 1)</code></pre><p id="1e242150-6626-4531-a2a7-70acd61f23db" class="">
+</p></div></div><h3 id="5ce3c08e-abd6-4e5c-b059-4a6f4a3ea4d5" class="block-color-gray_background">【課堂練習 4】<strong><strong>Distance to closest point</strong></strong></h3><figure id="948a9902-b2ef-48ed-ae49-34468b6a0d8d"><div class="source"><a href="https://player.soundon.fm/p/8faaae18-d718-46a4-b9a8-8a17a7674c41/episodes/d412fc24-3d97-4962-ac23-3fac7aa70bad">https://player.soundon.fm/p/8faaae18-d718-46a4-b9a8-8a17a7674c41/episodes/d412fc24-3d97-4962-ac23-3fac7aa70bad</a></div></figure><div id="4415c1ad-dd95-49b6-85d9-46d13d1c9b50" class="column-list"><div id="9b7b5ee2-9d85-4d63-a564-545dd2b09a81" style="width:50%" class="column"><p id="3ebae384-6231-4aa4-9f6c-f97b11a0d01c" class="">Write a program to calculate the shortest distance between a given point <code>A</code> and either point <code>B</code> or <code>C</code> on a line. Provide the coordinates of all three points as input.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="009187a0-e7b8-4333-95c6-9cca517424e9"><div style="font-size:1.5em"><span class="icon">🖥️</span></div><div style="width:100%">Snakify’s Model Solution</div></figure><pre id="02fa2f9f-c0f9-4adc-82c9-bf204bcb8d05" class="code"><code>a = int(input())
+b = int(input())
+c = int(input())
+
+a_to_b = abs(a - b)
+a_to_c = abs(a - c)
+
+if a_to_b &lt; a_to_c:
+    print(a_to_b)
+else:
+    print(a_to_c)</code></pre><pre id="ad08d9cc-5589-43c8-a3bc-fed9834a8826" class="code code-wrap"><code>Test case 1:
+Input:
+10
+35
+30
+Output:
+20
+
+Test case 2:
+Input:
+35
+30
+10
+Output:
+5</code></pre></div><div id="8a9f9f51-6884-4455-96d2-fd3c8d9557e2" style="width:50%" class="column"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="832ec0fa-8e75-4d6d-8b5f-d3fe97da6159"><div style="font-size:1.5em"><img class="icon" src="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(2%206)%2031d9f607211b440ea7e5103a45e5faf8/yang02%201.png"/></div><div style="width:100%">Other ways to solve this problem without using the <code>abs()</code> function.</div></figure><pre id="3e4faab8-06b2-418e-82b0-94ab423d6748" class="code code-wrap"><code>a = int(input())
+b = int(input())
+c = int(input())
+
+a_to_b = a - b
+a_to_c = a - c
+
+if a_to_b &lt; 0:
+    a_to_b = -a_to_b
+if a_to_c &lt; 0:
+    a_to_c = -a_to_c
+
+if a_to_b &lt; a_to_c:
+    print(a_to_b)
+else:
+    print(a_to_c)
+</code></pre><p id="6d210139-572f-4139-99eb-2dfaf51c7556" class="">
+</p><pre id="7dac67b2-38b7-4ee6-87bc-835460f94a13" class="code code-wrap"><code>Test case 3:
+Input:
+100
+151
+149
+Output:
+49</code></pre></div></div><h3 id="13889cda-8031-46af-a300-47770d5dc3d3" class="block-color-gray_background">【課堂練習 5】<strong><strong>Four-digit palindrome</strong></strong></h3><figure id="8bf03491-93fb-4757-8f4b-bef5433e9bfd"><div class="source"><a href="https://player.soundon.fm/p/8faaae18-d718-46a4-b9a8-8a17a7674c41/episodes/016627c5-9358-4dc8-a2cd-9bc5f8a6afc1">https://player.soundon.fm/p/8faaae18-d718-46a4-b9a8-8a17a7674c41/episodes/016627c5-9358-4dc8-a2cd-9bc5f8a6afc1</a></div></figure><div id="bcc1ac99-eefb-44a3-a149-e56a3fe74400" class="column-list"><div id="0bd64889-954a-4a42-9095-ab7f5cf55a8f" style="width:50%" class="column"><ul id="c8df1e68-40d4-4976-9bad-1df7cd8b446c" class="bulleted-list"><li style="list-style-type:disc">Write a program that takes a four-digit integer and checks if it&#x27;s a palindrome. If it is, print &quot;YES&quot;, otherwise print &quot;NO&quot;. </li></ul><ul id="b2efdfbd-187f-48a6-ae7d-d337802174a4" class="bulleted-list"><li style="list-style-type:disc">A palindrome is a number that reads the same forwards as it does backwards.</li></ul><ul id="2663a9ca-e8c8-4b12-a594-bd0041e1a295" class="bulleted-list"><li style="list-style-type:disc">The program must only use numerical data types and must not involve any other data types.<pre id="b17d5c83-e557-4bdc-978e-14d21c4a6d9a" class="code code-wrap"><code>Test case 1:
+Input: 1234
+Output: NO
+
+Test case 2:
+Input: 3443
+Output: YES
+
+Test case 3:
+Input: 2222
+Output: YES
+
+Test case 4:
+Input: 1221
+Output: YES</code></pre></li></ul><p id="10ade193-185d-4d9e-9221-d1221d46c22c" class="">
+</p><p id="9dce7d15-e91d-46ba-bca2-68d259ee0d42" class="">
+</p></div><div id="3de4498d-7a4e-471a-990e-b76ed0f4f00b" style="width:50%" class="column"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="6c028dc9-e017-4df6-8ac4-b104d98bfb8d"><div style="font-size:1.5em"><span class="icon">🖥️</span></div><div style="width:100%">Snakify’s Model Solutiion</div></figure><pre id="7616662e-6ad9-4038-8817-a2f9f0420292" class="code"><code>number = int(input())
+a = number // 1000
+b = number // 100 % 10
+c = number // 10 % 10
+d = number % 10
+if a == d and b == c:
+    print(&#x27;YES&#x27;)
+else:
+    print(&#x27;NO&#x27;)</code></pre><p id="47259110-bc74-4a36-a191-fdb47be1ad71" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="2652f4df-be7a-4bce-af6b-5afef645fe1d"><div style="font-size:1.5em"><img class="icon" src="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(2%206)%2031d9f607211b440ea7e5103a45e5faf8/yang02%201.png"/></div><div style="width:100%">Other ways to solve this problem.</div></figure><pre id="b483a190-0d20-4f6d-9055-35923eef498f" class="code"><code>a = int(input())
+
+if (a%10!=a//1000):
+    print(&quot;NO&quot;)
+elif (a%100//10!=a//100%10):
+    print(&quot;NO&quot;)
+else:
+    print(&quot;YES&quot;)</code></pre></div></div><h1 id="033d710f-e8dd-4341-973c-d7cbf8fd3b37" class="block-color-brown_background">課堂作業</h1><h3 id="1bbe977a-b821-49ea-a6e5-995b4c31c839" class="block-color-gray_background">【作業 1】Online practice on the website <a href="http://snakify.org/">Snakify.org</a>: </h3><ul id="53744da8-8a27-48b4-aae6-a48d61ed64ab" class="bulleted-list"><li style="list-style-type:disc">Please log in to your Snakify account and complete the following problems.</li></ul><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="f4129e26-4f7d-4138-af08-0357380264f6"><div style="font-size:1.5em"><span class="icon">🖥️</span></div><div style="width:100%"><strong><strong>Lesson 2: Integer and float numbers</strong></strong><p id="ca628a7c-2083-4551-adb7-79c99610a437" class=""><strong><strong>Problem «</strong></strong><a href="https://snakify.org/en/lessons/integer_float_numbers/problems/last_digit/"><strong><strong>Last digit of integer</strong></strong></a><strong><strong>»</strong></strong></p><p id="a3d31cc7-182f-4fdb-82dc-d7f3ce5f2dbb" class=""><strong><strong>Problem «</strong></strong><a href="https://snakify.org/en/lessons/integer_float_numbers/problems/tens_digit/"><strong><strong>Tens digit</strong></strong></a><strong><strong>»</strong></strong></p><p id="def9948d-1fb6-4b37-b81e-076a6e9e4971" class=""><strong><strong>Problem «</strong></strong><a href="https://snakify.org/en/lessons/integer_float_numbers/problems/sum_of_digits/"><strong><strong>Sum of digits</strong></strong></a><strong><strong>»</strong></strong></p><p id="08f64c0a-5df3-43a9-ac88-6bdd15c3c8a0" class=""><strong><strong>Problem «</strong></strong><a href="https://snakify.org/en/lessons/integer_float_numbers/problems/fractional_part/"><strong><strong>Fractional part</strong></strong></a><strong><strong>»</strong></strong></p><p id="d44c6144-dbc9-49c9-8524-c6a92521182e" class=""><strong><strong>Problem «</strong></strong><a href="https://snakify.org/en/lessons/integer_float_numbers/problems/digit_after_decimal_point/"><strong><strong>First digit after decimal point</strong></strong></a><strong><strong>»</strong></strong></p><p id="db8ab150-f295-4bc9-8d30-c9918806b1e7" class=""><strong><strong>Problem «</strong></strong><a href="https://snakify.org/en/lessons/integer_float_numbers/problems/car_route/"><strong><strong>Car route</strong></strong></a><strong><strong>»</strong></strong></p><p id="646620d7-f025-48df-bab5-5acbe4c61fe7" class=""><strong><strong>Problem «</strong></strong><a href="https://snakify.org/en/lessons/integer_float_numbers/problems/digital_clock/"><strong><strong>Digital clock</strong></strong></a><strong><strong>»</strong></strong></p><p id="170d09ce-60d3-4e72-9e8b-c066993c7028" class=""><strong><strong>Problem «</strong></strong><a href="https://snakify.org/en/lessons/integer_float_numbers/problems/total_cost/"><strong><strong>Total cost</strong></strong></a><strong><strong>»</strong></strong></p><p id="97f72e03-92bf-455f-a4c0-4713af854f4e" class=""><strong><strong>Problem «</strong></strong><a href="https://snakify.org/en/lessons/integer_float_numbers/problems/clock_face_1/"><strong><strong>Clock face - 1</strong></strong></a><strong><strong>»</strong></strong></p><p id="3443eb8a-6b92-45e5-b789-559b45c48626" class=""><strong><strong>Problem «</strong></strong><a href="https://snakify.org/en/lessons/integer_float_numbers/problems/clock_face_2/"><strong><strong>Clock face - 2</strong></strong></a><strong><strong>»</strong></strong></p></div></figure><h3 id="b7ff58c2-ae98-4831-a374-e44bfd67ef68" class="block-color-gray_background">【作業 2】Online practice on the website <a href="http://snakify.org/">Snakify.org</a>: </h3><ul id="f7d37b80-e175-4ab3-809c-43330eef1ef3" class="bulleted-list"><li style="list-style-type:disc">Please log in to your Snakify account and complete the following problems.</li></ul><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="7135a34e-9d92-4a67-835d-51e444ce5d09"><div style="font-size:1.5em"><span class="icon">🖥️</span></div><div style="width:100%"><strong><strong>Lesson 3: Conditions: if, then, else
+Problem «</strong></strong><a href="https://snakify.org/en/lessons/if_then_else_conditions/problems/minimum/"><strong><strong>Minimum of two numbers</strong></strong></a><strong>»
+Problem «</strong><strong><a href="https://snakify.org/en/lessons/if_then_else_conditions/problems/signum/">Sign function</a></strong><strong>»
+Problem «</strong><strong><a href="https://snakify.org/en/lessons/if_then_else_conditions/problems/minimum3/">Minimum of three numbers</a></strong><strong>»
+Problem «</strong><strong><a href="https://snakify.org/en/lessons/if_then_else_conditions/problems/num_equal/">Equal numbers</a></strong><strong><strong>»
+Problem «</strong></strong><a href="https://snakify.org/en/lessons/if_then_else_conditions/problems/rook_move/"><strong><strong>Rook move</strong></strong></a><strong><strong>»
+Problem «</strong></strong><a href="https://snakify.org/en/lessons/if_then_else_conditions/problems/chess_board/"><strong><strong>Chess board - same color</strong></strong></a><strong><strong>»
+Problem «</strong></strong><a href="https://snakify.org/en/lessons/if_then_else_conditions/problems/king_move/"><strong><strong>King move</strong></strong></a><strong><strong>»
+Problem «</strong></strong><a href="https://snakify.org/en/lessons/if_then_else_conditions/problems/bishop_move/"><strong><strong>Bishop moves</strong></strong></a><strong><strong>»
+Problem «</strong></strong><a href="https://snakify.org/en/lessons/if_then_else_conditions/problems/queen_move/"><strong><strong>Queen move</strong></strong></a><strong><strong>»
+Problem «</strong></strong><a href="https://snakify.org/en/lessons/if_then_else_conditions/problems/knight_move/"><strong><strong>Knight move</strong></strong></a><strong><strong>»
+Problem «</strong></strong><a href="https://snakify.org/en/lessons/if_then_else_conditions/problems/chocolate/"><strong><strong>Chocolate bar</strong></strong></a><strong><strong>»
+Problem «</strong></strong><a href="https://snakify.org/en/lessons/if_then_else_conditions/problems/leap_year/"><strong><strong>Leap year</strong></strong></a><strong><strong>»</strong></strong></div></figure><p id="2dc4168e-c089-44e0-93a3-d5b8c0f63ccb" class="">
+</p><figure id="e6f92fc9-02be-4b2a-b863-ef2d1c5a76d6" class="image"><a href="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(1%206)%202b08444b0b90422d9b49eb26e8be99ce/%25E5%259C%2596%25E7%2589%25873.png"><img style="width:1322px" src="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(1%206)%202b08444b0b90422d9b49eb26e8be99ce/%25E5%259C%2596%25E7%2589%25873.png"/></a></figure></div></article></body></html>

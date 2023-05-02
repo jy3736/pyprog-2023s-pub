@@ -1,0 +1,774 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Formative Assessment - Snakify Lesson 7</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="448ea4d4-ed28-4388-8688-c1976489b275" class="page sans"><header><img class="page-cover-image" src="%E6%9C%9F%E4%B8%AD%E6%B8%AC%E9%A9%97%E8%A7%A3%E7%AD%94%20(Midterm%20Exam%20Solutions)%20b54b2d01431e47f9b96c059e3ef0eb19/1.png" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">📝</span></div><h1 class="page-title">Formative Assessment - Snakify Lesson 7</h1></header><div class="page-body"><p id="00cf3b65-5296-453e-9c5d-4b675d5e6e6f" class="">
+</p><p id="818fc24a-746d-42d3-ae1b-c26e644c29b9" class="">This formative assessment tests your knowledge of Snakify Lesson 7 (Lists), which covers the basics of lists in Python programming. The assessment has two parts: an easy section and a slightly harder section, each with 10 multiple-choice questions.</p><p id="c71a82b7-50ea-4383-84dc-97368571e584" class="">The easy section reviews the fundamental concepts of lists that you learned in Lesson 7. The slightly harder section challenges you with more advanced questions that require deeper understanding of the lesson content.</p><p id="3502feb3-9523-42b8-9a00-81ba41b9208d" class="">For each question, you will see a code snippet and four options. Select the option that best answers the question based on your knowledge of the material. You can take your time and read each question carefully before submitting your answer.</p><p id="e518bd11-74bc-40fe-b77b-e80309124893" class="">We wish you all the best and hope you enjoy learning!</p><h2 id="ae268f40-3dbc-49c9-b9c7-a0caffad5df5" class="block-color-teal_background">Easy</h2><ol type="1" id="8bb0d364-d2be-4ce1-a1db-7f0c3da22aae" class="numbered-list" start="1"><li>What is the output of the following code snippet?<pre id="b372d75c-f1c7-486d-8060-31b08562ac1f" class="code"><code>numbers = [1, 2, 3, 4, 5]
+print(numbers[1:3])</code></pre><p id="ee735672-57fa-4605-892a-a9ea3c570390" class="">a) <code><strong>[3, 4]</strong></code>
+b) <code><strong>[1, 2]</strong></code>
+c) <code><strong>[2, 3]</strong></code>
+d) <code><strong>[2, 4]</strong></code></p><p id="64acab9e-323a-4c2f-92e6-a7443fbd7aa3" class="">Answer: c) <code><strong>[2, 3]</strong></code></p></li></ol><ol type="1" id="d2dc0bff-813d-4cb7-b2d0-b0d4d44c5ed6" class="numbered-list" start="2"><li>What is the output of the following code snippet?<pre id="d684a60a-dc15-4e32-bea9-ae26863f0e88" class="code"><code>numbers = [1, 2, 3, 4, 5]
+print(numbers[-3:-1])</code></pre><p id="51c6a2d2-dd24-4390-ab13-1cd4684fb03e" class="">a) <code><strong>[2, 3]</strong></code>
+b) <code><strong>[3, 4]</strong></code>
+c) <code><strong>[4, 5]</strong></code>
+d) <code><strong>[2, 4]</strong></code></p><p id="585f40c4-9abc-42f9-a8ee-f495f283a00e" class="">Answer: b) <code><strong>[3, 4]</strong></code></p></li></ol><ol type="1" id="80c4b056-3e9b-48bd-b5aa-c8392d8b2c19" class="numbered-list" start="3"><li>What is the output of the following code snippet?<pre id="4afee8cb-0e6c-4500-88ea-95c44279341a" class="code"><code>numbers = [1, 2, 3, 4, 5]
+numbers[1:3] = [0, 0]
+print(numbers)</code></pre><p id="ed39e215-a0a2-40e1-aa95-fc02412f965b" class="">a) <code><strong>[1, 0, 0, 4, 5]</strong></code>
+b) <code><strong>[1, 0, 3, 4, 5]</strong></code>
+c) <code><strong>[1, 2, 0, 0, 5]</strong></code>
+d) <code><strong>[1, 2, 0, 0, 4]</strong></code></p><p id="5122bea9-73c1-4b24-aa21-56a17ef46991" class="">Answer: a) <code><strong>[1, 0, 0, 4, 5]</strong></code></p></li></ol><ol type="1" id="c0508f49-a5fb-4e72-8537-f32191463665" class="numbered-list" start="4"><li>What is the output of the following code snippet?<pre id="acff3c2a-92b4-4c5c-a61f-90b2f5e0783b" class="code"><code>numbers = [1, 2, 3, 4, 5]
+numbers[1:3] = []
+print(numbers)</code></pre><p id="73ee23c4-8135-48fd-b8a1-1b2ea919f880" class="">a) <code><strong>[1, 3, 4, 5]</strong></code>
+b) <code><strong>[1, 2, 4, 5]</strong></code>
+c) <code><strong>[1, 4, 5]</strong></code>
+d) <code><strong>[1, 2, 3, 4, 5]</strong></code></p><p id="c44cbc54-15c1-4354-9a54-d257d0875902" class="">Answer: c) <code><strong>[1, 4, 5]</strong></code></p></li></ol><ol type="1" id="4488cdfc-822c-4bb3-aee8-e671a8c1b795" class="numbered-list" start="5"><li>What is the output of the following code snippet?<pre id="2f250b07-ae7e-4770-89c2-a7a4e621ea62" class="code"><code>numbers = [1, 2, 3, 4, 5]
+numbers[1:4:2] = [0, 0]
+print(numbers)</code></pre><p id="e475b367-11ed-4e6d-a956-1555afe7b5b1" class="">a) <code><strong>[1, 0, 3, 0, 5]</strong></code>
+b) <code><strong>[1, 2, 3, 0, 0]</strong></code>
+c) <code><strong>[1, 0, 0, 4, 5]</strong></code>
+d) <code><strong>[1, 2, 0, 0, 5]</strong></code></p><p id="58d510d7-407d-40c6-86bf-73a6fd9ecacd" class="">Answer: a) <code><strong>[1, 0, 3, 0, 5]</strong></code></p></li></ol><ol type="1" id="4b46feac-10c9-4443-ac9f-5b92e0496ce5" class="numbered-list" start="6"><li>What is the output of the following code snippet?<pre id="45fc7906-aac7-46ae-b606-e9643cb37b7a" class="code"><code>numbers = [1, 2, 3, 4, 5]
+numbers.append(6)
+print(numbers)</code></pre><p id="2a69b6a1-d4a9-4d4b-bd9e-41bb1d9b9721" class="">a) <code><strong>[6, 5, 4, 3, 2, 1]</strong></code><strong>
+b</strong>) <code><strong>[1, 2, 3, 4, 5, 6]</strong></code>
+c) <code><strong>[1, 2, 3, 4, 6]</strong></code>
+d) <code><strong>[1, 2, 3, 6, 4, 5]</strong></code></p><p id="1cb976dc-624a-4bcb-990d-fb17d53a425f" class="">Answer: b) <code><strong>[1, 2, 3, 4, 5, 6]</strong></code></p></li></ol><ol type="1" id="105c59be-466b-4c68-b8d2-1c1fedfd3ac6" class="numbered-list" start="7"><li>What is the output of the following code snippet?<pre id="2d34867f-da34-478c-afd0-f2b3800a3ed5" class="code"><code>numbers = [1, 2, 3, 4, 5]
+print(len(numbers))</code></pre><p id="249e0055-7424-4381-85d9-613f71449980" class="">a) <code><strong>1</strong></code>
+b) <code>4</code>
+c) <code><strong>10</strong></code>
+d) <code><strong>None</strong></code></p><p id="7113d1cb-8449-411c-98e9-a734849e16ef" class="">Answer: d) <code><strong>None</strong></code></p></li></ol><ol type="1" id="4b6e63a9-2880-489a-b618-1175047aa5ac" class="numbered-list" start="8"><li>What is the output of the following code snippet?<pre id="77224c6b-4279-43fa-8304-f751bda739ee" class="code"><code>numbers = [1, 2, 3, 4, 5]
+squares = [num**2 for num in numbers]
+print(squares)</code></pre><p id="bc597f21-76c4-4e89-8d4a-4f33686af462" class="">a) <code><strong>[1, 2, 3, 4, 5]</strong></code>
+b) <code><strong>[0, 1, 4, 9, 16, 25]</strong></code>
+c) <code><strong>[0, 1, 4, 9, 16]</strong></code><strong>
+d</strong>) <code><strong>[1, 4, 9, 16, 25]</strong></code></p><p id="9aa96ad7-4aa8-47ab-b521-be646790915a" class="">Answer: d) <code><strong>[1, 4, 9, 16, 25]</strong></code></p></li></ol><ol type="1" id="e5919367-6317-4581-a721-affd3af072d1" class="numbered-list" start="9"><li>What is the output of the following code snippet?<pre id="7a6007fc-a56f-4222-8b58-d0a7c71d86e6" class="code"><code>numbers = [1, 2, 3, 4, 5]
+numbers[1] = numbers.pop(3)
+print(numbers)</code></pre><p id="50c5ae9e-3f55-4600-9126-a080bc09efce" class="">a) <code><strong>[1, 2, 3, 5]</strong></code>
+b) <code><strong>[1, 4, 3, 2, 5]</strong></code>
+c) <code><strong>[1, 4, 3, 5]</strong></code>
+d) <code><strong>[1, 5, 3, 2, 4]</strong></code></p><p id="c5e566e1-0990-4a77-aadf-344178e253da" class="">Answer: c) <code><strong>[1, 4, 3, 5]</strong></code></p></li></ol><ol type="1" id="2863ed6b-5057-4c9e-aa2b-3fdd04ae452c" class="numbered-list" start="10"><li>What is the output of the following code snippet?<pre id="45add986-29cd-474b-b4c2-2e546dc8c0e9" class="code"><code>numbers = [1, 2, 3, 4, 5]
+numbers.insert(2, 0)
+print(numbers)</code></pre><p id="fc46a25d-8858-4d1e-81a4-4dd2be7291ac" class="">a) <code><strong>[1, 2, 3, 4, 5, 0]</strong></code>
+b) <code><strong>[1, 0, 2, 3, 4, 5]</strong></code>
+c) <code><strong>[0, 1, 2, 3, 4, 5]</strong></code><strong>
+d</strong>) <code><strong>[1, 2, 0, 3, 4, 5]</strong></code></p><p id="0189595a-088f-4460-b549-dfe7bc16c96e" class="">Answer: d) <code><strong>[1, 2, 0, 3, 4, 5]</strong></code></p></li></ol><p id="ad053c97-e089-4283-8fdb-b65bc16d5a39" class="">
+</p><h2 id="1bdf5509-f0e6-4f2f-ae4e-7ca8e13c6914" class="block-color-teal_background">Slightly Harder</h2><ol type="1" id="d9cb0d31-494e-4307-ba3a-d2332e581856" class="numbered-list" start="1"><li>What is the output of the following code snippet?<pre id="f2d3fe70-2e3d-478b-b9e1-7d8df27b8e52" class="code"><code>nums = [2, 4, 6, 8, 10]
+print(nums[1:3])</code></pre><p id="fb3e2e50-5c42-4dd8-81d2-89dad5937a68" class="">a) [2, 4]
+b) [6, 8]
+c) [4, 6, 8]
+b) [4, 6]</p><p id="8a336c93-db95-46b5-ac01-e1a4fa3c08e1" class="">Answer: d) [4, 6]</p></li></ol><ol type="1" id="0294925e-31ae-4756-a008-e87cd099b063" class="numbered-list" start="2"><li>What is the output of the following code snippet?<pre id="6735c957-4ee1-45d4-b9b1-3c650993fc8f" class="code"><code>nums = [1, 2, 3, 4, 5]
+del nums[1]
+del nums[3]
+print(nums)</code></pre><p id="cec5294f-f4b5-45ae-80b0-b34d71b01368" class="">a) [1, 3, 4]
+b) [1, 3, 5]
+c) [2, 4, 5]
+d) [2, 3, 4]</p><p id="e46d9f46-26ea-45df-bb70-2627a27b441e" class="">Answer: a) [1, 3, 4]</p></li></ol><ol type="1" id="7102c794-ae66-4fce-a3aa-8e20f6dabb62" class="numbered-list" start="3"><li>What is the output of the following code snippet?<pre id="9cb003d4-4e8a-4576-8531-4d5114921619" class="code"><code>nums = [1, 2, 3]
+nums.append([4, 5])
+print(len(nums))</code></pre><p id="7ded19b0-181c-4d66-bb24-848f9693c780" class="">a) 3
+b) 4
+c) 5
+d) 6</p><p id="264303ee-4c48-4c1b-91a8-d6155bf94cc9" class="">Answer: b) 4</p></li></ol><ol type="1" id="6818ccec-faca-458b-936d-96af486d09dd" class="numbered-list" start="4"><li>What is the output of the following code snippet?<pre id="42a287ec-b8ee-4361-9d15-33b9be42eec6" class="code"><code>nums = [1, 2, 3, 4, 5]
+nums.pop(0)
+nums.pop()
+print(nums)</code></pre><p id="2fcebf7a-ab83-4298-b3d4-bd339431f666" class="">a) [1, 2, 3, 4]
+b) [1, 2, 3]
+c) [2, 3, 4]
+d) [2, 3, 4, 5]</p><p id="12d1345e-369e-41fe-9084-e6349a2e466a" class="">Answer: c) [2, 3, 4]</p></li></ol><ol type="1" id="4c5ae359-3433-4883-95f3-dd9199776f92" class="numbered-list" start="5"><li>What is the output of the following code snippet?<pre id="76173b0a-9ecb-4b5b-9c53-df57eb1c61ed" class="code"><code>lst = [10, 20, 30]
+lst.insert(2, 25)
+print(lst)</code></pre><p id="e5d00209-954f-44f9-a213-6173ee8cbeec" class="">a) [25, 10, 20, 30]
+b) [10, 25, 20, 30]
+c) [10, 20, 25, 30]
+d) [10, 20, 30, 25]</p><p id="2457ab7c-5995-46d7-b9be-eadc5b15a153" class="">Answer: c) [10, 20, 25, 30]</p></li></ol><ol type="1" id="5f79d323-92e2-4ca1-b643-247f2f97d186" class="numbered-list" start="6"><li>What is the output of the following code snippet?<pre id="8f14ac5c-3095-4c5c-8fec-1cc40c679175" class="code"><code>nums = [5, 3, 7]
+nums.sort()
+nums.insert(0, 1)
+print(nums)</code></pre><p id="e88fecfe-cf6c-4a17-a6fb-7949c6636469" class="">a) [1, 5, 3, 7]
+b) [1, 3, 5, 7]
+c) [7, 5, 3, 1]
+d) [1, 7, 3, 5]</p><p id="6a869324-e6b1-4827-98b9-a6df35c3198a" class="">Answer: b) [1, 3, 5, 7]</p></li></ol><ol type="1" id="dfe08883-b8d1-4a29-84f1-66dfc45ae0ee" class="numbered-list" start="7"><li>What is the output of the following code snippet?<pre id="86d07849-b59b-49c9-9d82-1860d783f1ab" class="code"><code>lst = [1, 2, 3, 4, 5]
+lst.reverse()
+print(lst)</code></pre><p id="6d8c204f-5bd8-4d73-8e39-bac535fa50d9" class="">a) [1, 2, 3, 4, 5]
+b) [5, 4, 2, 3, 1]
+c) [4, 5, 3, 2, 1]
+d) [5, 4, 3, 2, 1]</p><p id="16fd1e57-eacd-49c4-bd98-cdfd454bb343" class="">Answer: d) [5, 4, 3, 2, 1]</p></li></ol><ol type="1" id="39bccc3e-de23-45ed-962e-6ffc54b9762d" class="numbered-list" start="8"><li>What is the output of the following code snippet?<pre id="91a39425-e91f-4aa3-8d30-4b7bd2d787cc" class="code"><code>lst = [1, 2, 3, 4, 5]
+new_lst = lst[2:4]
+new_lst[0] = 6
+print(lst)</code></pre><p id="7892063b-252d-4a10-a723-090cae4fbf51" class="">a) [1, 2, 3, 4, 5]
+b) [1, 2, 6, 4, 5]
+c) [1, 2, 3, 6, 5]
+d) [1, 2, 3, 4, 6]</p><p id="6ee98e10-1656-43bd-a3c0-041fce49892f" class="">Answer: a) [1, 2, 3, 4, 5]</p></li></ol><ol type="1" id="5ca12423-2c6c-4a64-b5ff-f8c2a0531408" class="numbered-list" start="9"><li>What is the output of the following code snippet?<pre id="e7ddd0d5-0972-492b-9f5d-e378215e1bee" class="code"><code>lst1 = [1, 2, 3]
+lst2 = [4, 5]
+lst1.extend(lst2)
+lst1.pop()
+print(len(lst1))</code></pre><p id="4455de90-f916-4524-b910-d626a4c708d1" class="">a) 6
+b) 5
+c) 4
+d) 3</p><p id="ccb56fc6-7bd9-4ddc-827a-05a3e1e6fdf9" class="">Answer: c) 4</p></li></ol><ol type="1" id="2b1dc3f5-712e-4487-972e-cc5411bb07b2" class="numbered-list" start="10"><li>What is the output of the following code snippet?<pre id="2edf618e-e011-455f-9d66-40b502a743bb" class="code"><code>lst = [1, 2, 3, 4, 5]
+lst.remove(2)
+lst.remove(4)
+print(lst)</code></pre><p id="9b37473b-8005-42d8-8ab7-bbd96871f6d2" class="">a) [1, 3, 5]
+b) [1, 2, 3, 4, 5]
+c) [2, 3, 5]
+d) [1, 3, 4, 5]</p><p id="20c668e6-1223-4bc3-8aee-567c1df9da5c" class="">Answer: a) [1, 3, 5]</p></li></ol><figure id="9543ada7-51b8-4730-948e-3ca4c41fbf92" class="image"><a href="%E6%9C%9F%E4%B8%AD%E6%B8%AC%E9%A9%97%E8%A7%A3%E7%AD%94%20(Midterm%20Exam%20Solutions)%20b54b2d01431e47f9b96c059e3ef0eb19/%25E5%259C%2596%25E7%2589%25873.png"><img style="width:1322px" src="%E6%9C%9F%E4%B8%AD%E6%B8%AC%E9%A9%97%E8%A7%A3%E7%AD%94%20(Midterm%20Exam%20Solutions)%20b54b2d01431e47f9b96c059e3ef0eb19/%25E5%259C%2596%25E7%2589%25873.png"/></a></figure></div></article></body></html>

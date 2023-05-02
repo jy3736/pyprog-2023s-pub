@@ -1,0 +1,87 @@
+body {
+	color:antiquewhite;
+	background-color: rgb(15, 15, 15);
+}
+
+.block-color-gray_background {
+	background: rgb(66, 66, 65);
+}
+.block-color-brown_background {
+	background: rgb(187, 59, 59);
+}
+.block-color-orange_background {
+	background: rgb(235, 125, 16);
+}
+.block-color-yellow_background {
+	background: rgb(59, 45, 4);
+}
+.block-color-teal_background {
+	background: rgb(32, 109, 19);
+}
+.block-color-blue_background {
+	background: rgb(45, 26, 218);
+}
+.block-color-purple_background {
+	background: rgba(44, 1, 77, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(214, 30, 113, 0.8);
+}
+.block-color-red_background {
+	background: rgb(196, 28, 36);
+}
+.select-value-color-pink { background-color: rgb(158, 20, 80); }
+.select-value-color-purple { background-color: rgb(105, 20, 155); }
+.select-value-color-green { background-color: rgba(12, 73, 12, 0.952); }
+.select-value-color-gray { background-color: rgb(54, 54, 52); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgb(209, 100, 16); }
+.select-value-color-brown { background-color: rgb(128, 72, 49); }
+.select-value-color-red { background-color: rgb(189, 59, 36); }
+.select-value-color-yellow { background-color: rgb(197, 152, 54); }
+.select-value-color-blue { background-color: rgb(14, 62, 88); }
+
+.bookmark-description {
+	color: rgba(241, 232, 203, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.yang-class-001 {
+	color :antiquewhite;
+	font-size:x-large;
+	line-height: 100%;
+}
+
+.yang-class-002 {
+	color :antiquewhite;
+	font-size: large;
+	line-height: 200%;
+}
+
+.yang-class-003 {
+	color :antiquewhite;
+	background-color: brown;
+	font-size: large;
+	line-height: 200%;
+	padding: 5px;
+	border-radius: 10px;;
+}
+
+#soundon {
+	width:85%;
+	margin: auto;
+	margin-top: 10px;
+	display: block;
+	border-radius: 10px;
+	font-size:large;
+	height: 150px;
+}
+
+h3, h2, h1 {
+	padding: 5px;
+	border-radius: 10px;
+	margin-bottom: 15px;
+}

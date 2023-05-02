@@ -1,0 +1,767 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Python 物件導向程式設計(OOP) 2</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script></head><body><article id="afe54a5d-acf4-4492-a992-521db6f12b66" class="page sans"><header><img class="page-cover-image" src="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(1%206)%202b08444b0b90422d9b49eb26e8be99ce/notion-Python_(1).png" style="object-position:center 31.08%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(1%206)%202b08444b0b90422d9b49eb26e8be99ce/yang01.png"/></div><h1 class="page-title">Python 物件導向程式設計(OOP) 2</h1><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script></header><div class="page-body"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="5d74f711-e153-4823-993d-cab6e4893789"><div style="font-size:1.5em"><span class="icon">💻</span></div><div style="width:100%">This course introduces Python classes and inheritance through two sessions. The first session covers the basics of creating and using classes, defining methods and attributes, and instantiating objects from a class. Students will be able to write simple Python programs that use classes after completing this session.<p id="8b4d388f-d7df-44a4-a955-0cd92ee741b1" class="">The second session focuses on inheritance, which involves creating a subclass that inherits from a superclass. The &quot;super()&quot; method is introduced as a way to access methods and attributes from the parent class. The session also covers overriding methods in a subclass.</p><p id="1fb7566d-46b8-42c3-a4f4-c6f85c507fdd" class="">Overall, students will gain a fundamental understanding of Python classes and inheritance, enabling them to create reusable and modular code.</p></div></figure><h1 id="6a195e28-579e-4f45-bd06-836e23e8a8d2" class="block-color-brown_background">參考資料 (References)</h1><h3 id="85750b0a-ba76-4110-989f-21b4fac46acc" class="block-color-yellow">Python 官方「參考資料」網站 (Python.org)</h3><figure id="dcacf9c4-927a-470a-bccd-50452c57332b"><a  target="_blank"  target="_blank" href="https://docs.python.org/3/tutorial/classes.html" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">9. Classes</div><div class="bookmark-description">Classes provide a means of bundling data and functionality together. Creating a new class creates a new type of object, allowing new instances of that type to be made. Each class instance can have ...</div></div><div class="bookmark-href"><img src="https://docs.python.org/3/_static/py.svg" class="icon bookmark-icon"/>https://docs.python.org/3/tutorial/classes.html</div></div><img src="https://docs.python.org/3/_static/og-image.png" class="bookmark-image"/></a></figure><h3 id="82555b88-4733-4379-af40-5704ce207630" class="block-color-yellow">Additional Online Resources</h3><figure id="e68909e5-e5a9-49da-8d39-cffee6dcd6d1"><a  target="_blank"  target="_blank" href="https://www.programiz.com/python-programming/object-oriented-programming" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Python Object Oriented Programming (With Examples)</div><div class="bookmark-description">In this tutorial, we’ll learn about Object-Oriented Programming (OOP) in Python with the help of examples.</div></div><div class="bookmark-href"><img src="https://www.programiz.com/sites/tutorial2program/files/favicon.png" class="icon bookmark-icon"/>https://www.programiz.com/python-programming/object-oriented-programming</div></div></a></figure><figure id="48ef4a41-179c-4200-bbb1-20e6f581e20d"><a  target="_blank"  target="_blank" href="https://realpython.com/python3-object-oriented-programming/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Object-Oriented Programming (OOP) in Python 3 – Real Python</div><div class="bookmark-description">In this tutorial, you&#x27;ll learn all about object-oriented programming (OOP) in Python. You&#x27;ll learn the basics of the OOP paradigm and cover concepts like classes and inheritance. You&#x27;ll also see to how instantiate an object from a class.</div></div><div class="bookmark-href"><img src="https://realpython.com/static/favicon.68cbf4197b0c.png" class="icon bookmark-icon"/>https://realpython.com/python3-object-oriented-programming/</div></div><img src="https://files.realpython.com/media/Object-Oriented-Programming-OOP-in-Python-3_Watermarked.0d29780806d5.jpg" class="bookmark-image"/></a></figure><h1 id="0e7eaf7b-c7f5-49ae-ab5a-b2f6615ecc6d" class="block-color-brown_background">課堂活動</h1><h3 id="dbc13109-3860-448e-bb56-3c5af19439a4" class="block-color-gray_background">【課堂練習 1】Creating a Class and Instantiating Objects</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="fc4997d9-46cc-4f07-b399-c5fb30980663"><div style="font-size:1.5em"><img class="icon" src="Python%20%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88(OOP)%201%209e1a7af416f04af4a56ff7e6786b1204/yang02.png"/></div><div style="width:100%">This example demonstrates the basics of creating a class, defining attributes and methods, and instantiating objects from the class. It is a simple but essential concept in Python programming, as it allows us to create custom objects that can be used to organize and manipulate data in our programs.</div></figure><h3 id="f7996261-2140-4ae7-87c0-3fcb7f6dba6f" class="block-color-yellow">Defining and Using Classes</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="510cd942-72bb-415e-8c81-e2044db127ab"><div style="font-size:1.5em"><span class="icon">💻</span></div><div style="width:100%">The first example code creates a class called <code><strong>Person</strong></code> which has two attributes, <code><strong>name</strong></code> and <code><strong>age</strong></code>, and a method <code><strong>print_info()</strong></code> that prints out the person&#x27;s name and age.<p id="736f8969-d076-4779-a16b-13f7b9d94601" class="">The <code><strong>__init__()</strong></code> method is a special method that gets called when a new instance of the class is created. It takes in two parameters, <code><strong>name</strong></code> and <code><strong>age</strong></code>, and initializes the corresponding attributes of the new instance with these values.</p><p id="7dd837df-517b-44fc-85d5-815d1ede6f01" class="">The <code><strong>print_info()</strong></code> method is defined to take in only one parameter, <code><strong>self</strong></code>, which refers to the instance of the class on which the method is called. It then prints out a message that includes the <code><strong>name</strong></code> and <code><strong>age</strong></code> attributes of the instance.</p><p id="de9921c3-0884-4493-bedb-3f86f51831ca" class="">After the class definition, two instances of the <code><strong>Person</strong></code> class are created using the constructor <code><strong>Person(&quot;John&quot;, 30)</strong></code> and <code><strong>Person(&quot;Jane&quot;, 25)</strong></code>, which initializes the <code><strong>name</strong></code> and <code><strong>age</strong></code> attributes of each instance.</p><p id="4dbc7561-8a25-4c0a-b7d0-04ecb7ac9999" class="">Finally, the <code><strong>print_info()</strong></code> method is called on both instances using the dot notation (<code><strong>person1.print_info()</strong></code> and <code><strong>person2.print_info()</strong></code>), which prints out the name and age of each person.</p></div></figure><pre id="c06cc3c6-157e-4e4b-84b7-c295bd2c4acf" class="code code-wrap"><code># Define a class called Person
+class Person:
+    # Define the constructor method with two parameters
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    
+    # Define a method to print the person&#x27;s name and age
+    def print_info(self):
+        print(f&quot;My name is {self.name} and I am {self.age} years old.&quot;)
+
+# Create two instances of the Person class
+person1 = Person(&quot;John&quot;, 30)
+person2 = Person(&quot;Jane&quot;, 25)
+
+# Call the print_info method on both instances
+person1.print_info()
+person2.print_info()</code></pre><h3 id="de5ac6b2-94bf-4e6e-a349-6b9286e716f8" class="block-color-yellow">Output of the Code</h3><pre id="ace2518c-efae-4ad3-90c9-8c39966ebda1" class="code"><code>My name is John and I am 30 years old.
+My name is Jane and I am 25 years old.</code></pre><h3 id="0c75f715-a15f-47d2-b727-dc716e398eec" class="block-color-gray_background">【課堂練習 2】Adding Class Attributes (Static Attributes)</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="f1e7ee9e-a268-4a53-93b1-984cc59ede25"><div style="font-size:1.5em"><img class="icon" src="Python%20%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88(OOP)%201%209e1a7af416f04af4a56ff7e6786b1204/yang02.png"/></div><div style="width:100%">This example demonstrates how to add a class attribute to a Python class, which is useful for defining attributes that are common to all instances of the class. By defining a class attribute, we can avoid the need to define the same attribute for every instance of the class, which can save us time and reduce the amount of code we need to write.</div></figure><h3 id="f8083173-0cde-4938-a6c6-64137ecc2f19" class="block-color-yellow">Defining and Using Classes</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="57161763-8856-4b21-8f34-3e4ff71b7b18"><div style="font-size:1.5em"><span class="icon">💻</span></div><div style="width:100%">A class attribute is a variable that belongs to the class and not to any particular instance of the class. In this example, the <code><strong>Car</strong></code> class has a class attribute <code><strong>wheels</strong></code> which is set to 4. This attribute represents the number of wheels that all cars have, and it is the same for all instances of the class.<p id="8149c249-3690-433f-b07f-f6fa361930ad" class="">The <code><strong>__init__()</strong></code> method of the <code><strong>Car</strong></code> class takes in two parameters, <code><strong>make</strong></code> and <code><strong>model</strong></code>, and initializes the corresponding instance attributes with these values.</p><p id="03c89f07-cc64-4fa6-a4c6-cb8e5dbf5fd5" class="">The <code><strong>print_info()</strong></code> method is defined to take in only one parameter, <code><strong>self</strong></code>, which refers to the instance of the class on which the method is called. It then prints out a message that includes the <code><strong>make</strong></code>, <code><strong>model</strong></code>, and <code><strong>wheels</strong></code> attributes of the instance.</p><p id="a568e182-496a-43ce-b0c1-b92924b719ad" class="">After the class definition, an instance of the <code><strong>Car</strong></code> class is created using the constructor <code><strong>Car(&quot;Toyota&quot;, &quot;Corolla&quot;)</strong></code>, which initializes the <code><strong>make</strong></code> and <code><strong>model</strong></code> attributes of the instance.</p><p id="fe427d5e-4441-4d3a-9ee4-c49bdbb9d06d" class="">Finally, the <code><strong>print_info()</strong></code> method is called on the instance using the dot notation (<code><strong>my_car.print_info()</strong></code>), which prints out the make, model, and number of wheels of the car.</p></div></figure><pre id="59d0e0b8-1086-41b9-877e-6e0855d99491" class="code code-wrap"><code># Define a class called Car with a class attribute
+class Car:
+    wheels = 4
+    
+    # Define the constructor method with two parameters
+    def __init__(self, make, model):
+        self.make = make
+        self.model = model
+    
+    # Define a method to print the car&#x27;s make, model, and number of wheels
+    def print_info(self):
+        print(f&quot;I drive a {self.make} {self.model} with {Car.wheels} wheels.&quot;)
+
+# Create an instance of the Car class
+my_car = Car(&quot;Toyota&quot;, &quot;Corolla&quot;)
+
+# Call the print_info method on the instance
+my_car.print_info()</code></pre><h3 id="0461c9e1-1c9f-4aff-8016-c2773f059b87" class="block-color-yellow">Output of the Code</h3><pre id="eecb035d-88b9-4873-89df-1dca5a5e34b8" class="code"><code>I drive a Toyota Corolla with 4 wheels.</code></pre><h3 id="78c2cb34-d01f-4917-b2cc-c12b266869af" class="block-color-gray_background">【課堂練習 3】Simple Inheritance</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="d8e44595-770d-4f2a-b59d-19fab8c26217"><div style="font-size:1.5em"><img class="icon" src="Python%20%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88(OOP)%201%209e1a7af416f04af4a56ff7e6786b1204/yang02.png"/></div><div style="width:100%">This example demonstrates how to use inheritance in Python classes to create a new class that is a modified version of an existing class. The Dog class inherits the <strong>init</strong>() method and the print_name() method from the Animal class and adds its own <strong>init</strong>() method and print_breed() method.</div></figure><h3 id="dd4de787-2150-4469-9765-eab467e234f7" class="block-color-yellow">Defining and Using Classes</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="07714818-76aa-4f1b-9347-57e0b5d2b165"><div style="font-size:1.5em"><span class="icon">💻</span></div><div style="width:100%">This Python script defines a parent class called <code><strong>Animal</strong></code> and a child class called <code><strong>Dog</strong></code> that inherits from <code><strong>Animal</strong></code>.<p id="cd64a9bd-3e81-455e-b03c-14841bdf4bff" class="">The <code><strong>Animal</strong></code> class has a constructor method <code><strong>__init__()</strong></code> with one parameter <code><strong>name</strong></code>, which initializes an instance attribute <code><strong>name</strong></code>. It also has a method called <code><strong>print_name()</strong></code> that prints the animal&#x27;s name to the console.</p><p id="0c7b2149-ab81-42df-bbaa-80c37f976761" class="">The <code><strong>Dog</strong></code> class is defined as a subclass of <code><strong>Animal</strong></code> using the syntax <code><strong>class Dog(Animal):</strong></code>. It has a constructor method <code><strong>__init__()</strong></code> with two parameters <code><strong>name</strong></code> and <code><strong>breed</strong></code>. The <code><strong>super()</strong></code> function is called with the parameters <code><strong>Dog</strong></code> and <code><strong>self</strong></code> to initialize the superclass <code><strong>Animal</strong></code> with the <code><strong>name</strong></code> parameter. It also initializes an instance attribute <code><strong>breed</strong></code>. The <code><strong>Dog</strong></code> class also has a method called <code><strong>print_breed()</strong></code> that prints the dog&#x27;s breed to the console.</p><p id="bdba5058-75b3-459e-9c38-6ae7a10b0a31" class="">An instance of the <code><strong>Dog</strong></code> class is created with the constructor <code><strong>Dog(&quot;Fido&quot;, &quot;Labrador&quot;)</strong></code>. The <code><strong>name</strong></code> parameter is set to <code><strong>&quot;Fido&quot;</strong></code> and the <code><strong>breed</strong></code> parameter is set to <code><strong>&quot;Labrador&quot;</strong></code>. This creates a <code><strong>Dog</strong></code> object with the name <code><strong>&quot;Fido&quot;</strong></code> and the breed <code><strong>&quot;Labrador&quot;</strong></code>.</p><p id="98799783-86b3-49e9-857a-578810d5e9bf" class="">The methods <code><strong>print_name()</strong></code> and <code><strong>print_breed()</strong></code> are called on the <code><strong>my_dog</strong></code> object using the dot notation. This prints the name and breed of the dog to the console. The output of this script would be:</p></div></figure><pre id="076629fd-002f-4379-8284-bc0fdbbdf110" class="code code-wrap"><code># Define a parent class called Animal
+class Animal:
+    # Define the constructor method with one parameter
+    def __init__(self, name):
+        self.name = name
+    
+    # Define a method to print the animal&#x27;s name
+    def print_name(self):
+        print(f&quot;My name is {self.name}.&quot;)
+
+# Define a child class called Dog that inherits from Animal
+class Dog(Animal):
+    # Define the constructor method with two parameters
+    def __init__(self, name, breed):
+        super().__init__(name)
+        self.breed = breed
+    
+    # Define a method to print the dog&#x27;s breed
+    def print_breed(self):
+        print(f&quot;I am a {self.breed}.&quot;)
+
+# Create an instance of the Dog class
+my_dog = Dog(&quot;Fido&quot;, &quot;Labrador&quot;)
+
+# Call the print_name and print_breed methods on the instance
+my_dog.print_name()
+my_dog.print_breed()</code></pre><h3 id="8e6b0613-68a6-4287-b9d6-e220d3a78645" class="block-color-yellow">Output of the Code</h3><pre id="81708fc3-1f2d-4caa-8510-42433fec7921" class="code"><code>My name is Fido.
+I am a Labrador.</code></pre><h3 id="c68b50fe-b635-4a21-95ae-c88573beb656" class="block-color-gray_background">【課堂練習 4】Delve Into Inheritance</h3><h3 id="97fdb962-4626-4f8f-850a-58995e71a379" class="block-color-yellow">Creating a Subclass</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="ef4ad15a-5286-4b57-b91c-7463a98ddebf"><div style="font-size:1.5em"><img class="icon" src="Python%20%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88(OOP)%201%209e1a7af416f04af4a56ff7e6786b1204/yang02.png"/></div><div style="width:100%">In this example, we create a <code><strong>Vehicle</strong></code> class that has a <code><strong>start</strong></code> method. We then create a <code><strong>Car</strong></code> subclass that inherits from <code><strong>Vehicle</strong></code> and adds a <code><strong>stop</strong></code> method.<pre id="406f04bd-2e45-405d-8229-789ebbfd6111" class="code"><code>class Vehicle:
+    def start(self):
+        print(&quot;Starting engine&quot;)
+
+class Car(Vehicle):
+    def stop(self):
+        print(&quot;Stopping engine&quot;)
+
+car = Car()
+car.start() # inherited from Vehicle
+car.stop() # defined in Car subclass</code></pre><pre id="3a7ecc94-e18f-46a2-bd84-d6b2a730c6e8" class="code"><code>Starting engine
+Stopping engine</code></pre><p id="3ed35b1c-988f-4c20-8ea8-3f3aba3055b4" class="">Explanation:</p><ul id="6ee23d5b-adac-410e-8f37-54a8b61d7041" class="bulleted-list"><li style="list-style-type:disc">We define a <code><strong>Vehicle</strong></code> class with a <code><strong>start</strong></code> method.</li></ul><ul id="ca10a874-f3c0-4ac5-9010-e6911cbc8384" class="bulleted-list"><li style="list-style-type:disc">We then create a <code><strong>Car</strong></code> class that inherits from <code><strong>Vehicle</strong></code>.</li></ul><ul id="d717aa6a-a875-4c4e-b7e5-26deb2c69bf7" class="bulleted-list"><li style="list-style-type:disc">The <code><strong>Car</strong></code> class adds a <code><strong>stop</strong></code> method that is not present in the <code><strong>Vehicle</strong></code> class.</li></ul><ul id="4c7d0cbd-afa1-40eb-9a58-218a178fcbeb" class="bulleted-list"><li style="list-style-type:disc">We create an instance of <code><strong>Car</strong></code> and call both the <code><strong>start</strong></code> and <code><strong>stop</strong></code> methods.</li></ul><ul id="8777654e-a7bb-459e-af97-4f5c6e1a3cd7" class="bulleted-list"><li style="list-style-type:disc">The <code><strong>start</strong></code> method is inherited from the <code><strong>Vehicle</strong></code> class, while the <code><strong>stop</strong></code> method is defined in the <code><strong>Car</strong></code> subclass.</li></ul></div></figure><h3 id="adc21663-8ebf-484e-a9ff-664adc6910e1" class="block-color-yellow">Overriding a Method</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="ab7a91cf-11da-4c81-82f7-966d8eaa4273"><div style="font-size:1.5em"><img class="icon" src="Python%20%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88(OOP)%201%209e1a7af416f04af4a56ff7e6786b1204/yang02.png"/></div><div style="width:100%">In this example, we create a <code><strong>Vehicle</strong></code> class that has a <code><strong>start</strong></code> method. We then create a <code><strong>Car</strong></code> subclass that overrides the <code><strong>start</strong></code> method with its own implementation.<pre id="4374c7de-1694-4b81-9a97-bad0593c6ad0" class="code"><code>class Vehicle:
+    def start(self):
+        print(&quot;Starting engine&quot;)
+
+class Car(Vehicle):
+    def start(self):
+        print(&quot;Starting car engine&quot;)
+
+car = Car()
+car.start() # overridden implementation in Car subclass</code></pre><pre id="9feb2a37-b4c3-4ca1-a8f1-2ff4a06f368d" class="code"><code>Starting car engine</code></pre><p id="621335e2-15cc-43d5-9afb-c16d06214b33" class="">Explanation:</p><ul id="8816185f-7ae8-4493-b565-231488435179" class="bulleted-list"><li style="list-style-type:disc">We define a <code><strong>Vehicle</strong></code> class with a <code><strong>start</strong></code> method.</li></ul><ul id="dc50a394-5365-426b-bcdc-b1c8e189006d" class="bulleted-list"><li style="list-style-type:disc">We then create a <code><strong>Car</strong></code> class that inherits from <code><strong>Vehicle</strong></code>.</li></ul><ul id="4443ff23-3999-4015-a53e-6cd014c8c1b2" class="bulleted-list"><li style="list-style-type:disc">The <code><strong>Car</strong></code> class adds a <code><strong>stop</strong></code> method that is not present in the <code><strong>Vehicle</strong></code> class.</li></ul><ul id="074aee79-72b8-4a6c-8407-f060b21b4515" class="bulleted-list"><li style="list-style-type:disc">We create an instance of <code><strong>Car</strong></code> and call both the <code><strong>start</strong></code> and <code><strong>stop</strong></code> methods.</li></ul><ul id="f5855028-7ad3-4588-9bc3-c8b7c5daa609" class="bulleted-list"><li style="list-style-type:disc">The <code><strong>start</strong></code> method is inherited from the <code><strong>Vehicle</strong></code> class, while the <code><strong>stop</strong></code> method is defined in the <code><strong>Car</strong></code> subclass.</li></ul></div></figure><h3 id="0a3c6b19-2811-4e5c-a48a-696dea392438" class="block-color-yellow"><strong><strong>Accessing Parent Class Methods with super()</strong></strong></h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="8689cb64-c1f0-4400-9543-109e92fc76ae"><div style="font-size:1.5em"><img class="icon" src="Python%20%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88(OOP)%201%209e1a7af416f04af4a56ff7e6786b1204/yang02.png"/></div><div style="width:100%">In this example, we create a <code><strong>Vehicle</strong></code> class that has a <code><strong>start</strong></code> method. We then create a <code><strong>Car</strong></code> subclass that overrides the <code><strong>start</strong></code> method to call the <code><strong>start</strong></code> method of its parent class using the <code><strong>super()</strong></code>method.<pre id="4b9f0d56-0972-418b-93de-c17bade7c1fe" class="code"><code>class Vehicle:
+    def start(self):
+        print(&quot;Starting engine&quot;)
+
+class Car(Vehicle):
+    def start(self):
+        super().start()
+        print(&quot;Starting car engine&quot;)
+
+car = Car()
+car.start()</code></pre><pre id="39c6eac3-6bce-4be7-b673-4dd1409a5177" class="code"><code>Starting engine
+Starting car engine</code></pre><p id="50d4017e-3091-4ea7-88a8-68a7903b71f5" class="">Explanation:</p><ul id="da1893d2-e081-4be9-95a9-0b97e11133bb" class="bulleted-list"><li style="list-style-type:disc">We define a <code><strong>Vehicle</strong></code> class with a <code><strong>start</strong></code> method that prints &quot;Starting engine&quot;.</li></ul><ul id="df908ff9-f5cd-4aba-b8b6-3816b8907de8" class="bulleted-list"><li style="list-style-type:disc">We then create a <code><strong>Car</strong></code> class that inherits from <code><strong>Vehicle</strong></code>.</li></ul><ul id="251119cd-a9fd-4c00-bdde-07c62d539ebf" class="bulleted-list"><li style="list-style-type:disc">The <code><strong>Car</strong></code> class overrides the <code><strong>start</strong></code> method to call the <code><strong>start</strong></code> method of its parent class using the <code><strong>super()</strong></code> method.</li></ul><ul id="35f54fdb-2433-437e-8822-6a264af68f90" class="bulleted-list"><li style="list-style-type:disc">The <code><strong>start</strong></code> method of the <code><strong>Car</strong></code> class then prints &quot;Starting car engine&quot;.</li></ul><ul id="7d369854-b819-4421-aca2-9baa0e40c9ce" class="bulleted-list"><li style="list-style-type:disc">We create an instance of <code><strong>Car</strong></code> and call the <code><strong>start</strong></code> method, which calls the <code><strong>start</strong></code> method of its parent class first (which prints &quot;Starting engine&quot;), and then prints &quot;Starting car engine&quot;.</li></ul></div></figure><h1 id="366f907b-85ac-40de-a497-015f2b06b961" class="block-color-brown_background">課堂作業</h1><h3 id="321766df-3eb0-4851-9043-91cd6c7f3aac" class="block-color-gray_background">【作業 1】PAIA: A Fun and Free Way to Learn Programming with Python</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="b70b90b5-e6bb-4434-9556-27a494feb53f"><div style="font-size:1.5em"><img class="icon" src="Python%20%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88(OOP)%201%209e1a7af416f04af4a56ff7e6786b1204/800x800.png"/></div><div style="width:100%">Let&#x27;s have some fun while learning programming with the PAIA desktop application. You can download it for free from GitHub and install it on your computer. PAIA is a game-based learning tool that allows you to create and play different games using either Blockly or Python. Blockly is a programming language that uses visual blocks to write code, while Python is a text-based language that you&#x27;ll learn in this class.<p id="c852e43f-5e6a-46e4-bb3e-e8e88715c4d5" class="">During this tutorial, we&#x27;ll use <code>Python</code> to play two games in PAIA: Arkanoid. Try your best to write a python script to play the game using algorithmic design.</p></div></figure><ul id="284705bd-0334-4a2d-83de-2f342505f21c" class="bulleted-list"><li style="list-style-type:disc"><a  target="_blank"  target="_blank" href="https://www.paia-arena.com/">PAIA Official Website</a></li></ul><ul id="677b1cdd-4811-4ff5-a259-c0a34c63bd3e" class="bulleted-list"><li style="list-style-type:disc"><a  target="_blank"  target="_blank" href="https://github.com/PAIA-Playful-AI-Arena/Paia-Desktop/releases/download/v2.4.1/PAIA-Desktop-win32-x64-2.4.1.zip">Download PAIA Desktop Application</a></li></ul><p id="247ec06c-3d7d-414e-87ea-30233257a85e" class="">
+</p><figure id="c1fc37d3-1ca4-4f98-8717-b5f2d9eaacae" class="image"><a href="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(1%206)%202b08444b0b90422d9b49eb26e8be99ce/%25E5%259C%2596%25E7%2589%25873.png"><img style="width:1322px" src="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(1%206)%202b08444b0b90422d9b49eb26e8be99ce/%25E5%259C%2596%25E7%2589%25873.png"/></a></figure></div></article>
+<script>hljs.highlightAll();</script>
+
+<script>hljs.highlightAll();</script>
+</body></html>

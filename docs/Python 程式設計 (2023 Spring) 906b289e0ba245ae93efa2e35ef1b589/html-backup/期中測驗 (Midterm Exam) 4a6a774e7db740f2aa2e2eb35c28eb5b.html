@@ -1,0 +1,914 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>期中測驗 (Midterm Exam) </title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="4a6a774e-7db7-40f2-aa2e-2eb35c28eb5b" class="page sans"><header><img class="page-cover-image" src="%E6%9C%9F%E4%B8%AD%E6%B8%AC%E9%A9%97%E8%A7%A3%E7%AD%94%20(Midterm%20Exam%20Solutions)%20b54b2d01431e47f9b96c059e3ef0eb19/1.png" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">📝</span></div><h1 class="page-title">期中測驗 (Midterm Exam) </h1></header><div class="page-body"><figure id="271c1a87-cc4f-4039-932b-672b2f2a86f6"><a href="https://jy3736.github.io/pyprog-2023s-pub/pyprog-midterm-0410-dark-soundon.html" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">期中測驗 (Midterm Exam)</div></div><div class="bookmark-href">https://jy3736.github.io/pyprog-2023s-pub/pyprog-midterm-0410-dark-soundon.html</div></div></a></figure><figure id="54ba1456-31fe-4432-a233-2659dba80686"><a href="https://classroom.github.com/a/mHlfUOmg" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title"></div></div><div class="bookmark-href">https://classroom.github.com/a/mHlfUOmg</div></div></a></figure><div id="e08b5af0-07f1-4f1c-9923-ef4f4da13f3f" class="column-list"><div id="52a55507-0b5c-4452-b6f9-03b10f1533e4" style="width:12.5%" class="column"><figure id="c180ce9e-d206-4c6f-8e38-8c18d37780f3" class="image"><a href="%E6%9C%9F%E4%B8%AD%E6%B8%AC%E9%A9%97%E8%A7%A3%E7%AD%94%20(Midterm%20Exam%20Solutions)%20b54b2d01431e47f9b96c059e3ef0eb19/800x800.png"><img style="width:60px" src="%E6%9C%9F%E4%B8%AD%E6%B8%AC%E9%A9%97%E8%A7%A3%E7%AD%94%20(Midterm%20Exam%20Solutions)%20b54b2d01431e47f9b96c059e3ef0eb19/800x800.png"/></a></figure></div><div id="e9b49913-cebd-4ca4-b2d3-d99231db74db" style="width:87.5%" class="column"><h2 id="ff824ecc-ff09-4947-88cc-8d1c572576ee" class="block-color-yellow"><strong><strong>Python 程式設計 (2023 Spring)</strong></strong></h2><p id="f26c9c8a-cc8c-4d12-acfb-7cc23aa94007" class="">
+</p></div></div><figure id="619c7870-19f9-4893-bfde-8ac5c6e7232a"><div class="source"><a href="https://player.soundon.fm/p/8faaae18-d718-46a4-b9a8-8a17a7674c41/episodes/b8f40fa1-ddca-4018-be00-1b00b34449aa">https://player.soundon.fm/p/8faaae18-d718-46a4-b9a8-8a17a7674c41/episodes/b8f40fa1-ddca-4018-be00-1b00b34449aa</a></div></figure><p id="c0621b33-fa02-41cd-a8ed-eab53db8c45a" class="">This midterm exam consists of two parts. The first part is an in-class formative assessment that includes 50 multiple-choice questions covering Snakify Lessons 4-11. The second part consists of slightly modified programming problems from the online lecture handouts. Each part is worth 100 points, for a total of 200 points. Students can choose to answer either or both parts, and the midterm exam score will be the sum of the two parts, but the final score will not exceed 100 points. For example, if student A got 30 points in the programming practice and 30 points in the formative assessment multiple-choice questions, then the final score is 60 points. If student B got 60 points in the programming practice and 50 points in the formative assessment multiple-choice questions, the final score will also only be counted as 100 points.</p><h2 id="8da53258-2f43-4c71-870a-8a8b7f479331" class="block-color-gray_background">Midterm Exam Submission Instructions</h2><figure id="0646e55f-6ff3-45a2-9aa0-cda053487c46"><div class="source"><a href="https://player.soundon.fm/p/8faaae18-d718-46a4-b9a8-8a17a7674c41/episodes/5d760efc-dab9-45a6-a825-a8808cf696fd">https://player.soundon.fm/p/8faaae18-d718-46a4-b9a8-8a17a7674c41/episodes/5d760efc-dab9-45a6-a825-a8808cf696fd</a></div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="0a282169-93f1-43dc-8ed4-bba15fc30148"><div style="font-size:1.5em"><img class="icon" src="%E6%9C%9F%E4%B8%AD%E6%B8%AC%E9%A9%97%E8%A7%A3%E7%AD%94%20(Midterm%20Exam%20Solutions)%20b54b2d01431e47f9b96c059e3ef0eb19/yang02.png"/></div><div style="width:100%">This midterm exam will test your knowledge and skills in python programming. You will solve six problems that are in different folders. Each folder has test cases that you can use to check your code. Your code should run correctly and give the right answers. You can use your notes and the internet during the exam, but you cannot work with anyone or copy any solutions from other sources. You have three hours to finish the exam and upload your code as a zip file on Flipclass.</div></figure><ul id="7b8908ce-f5d1-4e32-9cbf-acca9abccfc4" class="bulleted-list"><li style="list-style-type:disc">To ensure a fair evaluation, please do not modify any files or directories outside the <code>src</code> directory. All of your code should be placed inside the <code>src</code> directory.</li></ul><ul id="fbf1a2c2-f46c-4335-9968-8e805b32e58a" class="bulleted-list"><li style="list-style-type:disc">For the most part, you will only need to write your code in the <code>main.py</code> file located under each <code>src/prob01</code> through <code>src/prob06</code> directory. Unless you are certain of what you are doing, please avoid modifying any other files in these directories.</li></ul><ul id="6cf24aa1-ebbb-491d-9108-152a49995d88" class="bulleted-list"><li style="list-style-type:disc">To submit your assignment, please use the <code>submit</code> command. You can execute this command by typing <code>submit</code> in your terminal.</li></ul><ul id="1107f08d-4848-47fd-9618-9189bdaff9b9" class="bulleted-list"><li style="list-style-type:disc">Please note that you can only submit your assignment up to <code>5 times</code>, so make sure to test your code thoroughly before submitting.</li></ul><ul id="f9a8a765-da2e-47bd-88fe-2d2869be8209" class="bulleted-list"><li style="list-style-type:disc">If you&#x27;re having trouble executing the <code>submit</code> command, try changing its mode by typing <code>chmod +x submit</code> in your terminal, and then try again.</li></ul><figure id="98740e2f-74d9-4f59-a3bf-c8d8030d21a6"><div class="source"><a href="https://player.soundon.fm/p/8faaae18-d718-46a4-b9a8-8a17a7674c41/episodes/e95c8e3b-aed6-4ef2-a987-f34bd6222025">https://player.soundon.fm/p/8faaae18-d718-46a4-b9a8-8a17a7674c41/episodes/e95c8e3b-aed6-4ef2-a987-f34bd6222025</a></div></figure><figure id="115a6d98-8791-4a09-9f0f-b740abaf46b1"><div class="source"><a href="https://player.soundon.fm/p/8faaae18-d718-46a4-b9a8-8a17a7674c41/episodes/6b3f73f0-f6c8-401e-9964-920dcade1de4">https://player.soundon.fm/p/8faaae18-d718-46a4-b9a8-8a17a7674c41/episodes/6b3f73f0-f6c8-401e-9964-920dcade1de4</a></div></figure><h2 id="8653e97b-9cba-4b7d-9307-c76a2bb6b5bb" class="block-color-blue_background">【Problem 1】Identify the Maximum and Minimum Values</h2><figure id="6a79d7c2-af32-4911-87e6-76d976b4d782"><div class="source"><a href="https://player.soundon.fm/p/8faaae18-d718-46a4-b9a8-8a17a7674c41/episodes/eed20c28-fc04-400b-b44f-29278f19b066">https://player.soundon.fm/p/8faaae18-d718-46a4-b9a8-8a17a7674c41/episodes/eed20c28-fc04-400b-b44f-29278f19b066</a></div></figure><h2 id="6b30ad58-924f-4708-9710-b98f9f940089" class="">Objectives</h2><p id="527eb132-6f84-4df9-867e-236d483997fb" class="">The goal of this problem is to create a Python script that can take five integers as input from the user without any prompts, and use a couple of if statements to determine the largest and smallest numbers from the input.</p><h2 id="b9ef1e3e-30d6-4976-a8ec-30eba888185e" class="">Requirements</h2><p id="53fafd26-3d72-43d6-929c-4bb6543eda8e" class="">The script should prompt the user to input five integers. The script should then use a couple of if statements to determine the largest and smallest numbers from the input. The largest and smallest numbers should be displayed on the same line, separated by a space.</p><h2 id="804ca475-919f-42fa-bf55-91924c0398f9" class="">Example Usage</h2><pre id="88011bc9-adef-415e-b147-165e065aa8ca" class="code code-wrap"><code>PS lab01&gt; python .\\main.py
+3
+4
+5
+6
+7
+7 3
+
+PS lab01&gt; python .\\main.py
+-4
+3
+-2
+6
+9
+9 -4
+</code></pre><h3 id="f247a720-e873-4f03-ae98-17c291253275" class="block-color-yellow">main.py</h3><pre id="ec373f0d-5fc6-4846-807e-09bda0549287" class="code"><code>#! /usr/bin/env python
+
+# include additional user-defined functions as needed
+
+def main():
+    # write your code here 
+
+if __name__ == &quot;__main__&quot;:
+    main()</code></pre><h3 id="b5c33598-c38c-4a63-aaab-34947e8c6697" class="block-color-yellow">Test Results (Expected to be Similar but Not Identical)</h3><pre id="dc14044a-bd11-4685-bcfd-bb7ccdd66e49" class="code"><code>prob01&gt; python .\testing.py
+Test  1 : [93, 99, -2, 55, 20] -&gt; 99 -2
+Test  2 : [25, -5, 19, 29, 62] -&gt; 62 -5
+Test  3 : [57, 83, 93, 76, 48] -&gt; 93 48
+Test  4 : [63, 41, 35, 53, 17] -&gt; 63 17
+Test  5 : [40, 93, 89, 63, 58] -&gt; 93 40
+Test  6 : [18, 13, 1, 21, 67] -&gt; 67 1
+Test  7 : [86, 92, 71, 79, 80] -&gt; 92 71
+Test  8 : [43, 64, 94, 11, 32] -&gt; 94 11
+Test  9 : [64, -5, 11, 74, 78] -&gt; 78 -5
+Test 10 : [60, 76, -9, 94, 83] -&gt; 94 -9
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK</code></pre><h2 id="1813a8fe-6e02-4af7-ab3d-b41807cd3818" class="block-color-blue_background">【Problem 2】Printing Prime Numbers in [A,B]</h2><figure id="1a9c4b83-f6cf-4b85-91f5-33671019e210"><div class="source"><a href="https://player.soundon.fm/p/8faaae18-d718-46a4-b9a8-8a17a7674c41/episodes/0d9b50a7-4bd8-4734-83f1-bb48313bbfcd">https://player.soundon.fm/p/8faaae18-d718-46a4-b9a8-8a17a7674c41/episodes/0d9b50a7-4bd8-4734-83f1-bb48313bbfcd</a></div></figure><h2 id="426e45e6-5276-48df-82c9-415ef15fe578" class="">Objectives</h2><p id="c953ff77-547a-469d-b69e-cead8924887b" class="">To print prime numbers in [A,B], check each integer in that range for divisibility by numbers from 2 to its square root. If none divides it, it is prime. A prime number is a natural number &gt;1 with only two positive factors: 1 and itself.</p><h2 id="5d5ddb1d-2eef-4534-9066-7600ae31e84b" class="">Requirements</h2><p id="8695b6e1-9501-4bb1-bc9c-0885db9f3594" class="">The program should be designed to find and print all prime numbers within a given range. Two functions, is_prime and main, should be implemented. The is_prime function should accept a single integer parameter, n, and return True if n is a prime number; otherwise, it should return False.The main function should receive two integers, a and b, from the input() function, representing the range of numbers to check for primes. It should then iterate through each number in the range, calling the is_prime function on each one. </p><h2 id="0a41cf4c-d2d6-4575-82ba-7d3e4bd9b13e" class="">Example Usage</h2><pre id="ecfba488-26c4-4fd4-a18b-f815dc5855b1" class="code code-wrap"><code>PS prob02&gt; echo 1 10 | python .\\main.py
+2 3 5 7
+
+PS prob02&gt; echo 50 100 | python .\\main.py
+53 59 61 67 71 73 79 83 89 97
+</code></pre><h3 id="1f191319-962e-4712-87be-77688a3cad92" class="block-color-yellow">main.py</h3><pre id="59bbab0e-bc9e-4f7d-a080-86464603b454" class="code"><code>#! /usr/bin/env python
+
+# include additional user-defined functions as needed
+
+def main():
+    # write your code here 
+
+if __name__ == &quot;__main__&quot;:
+    main()</code></pre><h3 id="2a4e487d-219e-42bc-a8f5-431a893be573" class="block-color-yellow">Test Results (Expected to be Similar but Not Identical)</h3><pre id="b11e6916-c363-459e-8eee-7ab987c162bf" class="code"><code>prob02&gt; python .\testing.py
+Test  1 : [82, 116] -&gt; 83 89 97 101 103 107 109 113
+Test  2 : [58, 95] -&gt; 59 61 67 71 73 79 83 89
+Test  3 : [17, 62] -&gt; 17 19 23 29 31 37 41 43 47 53 59 61
+Test  4 : [5, 48] -&gt; 5 7 11 13 17 19 23 29 31 37 41 43 47
+Test  5 : [96, 136] -&gt; 97 101 103 107 109 113 127 131
+Test  6 : [95, 126] -&gt; 97 101 103 107 109 113
+Test  7 : [36, 66] -&gt; 37 41 43 47 53 59 61
+Test  8 : [28, 66] -&gt; 29 31 37 41 43 47 53 59 61
+Test  9 : [91, 133] -&gt; 97 101 103 107 109 113 127 131
+Test 10 : [50, 76] -&gt; 53 59 61 67 71 73
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.002s
+
+OK</code></pre><h2 id="674ddd2e-96ee-4ebd-8471-f80b7a6699c7" class="block-color-blue_background">【Problem 3】The Longest Sequence of Decreasing Numbers</h2><figure id="aee58c78-d8d0-494c-89ca-59eeb88bb7fa"><div class="source"><a href="https://player.soundon.fm/p/8faaae18-d718-46a4-b9a8-8a17a7674c41/episodes/e0cb6b09-a025-4a0e-84e4-d91825758ed5">https://player.soundon.fm/p/8faaae18-d718-46a4-b9a8-8a17a7674c41/episodes/e0cb6b09-a025-4a0e-84e4-d91825758ed5</a></div></figure><h2 id="461cc90b-3b06-4c11-bc9d-54e826eb0f44" class="">Objectives</h2><p id="35cdf6b2-af68-45f0-b307-6c1bc682ab7b" class="">Write a Python program that receives a sequence of integers and determines the length of the longest consecutive stretch of numbers in descending order. The test data should be entered as a single line of numbers separated by a space.</p><h2 id="6963a993-c07f-4d7d-82ef-60b1a61f2a3b" class="">Requirements</h2><p id="7e5b0b22-ddaa-457e-ba13-08e84d32d324" class="">The task requires the implementation of a Python program that takes a sequence of integers as input and computes the length of the longest continuous subsequence of numbers where all elements are in descending order. It is important to note that the program should output only the length of the longest subsequence and not the subsequence itself. The input data should be provided in a single line, with the numbers separated by spaces.</p><h2 id="d0658e23-1cf4-4b19-a6bb-078fcd3856e5" class="">Example Usage</h2><pre id="b52014fa-0401-4212-8443-a4ea2a5b6f42" class="code code-wrap"><code>prob03&gt; python .\\main.py
+1 2 3 4 5 4 3 6 7 8 9 7 4 2 1
+5
+
+prob03&gt; python .\\main.py
+9 8 7 6 1 2 3 4 5 4 4 3 2
+5
+
+prob03&gt; python .\\main.py
+9 8 7 8 5 4 4 3 2 5
+3
+</code></pre><h3 id="1d30cc7c-5905-43b8-b229-adb1f88e46c3" class="block-color-yellow">main.py</h3><pre id="75d649a0-c1a5-4a8e-a50c-69a7f013dce7" class="code"><code>#! /usr/bin/env python
+
+# include additional user-defined functions as needed
+
+def main():
+    # write your code here 
+
+if __name__ == &quot;__main__&quot;:
+    main()</code></pre><h3 id="dd863fa9-971b-4056-82e7-103d48dbe11e" class="block-color-yellow">Test Results (Expected to be Similar but Not Identical)</h3><pre id="f2b433c1-037d-45fb-b7be-9cea868cf42a" class="code"><code>prob03&gt; python .\testing.py --py
+Test  1 : [2, 2, 4, 6, 1, 3, 9, 2, 5, 6, 7, 4] -&gt; 2
+Test  2 : [3, 3, 2, 7, 1, 9, 1, 7] -&gt; 2
+Test  3 : [6, 4, 3, 5, 3] -&gt; 3
+Test  4 : [7, 9, 5, 9, 7, 2, 3, 2, 9, 4, 5, 4, 3, 8, 9, 9, 3, 6] -&gt; 3
+Test  5 : [8, 2, 9, 7, 7, 7, 5, 4, 3, 7, 7] -&gt; 4
+Test  6 : [3, 2, 8, 2, 6, 6, 5, 8] -&gt; 2
+Test  7 : [5, 2, 9, 8, 4, 5, 4, 6, 6, 9, 6, 8, 8, 5, 2, 2] -&gt; 3
+Test  8 : [3, 1, 4, 6, 1, 7, 5, 1, 7, 9, 5] -&gt; 3
+Test  9 : [5, 7, 3, 4, 9, 1, 1, 8, 7, 9, 9, 8, 1, 4, 6, 1, 4] -&gt; 3
+Test 10 : [9, 8, 7, 1, 2, 8, 3, 9, 4, 6, 8, 7] -&gt; 4
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.002s
+
+OK</code></pre><h2 id="5b6c354f-999f-49f0-8ef1-80ba987fc8eb" class="block-color-blue_background">【Problem 4】Determine the Middle Element’s Value and Position</h2><figure id="66dcc16b-1d03-45bb-bb74-b108a328562a"><div class="source"><a href="https://player.soundon.fm/p/8faaae18-d718-46a4-b9a8-8a17a7674c41/episodes/67a0776a-473e-42b1-bb66-eece2b14d89c">https://player.soundon.fm/p/8faaae18-d718-46a4-b9a8-8a17a7674c41/episodes/67a0776a-473e-42b1-bb66-eece2b14d89c</a></div></figure><h2 id="2436f270-dcf3-4446-a7e4-55460e9af336" class="">Objectives</h2><p id="5fb52d4a-7fa0-47b2-960e-51ad3877f25e" class="">Create a Python program that finds the middle number in a list of odd length with unique numbers. The program should print both the value and index of the middle number in the list. For instance, if the given list is [3, 7, 5, 9, 1], the program should output 5 and 2, where 5 is the middle number and its index is 2.</p><h2 id="cfef2e17-09a2-45b1-826b-dcf4db78892a" class="">Requirements</h2><p id="a281aedc-e9cb-423c-876c-c246b6c8381a" class="">The Python program should be designed with the assumption that the given list has an odd length and consists of unique numbers. Sorting the list is prohibited as part of the program&#x27;s requirements. The program&#x27;s aim is to find the middle number in the given list and print out its corresponding value and index. The output must be in the same format as the example provided, where the value and index are separated by a space.</p><h2 id="04219860-38f2-45e8-9c6b-ed588d308578" class="">Example Usage</h2><pre id="35ce2b54-a3b7-4aa0-8062-a5669102253b" class="code code-wrap"><code>prob04&gt; python .\\main.py
+5 44 56 45 64 89 26 23 51
+45 3
+
+prob04&gt; python .\\main.py
+67 25 46 44 42 54 59 17 2 20 53
+44 3
+
+prob04&gt; python .\\main.py
+44 92 65 61 6 80 42 4 2
+44 0
+</code></pre><h3 id="bbed91e5-b102-4017-a2cd-7fce85164b47" class="block-color-yellow">main.py</h3><pre id="67000de9-8416-47aa-87b8-907a3480731a" class="code"><code>#! /usr/bin/env python
+
+# include additional user-defined functions as needed
+
+def main():
+    # write your code here 
+
+if __name__ == &quot;__main__&quot;:
+    main()</code></pre><h3 id="e069ebc9-a1fe-495d-88b6-2950cdf738a0" class="block-color-yellow">Test Results (Expected to be Similar but Not Identical)</h3><pre id="0f619996-271b-4001-8e23-0ecc88ef490f" class="code"><code>prob04&gt; python .\testing.py --py
+Test  1 : 51 92 89 67 1 -&gt; 67 3
+Test  2 : 58 70 54 55 22 -&gt; 55 3
+Test  3 : 55 83 33 2 59 80 99 87 51 30 8 -&gt; 55 0
+Test  4 : 99 85 66 64 90 68 26 86 9 91 43 -&gt; 68 5
+Test  5 : 22 25 39 27 49 48 97 40 45 10 15 -&gt; 39 2
+Test  6 : 88 67 18 60 61 1 25 -&gt; 60 3
+Test  7 : 62 78 64 46 60 73 53 98 67 49 34 -&gt; 62 0
+Test  8 : 91 10 65 61 4 30 89 9 11 69 2 -&gt; 30 5
+Test  9 : 53 22 52 26 77 45 16 -&gt; 45 5
+Test 10 : 46 3 86 -&gt; 46 0
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.004s
+
+OK</code></pre><h2 id="cdc1df01-e45b-4888-a9c2-325518d77984" class="block-color-blue_background">【Problem 5】Compute the Product Matrix of Two Matrices</h2><figure id="f69aaf0b-5417-4a51-91c4-33e21fa7d5de"><div class="source"><a href="https://player.soundon.fm/p/8faaae18-d718-46a4-b9a8-8a17a7674c41/episodes/fece2884-f734-4254-b9e9-a44c93e655c6">https://player.soundon.fm/p/8faaae18-d718-46a4-b9a8-8a17a7674c41/episodes/fece2884-f734-4254-b9e9-a44c93e655c6</a></div></figure><h2 id="01d392fc-baab-4f62-a0e1-a852ca0fb11b" class="">Objectives</h2><p id="f451ff0a-af96-4d82-87b5-baf6a32902fa" class="">Consider three positive integers m, n, and r. We are given an m x n matrix A with m rows and n columns, and an n x r matrix B with n rows and r columns. To form the product matrix AB, which is an m x r matrix, we compute the dot product of each row of A with each column of B. Specifically, for each (i,k) entry of AB, we compute the sum:</p><pre id="499e9b23-5d52-45eb-ba99-931769a49170" class="code code-wrap"><code>        A[i][1]*B[1][k] + A[i][2]*B[2][k] + ... + A[i][n]*B[n][k]
+</code></pre><p id="34e4147d-b5b5-40e4-93eb-732625446ce5" class="">Finally, we print the resulting matrix AB.</p><h2 id="87998669-d3a9-41c7-9e2e-c6ffaffbc1a7" class="">Requirements</h2><p id="81821dab-1786-4183-aa57-41164528e4cf" class="">Write a Python program that takes three positive integers m, n, and r as input. The program should also take two matrices A and B as input, where A is an m x n matrix and B is an n x r matrix. The program should multiply the matrices A and B using the dot product formula and store the result in a matrix AB, which is an m x r matrix. The program should then print the matrix AB in a readable format.</p><h2 id="0a2d44f9-180f-4de1-a240-add335e0ae6b" class="">Example Usage</h2><pre id="85774d0c-eded-49cd-a52c-d1fd3bac1b30" class="code code-wrap"><code>prob05&gt; python .\\main.py
+4 2 5
+8 8
+9 6
+3 9
+0 0
+2 3 8 7 6
+6 1 0 4 9
+64 32 64 88 120
+54 33 72 87 108
+60 18 24 57 99
+0 0 0 0 0
+
+prob05&gt; python .\\main.py
+2 1 4
+0
+2
+7 4 1 1
+0 0 0 0
+14 8 2 2
+</code></pre><h3 id="61778083-a468-41e7-9820-49ddb1254414" class="block-color-yellow">main.py</h3><pre id="49238247-e367-4162-8492-2def7db140d0" class="code"><code>#! /usr/bin/env python
+
+# include additional user-defined functions as needed
+
+def main():
+    # write your code here 
+
+if __name__ == &quot;__main__&quot;:
+    main()</code></pre><h3 id="493472c3-7c09-4fd3-99a0-2df78749f6c7" class="block-color-yellow">Test Results (Expected to be Similar but Not Identical)</h3><pre id="38d540ad-4369-4b71-9f4c-399f6be1cdb0" class="code"><code>prob05&gt; python .\testing.py --py
+Test  1 : 
+3 2 3
+6 2
+7 2
+6 1
+0 1 5
+5 9 6
+
+... 省略過長的輸出 (Omitting Overly Long Output)
+
+Test  10 :
+3 4 4
+8 3 6 6
+5 6 5 3
+4 7 0 3
+5 1 4 0
+8 4 3 0
+3 0 8 9
+3 6 1 1
+
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.012s
+
+OK</code></pre><h2 id="c66382b1-00b6-40a5-83f8-829617e8c746" class="block-color-blue_background">【Problem 6】Eight Queens on a Chessboard are not Threatened</h2><figure id="7175590d-84b7-4dc1-a609-e665c02ef9e3"><div class="source"><a href="https://player.soundon.fm/p/8faaae18-d718-46a4-b9a8-8a17a7674c41/episodes/6de4da11-941c-4913-bd34-0fcf87ce3662">https://player.soundon.fm/p/8faaae18-d718-46a4-b9a8-8a17a7674c41/episodes/6de4da11-941c-4913-bd34-0fcf87ce3662</a></div></figure><h2 id="2e997e94-111e-4835-8e4e-27d23eec0440" class="">Objectives</h2><p id="75a08007-7e01-471f-9f29-b3cd1d639a16" class="">Eight queens can be placed on an 8x8 chessboard so that they do not attack each other. Given the positions of eight queens on a chessboard, determine if any two queens can attack each other in the next move. Print &quot;YES&quot; if there is a possible attack, otherwise print &quot;NO&quot;. Input eight pairs of coordinates, one per line, representing the positions of the queens on the standard chessboard with rows and columns numbered starting from 1.</p><h2 id="af0120cd-5309-4e65-a627-7ba5cb577bcc" class="">Requirements</h2><p id="eb985941-1fa6-4daf-97ba-abb9214c2e07" class="">The input consist of eight sets of coordinates, where each set is made up of two integers (x and y) separated by a space. The values of x and y should be whole numbers between 0 and 7. Each set of coordinates should be provided on a single line of input.</p><h2 id="2b4b6ba2-203a-4175-9333-78ee8e17b312" class="">Example Usage</h2><pre id="5c96b423-d77c-4dbb-8d4b-42aace6b85a7" class="code code-wrap"><code>prob06&gt; python .\\main.py
+0 1
+1 3
+2 5
+3 7
+4 0
+5 2
+6 4
+7 6
+YES
+
+prob06&gt; python .\\main.py
+0 4
+1 1
+2 3
+3 5
+4 7
+5 2
+6 0
+7 6
+NO
+</code></pre><h3 id="b43399a5-3834-4585-829b-48c88e39fd0e" class="block-color-yellow">main.py</h3><pre id="14e425e9-7d5f-461f-84cf-f5319fcb2924" class="code"><code>#! /usr/bin/env python
+
+# include additional user-defined functions as needed
+
+def main():
+    # write your code here 
+
+if __name__ == &quot;__main__&quot;:
+    main()</code></pre><h3 id="2d129da1-9dc8-4a23-bfdb-5dafa1c83c52" class="block-color-yellow">Test Results (Expected to be Similar but Not Identical)</h3><pre id="3ee056bd-d3b7-4a0c-8a41-ea777897df89" class="code"><code>prob06&gt; python .\testing.py --py
+Test  1 : [(0, 1), (1, 3), (2, 5), (3, 7), (4, 0), (5, 2), (6, 4), (7, 6)] -&gt; YES
+0 1
+1 3
+2 5
+3 7
+4 0
+5 2
+6 4
+7 6
+
+... 省略過長的輸出 (Omitting Overly Long Output)
+
+Test 10 : [(0, 2), (1, 0), (2, 5), (3, 7), (4, 4), (5, 1), (6, 3), (7, 6)] -&gt; YES
+0 2
+1 0
+2 5
+3 7
+4 4
+5 1
+6 3
+7 6
+
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.008s
+
+OK</code></pre><figure id="a9f41d65-6bb6-482c-98bf-21bddfe5ada3" class="image"><a href="%E6%9C%9F%E4%B8%AD%E6%B8%AC%E9%A9%97%E8%A7%A3%E7%AD%94%20(Midterm%20Exam%20Solutions)%20b54b2d01431e47f9b96c059e3ef0eb19/%25E5%259C%2596%25E7%2589%25873.png"><img style="width:1322px" src="%E6%9C%9F%E4%B8%AD%E6%B8%AC%E9%A9%97%E8%A7%A3%E7%AD%94%20(Midterm%20Exam%20Solutions)%20b54b2d01431e47f9b96c059e3ef0eb19/%25E5%259C%2596%25E7%2589%25873.png"/></a></figure></div></article></body></html>

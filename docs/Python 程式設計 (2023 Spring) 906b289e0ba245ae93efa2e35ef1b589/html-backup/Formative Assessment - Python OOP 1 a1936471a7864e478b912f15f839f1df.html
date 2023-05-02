@@ -1,0 +1,915 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Formative Assessment - Python OOP 1</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="a1936471-a786-4e47-8b91-2f15f839f1df" class="page sans"><header><img class="page-cover-image" src="%E6%9C%9F%E4%B8%AD%E6%B8%AC%E9%A9%97%E8%A7%A3%E7%AD%94%20(Midterm%20Exam%20Solutions)%20b54b2d01431e47f9b96c059e3ef0eb19/1.png" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">📝</span></div><h1 class="page-title">Formative Assessment - Python OOP 1</h1></header><div class="page-body"><p id="bbbe3f9c-2181-4b5b-bdbe-abb8bd0fb784" class="">
+</p><p id="09657e45-3152-4058-aefd-e0044cf33022" class="">This assessment will help you review the fundamentals of object-oriented programming (oop) in Python. You will practice creating and using classes, objects, methods, and attributes. You will also learn how to apply oop principles to solve real-world problems. By the end of this assessment, you should be able to write clear and concise Python code that follows oop best practices.</p><h2 id="8fdfc370-f297-43d5-b911-9695318e9c49" class="block-color-teal_background">Easy</h2><ol type="1" id="64864fe8-20dc-4df0-ae22-6839823e00fa" class="numbered-list" start="1"><li>Which method of the Car class returns a string containing the car&#x27;s make, model, and year?<pre id="0d6ca598-110c-40d1-9dc1-f071539f0265" class="code"><code>class Car:
+    def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+
+    def get_info(self):
+        return f&quot;{self.make} {self.model} ({self.year})&quot;</code></pre><p id="7e4063a3-5f65-4314-bf19-ee0ea9b27752" class="">a) get_make
+b) get_model
+c) get_year
+d) get_info
+Answer: d</p></li></ol><ol type="1" id="e2c1f3be-40d6-4f63-b2f4-eacbd67808ce" class="numbered-list" start="2"><li>What are the three parameters passed to the constructor (__<strong>init__</strong>) of the Car class?<pre id="0ac9632d-6812-400d-9a82-a1dea9f76d32" class="code"><code>class Car:
+		def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+
+		def construct(self, make, model, color):
+				pass</code></pre><p id="23c39138-07ed-4b20-9b3d-cad2c5faa8a8" class="">a) make, model, year
+b) make, model, color
+c) brand, model, year
+d) manufacturer, model, year
+Answer: a</p></li></ol><ol type="1" id="ec8c261a-e3ab-495a-8b35-527a41db84ca" class="numbered-list" start="3"><li>Which of the following is a correct way to create a Car instance with make &quot;Toyota&quot;, model &quot;Corolla&quot;, and year 2022?<pre id="ef311fa0-14c4-42f9-b24c-74e596559193" class="code"><code>class Car:
+		def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+
+		def construct(self, make, model, color):
+				pass</code></pre><p id="674da663-c8b6-4ec3-9f1d-a5ad471a8a6e" class="">a) car = new Car(&quot;Toyota&quot;, &quot;Corolla&quot;, 2022)
+b) car = Car.make(&quot;Toyota&quot;).model(&quot;Corolla&quot;).year(2022)
+c) car = Car(&quot;Toyota&quot;, &quot;Corolla&quot;, 2022) 
+d) car = Car.construct(&quot;Toyota&quot;, &quot;Corolla&quot;, 2022)
+Answer: c</p></li></ol><p id="5f86c0b0-22b8-4c25-8989-67b72e9565ec" class="">
+</p><ol type="1" id="35e74a4a-390b-4e9b-b503-7c75aa6fdae9" class="numbered-list" start="4"><li>Which of the following is a correct way to create a Student instance with name &quot;John&quot;, age 20, and major &quot;Computer Science&quot;?<pre id="8f542ab5-9e25-4688-b442-f116ac4a9069" class="code"><code>class Student:
+    def __init__(self, name, age, major):
+        self.name = name
+        self.age = age
+        self.major = major</code></pre><p id="af89bec1-b8a6-4e14-81b2-16551522d518" class="">a) student = Student(name=”John”, age=20, major=”Computer Science”)
+b) student = Student(&quot;John&quot;, 20, &quot;Computer Science&quot;)
+c) student = Student(name=&quot;John&quot;, &quot;Computer Science&quot;, age=20)
+d) student = new Student(&quot;John&quot;, 20, &quot;Computer Science&quot;)
+Answer: b</p></li></ol><ol type="1" id="a2d5cce1-60ac-413f-b4d1-cb1da9cf63ab" class="numbered-list" start="5"><li>What does the print_info method of the Student class do?<pre id="06d93281-c58b-4426-b7a8-1a607754bba4" class="code"><code>class Student:
+    def __init__(self, name, age, major):
+        self.name = name
+        self.age = age
+        self.major = major
+
+    # Define a method to print student information
+    def print_info(self):
+        print(f&quot;Name: {self.name}&quot;)
+        print(f&quot;Age: {self.age}&quot;)
+        print(f&quot;Major: {self. Major}&quot;)</code></pre><p id="6b55e674-1e3c-4bf1-bb33-eac3650abfa3" class="">a) It creates a new Student instance.
+b) It sets the name, age, and major attributes of a Student instance.
+c) It returns a string containing the student&#x27;s name, age, and major.
+d) It prints the student&#x27;s name, age, and major to the console.
+Answer: d</p></li></ol><ol type="1" id="a6edeaaf-5e83-42e1-ba03-a9c0b8c9f7c8" class="numbered-list" start="6"><li>Which of the following is a correct way to access the age attribute of the Student instance stu?<pre id="53229b73-54dd-4100-8517-804d213fb287" class="code"><code>class Student:
+    def __init__(self, name, age, major):
+        self.name = name
+        self.age = age
+        self.major = major
+
+stu = Student(&quot;Kao&quot;, 23, &quot;CS&quot;)</code></pre><p id="55864161-4e62-49f6-9b5e-f14162193233" class="">a) Student.age
+b) stu.age
+c) stu.get_age()
+d) Student.get_age()
+Answer: b</p></li></ol><ol type="1" id="f8467f6c-6083-4e88-b293-1d5f224bd5c7" class="numbered-list" start="7"><li>Given the following class declaration, how would you access the name attribute of an instance of the Person class?<pre id="01991a65-336d-48f5-8a38-fb7b21b7df7b" class="code code-wrap"><code>	class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+person = Person(&quot;Joe&quot;,21)</code></pre><p id="0f4633ec-c333-4c50-a6ac-c5bb7caaaae0" class="">a) person.get_name()
+b) Person.name
+c) person.name
+d) Person.get_name(person)
+Answer: c</p></li></ol><ol type="1" id="30404fd9-5c93-4c67-8edb-1773ddb775ff" class="numbered-list" start="8"><li>Given the following class declaration, what is the value of the name attribute of the p instance of the Person class after the code runs?<pre id="1d00d592-2fdb-4084-be26-7316816dd046" class="code"><code>class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+p = Person(&quot;John&quot;, 25)
+p.name = &quot;Sarah&quot;</code></pre><p id="4a6ed2be-ee5e-4f63-ba36-8ff7c0cd745e" class="">a) &quot;John&quot;
+b) &quot;Sarah&quot;
+c) 25
+d) None</p><p id="bbfa0fce-9161-4ca8-af4f-be6d299be75c" class="">Answer: b</p></li></ol><ol type="1" id="ef77992a-2689-425c-85b1-efb42cea5ca3" class="numbered-list" start="9"><li>Given the following class declaration, how would you access the age attribute of an instance of the Person class?<pre id="fa9a274c-0b41-4ea4-924f-2c2dd6c8c11a" class="code"><code>class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age</code></pre><p id="db04057a-1b13-405b-bd25-bce725b82669" class="">a) person.age
+b) Person.age
+c) person.get_age()
+d) Person.get_age(person)</p><p id="863776ca-0b3c-4078-94dc-3d89f11bc90c" class="">Answer: a</p></li></ol><ol type="1" id="77432b2e-c57e-421f-818d-b3e1f36bfe2a" class="numbered-list" start="10"><li>Given the following class declaration, what is the output of the code?<pre id="ee7847a6-6362-44f0-968d-62e735e293ba" class="code"><code>class Dog:
+    def __init__(self, breed, color):
+        self.breed = breed
+        self.color = color
+
+dog1 = Dog(&quot;Labrador&quot;, &quot;yellow&quot;)
+dog2 = Dog(&quot;Poodle&quot;, &quot;white&quot;)
+print(dog1.breed, dog2.color)</code></pre><p id="594c6df8-8cf1-4482-be38-e47265528ea6" class="">a) &quot;Labrador&quot;, &quot;white&quot;
+b) &quot;Poodle&quot;, &quot;yellow&quot;
+c) &quot;Labrador&quot;, &quot;yellow&quot;
+d) &quot;Poodle&quot;, &quot;white&quot;</p><p id="5708e418-f382-48bc-987c-277737335d36" class="">Answer: a</p></li></ol><h2 id="f92c5706-ed18-4002-b8b4-efdf8b664b11" class="block-color-teal_background">Harder</h2><ol type="1" id="fc9dfde8-1bd9-41a5-bc96-e6fccd254635" class="numbered-list" start="1"><li>What is the output of the following Python code snippet?<pre id="2bf98f2c-6f01-4a81-a19b-9cb4eb127a8a" class="code"><code>class Complex:
+    def __init__(self, real, imag):
+        self.real = real
+        self.imag = imag
+    
+    def add(self, other):
+        real_sum = self.real + other.real
+        imag_sum = self.imag + other.imag
+        return Complex(real_sum, imag_sum)
+
+    def __str__(self):
+        return &quot;{} + {}i&quot;.format(self.real, self.imag)
+
+c1 = Complex(2, 3)
+c2 = Complex(4, 5)
+c3 = c1.add(c2)
+print(c3)</code></pre><p id="4d021e2c-d8c4-436f-9ca4-597fe57decfb" class="">a) 2 + 3i
+b) 4 + 5i
+c) 6 + 8i
+d) 8 + 15i</p><p id="ee08f838-38e7-4a3f-ad11-9c902da2a46e" class="">Answer: c</p></li></ol><ol type="1" id="5c820fc4-d82a-4b3c-ab59-ade103c050e1" class="numbered-list" start="2"><li>What is the output of the following Python code snippet?<pre id="46cb2451-2b49-4c3a-afa0-65fc616e23ce" class="code"><code>class Complex:
+    def __init__(self, real, imag):
+        self.real = real
+        self.imag = imag
+    
+    def subtract(self, other):
+        real_diff = self.real - other.real
+        imag_diff = self.imag - other.imag
+        return Complex(real_diff, imag_diff)
+
+    def __str__(self):
+        return &quot;{} + {}i&quot;.format(self.real, self.imag)
+
+c1 = Complex(2, 3)
+c2 = Complex(4, 5)
+c3 = c1.subtract(c2)
+print(c3)</code></pre><p id="75a71f8e-7ffa-484a-ac90-dd3d3f7aa73a" class="">a) 2 + 3i
+b) 4 + 5i
+c) -2 - 2i
+d) -2 - 8i</p><p id="bf4a656d-3ced-4272-9374-5caeda196a63" class="">Answer: c</p></li></ol><ol type="1" id="d36a8da9-9363-4f2c-943b-97ba465f4423" class="numbered-list" start="3"><li>What is the output of the following Python code snippet?<pre id="bd0dd67a-8274-4671-8f9a-169095557a94" class="code"><code>class Complex:
+    def __init__(self, real, imag):
+        self.real = real
+        self.imag = imag
+
+    def multiply(self, other):
+        real_prod = self.real * other.real - self.imag * other.imag
+        imag_prod = self.real * other.imag + self.imag * other.real
+        return Complex(real_prod, imag_prod)
+
+    def __str__(self):
+        return &quot;{} + {}i&quot;.format(self.real, self.imag)
+
+c1 = Complex(2, 3)
+c2 = Complex(4, 5)
+c3 = c1.multiply(c2)
+print(c3)</code></pre><p id="14fa437c-d870-4a62-a7e0-6e537439c656" class="">a) 2 + 3i
+b) 4 + 5i
+c) 7 + 22i
+d) -7 + 22i</p><p id="f835131b-086b-49ec-a0a9-e480b55156d5" class="">Answer: d</p></li></ol><ol type="1" id="c9fc08fe-0ccb-4272-8e91-3787a244ab0e" class="numbered-list" start="4"><li>Which of the following methods overloads the multiplication operator for the Complex class?
+a) __str__
+b) __add__
+c) __div__
+d) __mul__
+Answer: d</li></ol><ol type="1" id="45ea7ad0-b28b-43b1-82be-b289289f8bcd" class="numbered-list" start="5"><li>What is the result of the following code snippet?<pre id="f6fc024e-1397-4a1a-b6f6-215032e28d5c" class="code"><code>class Complex:
+    def __init__(self, real, imag):
+        self.real = real
+        self.imag = imag
+
+    def __str__(self):
+        return &quot;{} + {}i&quot;.format(self.real, self.imag)
+
+    def __add__(self, other):
+        return Complex(self.real + other.real, self.imag + other.imag)
+
+c1 = Complex(2, 3)
+c2 = Complex(4, -1)
+c3 = c1 + c2
+print(c3)</code></pre><p id="8dc8dbea-5ec0-499f-ad32-3a799679e9cf" class="">a) 6 + 2i
+b) 6 - 2i
+c) -6 + 2i
+d) -6 - 2i</p><p id="871a7640-87b9-4fec-8f6f-9fda87cd165c" class="">Answer: a</p></li></ol><ol type="1" id="10449d3a-10b0-4f94-af16-126d87a0b8de" class="numbered-list" start="6"><li>Which of the following methods overloads the division operator for the Complex class?
+a) __div__
+b) __add__
+c) __mul__
+d) __truediv__
+Answer: d</li></ol><ol type="1" id="cd04409c-caba-4fcb-808b-3fc8f3bf4f7c" class="numbered-list" start="7"><li>What is the result of the following code snippet?<pre id="d127f1e6-0fc2-4c2d-b3ac-1e6bde787d81" class="code"><code>class Complex:
+    def __init__(self, real, imag):
+        self.real = real
+        self.imag = imag
+
+    def __str__(self):
+        return &quot;{} + {}i&quot;.format(self.real, self.imag)
+
+    def __mul__(self, other):
+        return Complex(self.real * other.real - self.imag * other.imag,
+                       self.real * other.imag + self.imag * other.real)
+
+c1 = Complex(2, 3)
+c2 = Complex(4, -1)
+c3 = c1 - c2
+print(c3)</code></pre><p id="d42b34cb-bd1b-4d45-8f76-03b15fcea4ea" class="">a) -2 + 4i
+b) -2 - 4i
+c) 2 + 4i
+d) Error</p><p id="bffe91fd-7b00-402a-bf4c-fa8f87219521" class="">Answer: d</p></li></ol><ol type="1" id="5e80dbb2-5de2-4484-96f9-cb973db1f23d" class="numbered-list" start="8"><li>Which of the following methods overloads the addition operator for the Complex class?
+a) __sub__
+b) __add__
+c) __mul__
+d) __truediv__
+Answer: b</li></ol><ol type="1" id="e5b4e589-5617-44c8-8005-36a226ed3945" class="numbered-list" start="9"><li>What is the result of the following code snippet?<pre id="1e8eec9e-561d-48ea-8353-526d409292b9" class="code"><code>class Complex:
+    def __init__(self, real, imag):
+        self.real = real
+        self.imag = imag
+
+    def __mul__(self, other):
+        return Complex(self.real * other.real - self.imag * other.imag,
+                       self.real * other.imag + self.imag * other.real)
+
+c1 = Complex(2, 3)
+c2 = Complex(4, -1)
+c3 = c1 * c2
+print(c3)</code></pre><p id="c25e7f3c-95b2-4d01-90f5-b5b5f705c3af" class="">a) 11 + 10i
+b) 11 - 10i
+c) -11 + 10i
+d) none of above</p><p id="d27ad0ac-7729-40b5-bd01-50436bcba3b0" class="">Answer: d</p></li></ol><ol type="1" id="43b1a24f-9508-4b4b-9d24-c4f7e5102ec2" class="numbered-list" start="10"><li>What is the result of the following code snippet?<pre id="f8b32352-1e3c-43cd-8dce-be1d0379fdbf" class="code"><code>class Complex:
+    def __init__(self, real, imag):
+        self.real = real
+        self.imag = imag
+
+    def __str__(self):
+        return &quot;{} + {}i&quot;.format(self.real, self.imag)
+
+    def __sub__(self, other):
+        return Complex(self.real - other.real, self.imag - other.imag)
+
+    def __mul__(self, other):
+        return Complex(self.real * other.real - self.imag * other.imag,
+                       self.real * other.imag + self.imag * other.real)
+
+c1 = Complex(2, 3)
+c2 = Complex(4, -1)
+c3 = c1 - c2 * c1
+print(c3)</code></pre><p id="7d9d4e94-c8c2-4064-bd0e-8245af265998" class="">a) -9 - 7i
+b) -9 + -7i
+c) 12 - 11i
+d) 8 + 16i</p><p id="cebd021f-1d4e-49fc-b5dd-e5cd4491858d" class="">Answer: b</p></li></ol><p id="84804b02-f628-49cc-881c-ab02ac426248" class="">
+</p><p id="21125d9f-db45-48f8-b4ad-bb6a4a4ef04b" class="">
+</p><figure id="1b3506eb-282f-49dc-971e-1387c7d1c7da" class="image"><a href="%E6%9C%9F%E4%B8%AD%E6%B8%AC%E9%A9%97%E8%A7%A3%E7%AD%94%20(Midterm%20Exam%20Solutions)%20b54b2d01431e47f9b96c059e3ef0eb19/%25E5%259C%2596%25E7%2589%25873.png"><img style="width:1322px" src="%E6%9C%9F%E4%B8%AD%E6%B8%AC%E9%A9%97%E8%A7%A3%E7%AD%94%20(Midterm%20Exam%20Solutions)%20b54b2d01431e47f9b96c059e3ef0eb19/%25E5%259C%2596%25E7%2589%25873.png"/></a></figure></div></article></body></html>

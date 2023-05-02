@@ -1,0 +1,787 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Formative Assessment - Snakify Lesson 10</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="d2e8326f-6e36-49e0-b982-67aa843d2031" class="page sans"><header><img class="page-cover-image" src="%E6%9C%9F%E4%B8%AD%E6%B8%AC%E9%A9%97%E8%A7%A3%E7%AD%94%20(Midterm%20Exam%20Solutions)%20b54b2d01431e47f9b96c059e3ef0eb19/1.png" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">📝</span></div><h1 class="page-title">Formative Assessment - Snakify Lesson 10</h1></header><div class="page-body"><p id="120cc13f-fb57-4e80-888c-fb78ffa8cb47" class="">
+</p><p id="8d7c69d6-1e81-495c-ba41-b09fc758f412" class="">This assessment evaluates your comprehension of Snakify Lesson 10, which focuses on sets in Python programming. The assessment consists of two sections: a basic section and an intermediate section, each containing ten multiple-choice questions. The basic section covers the core concepts of sets learned in Lesson 10, while the intermediate section challenges your understanding of the lesson material with more intricate questions related to sets.</p><h2 id="5e928bd8-8bf2-4800-9e89-e8cd822314c2" class="block-color-teal_background">Easy</h2><ol type="1" id="449eb89e-ef51-428d-a223-ed6dd32832f9" class="numbered-list" start="1"><li>What is the output of the following code snippet?<pre id="cd1627f2-2204-4da6-955d-738fde771cf2" class="code"><code>set1 = set([1, 2, 3])
+set2 = set([2, 3, 4])
+result = set1.union(set2)
+print(len(result))</code></pre><p id="db07d6f7-c083-48f4-b9ed-4de00758c0f4" class="">A) 2
+B) 3
+C) 4
+D) 5</p><p id="cf8e8552-085d-4bb3-81c8-539b906671ff" class="">Correct answer: C) 4</p><p id="1cab13fb-d348-46ca-aab7-b81ba5bea218" class="">
+</p></li></ol><ol type="1" id="b3802af7-e9b2-4656-9625-4cc30acf6341" class="numbered-list" start="2"><li>What is the output of the following code snippet?<pre id="b9456296-025c-490d-aa2a-3b6f94b78e1d" class="code"><code>set1 = set([1, 2, 3])
+set2 = set([2, 3, 4])
+result = set1.intersection(set2)
+print(result)</code></pre><p id="a1befb03-6f77-4981-baea-0b5e2190e42f" class="">A) {1, 4}
+B) {2, 3}
+C) {2, 3, 4}
+D) {1, 2, 3, 4}</p><p id="544d66e0-3a14-47d1-be43-c4b1bb3d1c1e" class="">Correct answer: B) {2, 3}</p><p id="ba4f116a-eb54-4d5c-9fae-48682304c76b" class="">
+</p></li></ol><ol type="1" id="26ff7e4d-e9c9-4183-bb62-497be245d78f" class="numbered-list" start="3"><li>What is the output of the following code snippet?<pre id="cef88dd7-0b1e-4898-865c-5c7e3470a48c" class="code"><code>set1 = set([1, 2, 3])
+set2 = set([2, 3, 4])
+result = set1.difference(set2)
+print(result)</code></pre><p id="bb5545a8-2ba1-484f-bec7-7e1fbd2bbc77" class="">A) {1, 2, 3, 4}
+B) {1, 4}
+C) {2, 4}
+D) {1}</p><p id="32114d7d-99c9-4a25-91e7-586ae810a229" class="">Correct answer: D) {1}</p><p id="18da64c0-6bb3-4b39-80c9-44aa60c519af" class="">
+</p></li></ol><ol type="1" id="4abe90b0-882a-4c67-8a8b-6ee5ea4f4152" class="numbered-list" start="4"><li>What is the output of the following code snippet?<pre id="19c8df3b-8328-4edf-a7b6-5eb58aeb1977" class="code"><code>set1 = set([1, 2, 3])
+set2 = set([2, 3, 4])
+set1.difference_update(set2)
+print(set1)</code></pre><p id="faf8f28b-afb3-4af8-abf2-e93b18a1af73" class="">A) {1, 2, 3, 4}
+B) {1, 4}
+C) {1}
+D) {}</p><p id="5d0735f9-37c0-4832-84d2-79dbafc12604" class="">Correct answer: C) {1}</p><p id="46df9324-67f6-40d9-a840-01bb5ea9ba06" class="">
+</p></li></ol><ol type="1" id="bdde1ca6-c4ee-4b6e-ae23-815b6bcb4a03" class="numbered-list" start="5"><li>What is the output of the following code snippet?<pre id="6f8d3dee-b393-44a7-88d2-4d826a65bb48" class="code"><code>set1 = set([1, 2, 3])
+set2 = set([2, 3, 4])
+set1.symmetric_difference_update(set2)
+print(set1)</code></pre><p id="a62ed3bb-795f-4611-a504-299e95a6e1b4" class="">A) {1, 2, 3, 4}
+B) {1, 4}
+C) {2, 3}
+D) {1}</p><p id="e53b068c-5569-4542-943d-d5d92fb878cf" class="">Correct answer: B) {1, 4}</p><p id="e65ab4df-6b8d-4856-9f02-0d55a5ca9c14" class="">
+</p></li></ol><ol type="1" id="115f1fe6-0cae-4222-9711-ba8b89a0d876" class="numbered-list" start="6"><li>What is the output of the following code snippet?<pre id="05689728-eb40-4c5a-ad03-a9c612c34039" class="code"><code>set1 = set([1, 2, 3])
+set2 = set([2, 3, 4])
+result = set1.issubset(set2)
+print(result)</code></pre><p id="a0cdcd9b-e5b6-4d9f-9d75-bd5498e555b0" class="">A) True
+B) False</p><p id="7ecd64b3-4f0a-449c-81a9-8e9f5e4e101b" class="">Correct answer: B) False</p><p id="85ea0701-dce3-4c1e-b4ef-d577ff62768e" class="">
+</p></li></ol><ol type="1" id="dab43be2-f769-4d99-ae23-88ee731464aa" class="numbered-list" start="7"><li>What is the output of the following code snippet?<pre id="75bb06b6-3fa3-4a97-9897-b08ed6d512fe" class="code"><code>set1 = set([1, 2, 3, 4)
+set2 = set([2, 3, 4])
+result = set1.issuperset(set2)
+print(result)</code></pre><p id="4e4eca32-3b61-44b0-aa01-d2a857cbcd26" class="">A) True
+B) False</p><p id="c7a8b2cc-6bef-44fd-9c02-047fd2ef8a1b" class="">Correct answer: A) True</p><p id="6dedbf71-1b9a-4d98-a09f-f9cf3930a381" class="">
+</p></li></ol><ol type="1" id="37839c45-e27c-460f-806d-90d28a1702db" class="numbered-list" start="8"><li>What is the output of the following code snippet?<pre id="8bf3d3cc-a798-4e40-bf9a-542d30de0263" class="code"><code>set1 = set([1, 2, 3])
+set2 = set([2, 3, 4])
+result = set1.isdisjoint(set2)
+print(result)</code></pre><p id="79430943-ef40-4c03-af6f-72dfa3949339" class="">A) True
+B) False</p><p id="deedbc58-2254-42fe-b52a-f068e681de50" class="">Correct answer: B) False</p><p id="5f049a58-43e9-4577-af3d-4da4139ea7f8" class="">
+</p></li></ol><ol type="1" id="de5bbbaa-520b-43f3-a584-2fa7aeeb9822" class="numbered-list" start="9"><li>What is the output of the following code snippet?<pre id="5c1a8be5-9b2a-4c9a-a53b-ab9b882a45e1" class="code"><code>set1 = {1, 2, 3, 4}
+set2 = {2, 3}
+set3 = set1 &amp; set2
+print(set3)</code></pre><p id="5eb58253-de7e-4bf8-bc29-fb18a5a767b9" class="">A) {1, 2, 3, 4}
+B) {2, 3}
+C) {4}
+D) {}</p><p id="755fd8c2-de1a-415e-b13c-bb9b74266958" class="">Correct answer: B) {2, 3}</p><p id="45394a08-6038-4cdd-b552-3be350b7c394" class="">
+</p></li></ol><ol type="1" id="1c2b8a7c-2ca9-43f4-b502-94bb84aee606" class="numbered-list" start="10"><li>What is the output of the following code snippet?<pre id="f67806a7-eeb1-4ce9-98f4-5a222d13b659" class="code"><code>set1 = {1, 2, 3, 4}
+set2 = {2, 3}
+set3 = set1 | set2
+print(set3)</code></pre><p id="c38f50fd-8637-4199-b9f5-5fbd721d60c9" class="">A) {1, 2, 3, 4}
+B) {2, 3}
+C) {1, 2, 3, 4}
+D) {}</p><p id="c9090089-2f39-48ae-9c7b-e1aafebf5254" class="">Correct answer: C) {1, 2, 3, 4}</p><p id="c8d87ab7-c2f8-4206-8b1f-0ec282d1e81a" class="">
+</p></li></ol><h2 id="9f7e6767-f342-49c8-ab13-9ed9ae42fee2" class="block-color-teal_background">Slightly Harder</h2><ol type="1" id="556e23e7-8960-4685-a807-8b018d63e704" class="numbered-list" start="1"><li>What is the output of the following code snippet?<pre id="65d1de4f-1bbe-46ce-8e36-07c38d936e78" class="code"><code>set1 = {1, 2, 3, 4}
+set2 = {3, 4, 5, 6}
+set3 = set1 &amp; set2
+print(len(set3))</code></pre><p id="cbf709ef-34a3-4270-8c0f-947e5057c67d" class="">A. 2</p><p id="af488b16-4712-47af-8fab-b7aacb0c519b" class="">B. 3</p><p id="9cf7d366-9e5b-4471-a222-58555b6cc5cd" class="">C. 4</p><p id="56af3056-1efe-4cfe-b714-3500f67c09f2" class="">D. 5</p><p id="0fc21f38-2e2b-435a-b1f0-37839fe737e6" class="">Answer: A</p><p id="3560d4ff-dd01-42f7-b041-befcafb28ebe" class="">
+</p></li></ol><ol type="1" id="52ed520f-e3c9-4937-b5e0-91eb7ac176e5" class="numbered-list" start="2"><li>What is the output of the following code snippet?<pre id="81869c5b-0568-4107-9c84-47eed74ec1f2" class="code"><code>set1 = {1, 2, 3, 4}
+set2 = {3, 4, 5, 6}
+set3 = set1 | set2
+set3.remove(3)
+print(len(set3))</code></pre><p id="adc2d9df-6648-42b7-9294-48490891977f" class="">A. 4</p><p id="f300cdfb-7074-4916-a8ef-c5a4158d0926" class="">B. 5</p><p id="3673c19a-76f2-4981-a259-b821c625ed83" class="">C. 6</p><p id="0e445c9b-e8b6-402c-bb7c-c9d213505be0" class="">D. 7</p><p id="6a21783f-ab15-469d-a381-a7a918ce5fc2" class="">Answer: B</p><p id="975c9ef1-8a81-43b1-9e84-00be431efa5d" class="">
+</p></li></ol><ol type="1" id="bec062fb-d959-4158-82b2-e139881e5d09" class="numbered-list" start="3"><li>What is the output of the following code snippet?<pre id="793294d1-3e06-42dc-a5ed-f552b991e925" class="code"><code>set1 = {1, 2, 3, 4}
+set2 = {3, 4, 5, 6}
+set3 = set1 ^ set2
+print(set3)</code></pre><p id="7c0d7a6c-6d82-401f-9a9c-e77010d0ccba" class="">A. {1, 2, 5, 6}</p><p id="d1135cd8-8065-4ba9-a596-93ef43edf3bb" class="">B. {1, 2, 3, 4, 5, 6}</p><p id="c41b7ec3-e0f0-4e63-898f-4ed491f5789b" class="">C. {1, 2}</p><p id="be496742-b7b8-472b-be0c-5285e154e1de" class="">D. {3, 4}</p><p id="352e58d6-3979-455d-9627-c5f811c4fc1c" class="">Answer: A</p><p id="6d6fdbe0-53b0-4b72-8b3c-4201d004dd7f" class="">
+</p></li></ol><ol type="1" id="8369567a-2621-40ac-8a20-dafee6282429" class="numbered-list" start="4"><li>What is the output of the following code snippet?<pre id="1e094308-be84-408d-86e6-a96f5f6f6fd3" class="code"><code>set1 = {1, 2, 3, 4}
+set2 = {3, 4, 5, 6}
+set3 = set1 - set2
+set4 = set2 - set1
+set5 = set3 &amp; set4
+print(len(set5))</code></pre><p id="28f1d2cf-1701-49c8-86bb-0967fee0abe5" class="">A. 3</p><p id="428c6086-e25f-41dc-b643-8f4b278dfec0" class="">B. 2</p><p id="ea1d5569-fd52-4dd1-9daa-d2de9442c9b5" class="">C. 1</p><p id="7136b210-1189-413a-b8ac-add27964389b" class="">D. 0</p><p id="9ad7cd7f-2988-44ed-9f0a-90111b086a4f" class="">Answer: D</p><p id="68a3afcc-4295-4cf5-b3ad-af07d6eab9b5" class="">
+</p></li></ol><ol type="1" id="51e9cdca-e15c-4949-b345-a57d02ac21a8" class="numbered-list" start="5"><li>What is the output of the following code snippet?<pre id="3db94501-bc83-4014-9cd4-c9912e160da0" class="code"><code>set1 = {1, 2, 3, 4}
+set2 = {3, 4, 5, 6}
+set3 = set1.symmetric_difference(set2)
+print(len(set3))</code></pre><p id="bf5862c1-cdf6-4da3-8df8-da39c97778c2" class="">A. 2</p><p id="4ff78441-7429-4621-af4f-90bdf8b76334" class="">B. 3</p><p id="3ad8c55d-37ca-4da2-9839-59f1e6bbab1e" class="">C. 4</p><p id="101bc181-bf1c-40e6-8d2d-1ec8ec166ab9" class="">D. 5</p><p id="76fb88da-80d5-45ae-a21b-9d2e92746e4d" class="">Answer: C</p><p id="9118722a-0b39-4598-a448-e08ef5aa4621" class="">
+</p></li></ol><ol type="1" id="1017c910-e9c7-4d36-9475-08cfa6777daf" class="numbered-list" start="6"><li>What is the output of the following code snippet?<pre id="b13ae46d-ff5d-49e3-a043-8a56299881c9" class="code"><code>set1 = {1, 2, 3, 4}
+set2 = {3, 4, 5, 6}
+set3 = set1 &amp; set2
+set3.add(7)
+print(len(set3))</code></pre><p id="ad5807f5-827d-4663-8071-8bb2f761b6e7" class="">A. 2</p><p id="b870ee81-144e-4a13-ad1d-cf845f22a546" class="">B. 3</p><p id="4285e20f-47b0-42ab-9eaf-0f87957312ba" class="">C. 4</p><p id="0da2225b-f2e7-4c9a-a085-6eff21452622" class="">D. 5</p><p id="db40192b-a62b-427e-9f6d-b8144c6e234b" class="">Answer: B</p><p id="b61b3311-b0ec-4897-9c88-7c54f062039f" class="">
+</p></li></ol><ol type="1" id="31bafe5d-e6c6-4f4d-b7d9-50c39ba1d1cb" class="numbered-list" start="7"><li>What is the output of the following code snippet?<pre id="626fd556-026a-4337-8ee9-af8a72b52cbd" class="code"><code>set1 = {1, 2, 3, 4}
+set2 = {3, 4, 5, 6}
+set3 = set1.union(set2)
+set3.add(7)
+print(len(set3))</code></pre><p id="245edea9-48c0-421b-884e-1c62ecc2465c" class="">A. 6</p><p id="1b1e8ea1-65ca-423b-94b5-6e49ae08fed2" class="">B. 7</p><p id="aaeef7ef-8e05-430c-9106-3643b3996017" class="">C. 8</p><p id="05b084e6-27f6-4676-bbe3-6fb397befa9a" class="">D. 9</p><p id="6521feef-aef7-43fd-b102-f0dceb9f2d3f" class="">Answer: B</p><p id="8cec0803-12e4-4958-9d79-cde9b8349921" class="">
+</p></li></ol><ol type="1" id="3752f9b7-7547-4758-99cd-2c6a50e4279f" class="numbered-list" start="8"><li>What is the output of the following code snippet?<pre id="3d395c71-d3fc-48bd-b831-1118bc35ebcd" class="code"><code>set1 = {1, 2, 3, 4}
+set2 = {3, 4, 5, 6}
+set3 = set1 &amp; set2
+set4 = set1 | set2
+set5 = set4 - set3
+print(len(set5))</code></pre><p id="a5d3934c-b8e2-42fb-bfac-3158b92033d4" class="">A. 2</p><p id="e2c20c6a-6d19-48cc-ac3f-b94ce9261cb7" class="">B. 3</p><p id="bd3e460f-a0a3-4eed-8fc0-cfaed72f69d2" class="">C. 4</p><p id="d66f1182-66c4-4a2d-93d3-f0df90884fc7" class="">D. 5</p><p id="f5179a89-1e91-47f7-be5f-8d4af12d1f7d" class="">Answer: C</p><p id="27bb6799-4cdd-4aaa-97ff-4b66c9fce6de" class="">
+</p></li></ol><ol type="1" id="0d991805-3eaa-4523-8618-261e3c8fb655" class="numbered-list" start="9"><li>What is the output of the following code snippet?<pre id="7ca21e30-1fa7-45af-a559-de9308a1391d" class="code"><code>set1 = {1, 2, 3, 4}
+set2 = {3, 4, 5, 6}
+set3 = set1 - set2
+set4 = set2 - set1
+set5 = set3 | set4
+print(len(set5))</code></pre><p id="f496d964-f818-4602-97dc-4086aa209905" class="">A. 2</p><p id="fb5ef4d8-e4e5-4544-9c30-5d779cb6760f" class="">B. 3</p><p id="679d51f5-8a71-4531-a274-41e4d9bbfa00" class="">C. 4</p><p id="095f5024-3b9a-4134-82f4-b8603ffeac8f" class="">D. 5</p><p id="19666e91-ad73-470e-bc66-4468176388e3" class="">Answer: C</p><p id="954f183a-4691-4241-b22f-d7f3cb3c17f1" class="">
+</p></li></ol><ol type="1" id="f62e8125-e8ce-4178-8aab-97929e6bdad3" class="numbered-list" start="10"><li>What is the output of the following code snippet?<pre id="a0a1127c-aa31-448f-9447-a5f85dfc2399" class="code"><code>set1 = {1, 2, 3, 4}
+set2 = {3, 4, 5, 6}
+set3 = set1 | set2
+set4 = set3.copy()
+set4.discard(1)
+set4.discard(5)
+set4.discard(6)
+print(len(set3), len(set4))</code></pre><p id="86beaaf9-c939-44b1-a68d-2348afc971f1" class="">A. 3 3</p><p id="30fbac68-0567-43eb-8ef3-0f6b53853107" class="">B. 6 3</p><p id="d3a0f683-95c2-4bed-9ce4-3681f92b1254" class="">C. 3 6</p><p id="96575d52-5ba0-4b44-a4f1-ccd789eb762c" class="">D 6 6</p><p id="ad7476a8-a676-4532-bac2-21de4d2a3bec" class="">Answer: B</p><p id="565082cb-83bb-4f3e-95e4-6cda0397cdad" class="">
+</p></li></ol><figure id="5466b2a7-ff27-461f-a7bd-4a1eed69ac69" class="image"><a href="%E6%9C%9F%E4%B8%AD%E6%B8%AC%E9%A9%97%E8%A7%A3%E7%AD%94%20(Midterm%20Exam%20Solutions)%20b54b2d01431e47f9b96c059e3ef0eb19/%25E5%259C%2596%25E7%2589%25873.png"><img style="width:1322px" src="%E6%9C%9F%E4%B8%AD%E6%B8%AC%E9%A9%97%E8%A7%A3%E7%AD%94%20(Midterm%20Exam%20Solutions)%20b54b2d01431e47f9b96c059e3ef0eb19/%25E5%259C%2596%25E7%2589%25873.png"/></a></figure></div></article></body></html>

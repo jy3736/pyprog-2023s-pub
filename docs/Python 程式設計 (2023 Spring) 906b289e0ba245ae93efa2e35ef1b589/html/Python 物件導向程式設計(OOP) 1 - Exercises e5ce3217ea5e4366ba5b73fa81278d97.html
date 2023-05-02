@@ -1,0 +1,925 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Python 物件導向程式設計(OOP) 1 - Exercises </title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script></head><body><article id="e5ce3217-ea5e-4366-ba5b-73fa81278d97" class="page sans"><header><img class="page-cover-image" src="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(1%206)%202b08444b0b90422d9b49eb26e8be99ce/notion-Python_(1).png" style="object-position:center 31.08%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(1%206)%202b08444b0b90422d9b49eb26e8be99ce/yang01.png"/></div><h1 class="page-title">Python 物件導向程式設計(OOP) 1 - Exercises </h1><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script></header><div class="page-body"><h2 id="faa7933e-7487-4f10-995a-aa1f961f48e6" class="block-color-teal_background">Defining and Using Classes</h2><h3 id="61de09d3-5578-4b30-a72d-76cc936f8209" class="">To confirm your understanding of the material discussed in the class, please complete the following exercises.</h3><h3 id="719ae0fe-4338-4bf7-bdde-d59d9e1bae32" class="block-color-yellow"><strong>Class Declaration:</strong></h3><pre id="7ea312cc-8ff9-4e02-b4a8-ce454422209f" class="code code-wrap"><code># Define the class
+class Student:
+    def __init__(self, name, age, major):
+        self.name = name
+        self.age = age
+        self.major = major
+
+    # Define a method to print student information
+    def print_info(self):
+        print(f&quot;Name: {self.name}&quot;)
+        print(f&quot;Age: {self.age}&quot;)
+        print(f&quot;Major: {self.major}&quot;)</code></pre><h3 id="352c483f-8fd0-4e28-b138-b74719e30ee9" class="block-color-gray_background">【Exercise 1】Create a <code><strong>Student</strong></code> instance and print its information</h3><pre id="991a713f-0ea2-4dd4-9674-dd441bf1b472" class="code"><code># Create a Student instance
+# write your code here
+
+
+# Print the student&#x27;s information
+# write your code here
+</code></pre><h3 id="48f1c5f9-95be-4694-91ca-a18e6e062706" class="block-color-gray_background">【Exercise 2】Create a list of <code><strong>Student</strong></code> instances and print the information of all students</h3><pre id="078d33ae-331c-43f5-9e10-dbb671a5e58d" class="code"><code># Create a list of Student instances
+# write your code here
+
+
+# Print the information of all students
+# write your code here
+</code></pre><h3 id="c102d471-9ece-453b-9dd0-a6e3fa8d1489" class="block-color-gray_background">【Exercise 3】Create a function that takes a <code><strong>Student</strong></code><strong> </strong>instance as an argument and returns whether the student is of legal age (i.e., 18 years or older)</h3><pre id="a276141a-d491-45a1-9cf1-b4c038dd38ac" class="code"><code># Define a function to check if a student is of legal age
+# write your code here
+
+# Create a Student instance
+student1 = Student(&quot;Alice&quot;, 20, &quot;Computer Science&quot;)
+
+# Check if the student is of legal age
+if is_legal_age(student1):
+    print(f&quot;{student1.name} is of legal age.&quot;)
+else:
+    print(f&quot;{student1.name} is not of legal age.&quot;)</code></pre><h3 id="dafec865-c807-44eb-a981-0fb67677509e" class="block-color-gray_background">【Exercise 4】Define a constructor with default values for the parameters</h3><pre id="782033d3-959a-43b2-805c-b3b767a30be8" class="code"><code>class Student:
+
+		# define __init__ with default values (name:&quot;&quot;, age:0, major:&quot;Undecided&quot;)
+    # write your code here
+        
+    def print_info(self):
+        print(f&quot;Name: {self.name}&quot;)
+        print(f&quot;Age: {self.age}&quot;)
+        print(f&quot;Major: {self.major}&quot;)</code></pre><p id="0759ea1f-c84e-4697-a2d5-0012a9a7d5df" class="">With this constructor, you can create a <code><strong>Student</strong></code><strong> </strong> instance without specifying any arguments:</p><pre id="8ff8d1de-e0ae-4bf0-9d9e-5d86d1805770" class="code"><code># Create a Student instance with default values
+student1 = Student()
+
+# Print the student&#x27;s information
+student1.print_info()  # Output: Name:  Age: 0 Major: Undecided</code></pre><h3 id="6c142afa-aa03-4080-94f7-cb3c002740d4" class="block-color-gray_background">【Exercise 5】Define a constructor that initializes instance variables with computed values</h3><pre id="56a9609d-6837-40cc-9ea7-3a955f938e1c" class="code"><code>class Student:
+    def __init__(self, name, birth_year, major):
+        # initializes age with computed values according to the birth_year
+				# write your code here
+        
+    def print_info(self):
+        print(f&quot;Name: {self.name}&quot;)
+        print(f&quot;Age: {self.age}&quot;)
+        print(f&quot;Major: {self.major}&quot;)</code></pre><p id="49cde489-af89-4220-829d-11ec02f802ae" class="">With this constructor, you can create a <code><strong>Student</strong></code><strong> </strong> instance by specifying the name, birth year, and major:</p><pre id="d6ae2a71-7e26-4028-8cea-d2745bab2bb4" class="code"><code># Create a Student instance with computed age
+student1 = Student(&quot;Alice&quot;, 2000, &quot;Computer Science&quot;)
+
+# Print the student&#x27;s information
+student1.print_info()  # Output: Name: Alice Age: 23 Major: Computer Science</code></pre><h3 id="9ab1e5c3-8d00-45a6-b93a-852e8d3d6660" class="block-color-gray_background">【Exercise 6】Define a constructor that takes a dictionary as an argument and initializes instance variables using the dictionary keys</h3><pre id="cc9828b9-e076-4042-9b88-6b2e05114826" class="code"><code>class Student:
+		# define __init__ that takes a dictionary as an argument and initializes instance variables
+    # write your code here
+        
+    def print_info(self):
+        print(f&quot;Name: {self.name}&quot;)
+        print(f&quot;Age: {self.age}&quot;)
+        print(f&quot;Major: {self.major}&quot;)</code></pre><p id="7f89a680-cf3d-45e3-bfe4-0410999ba7a4" class="">With this constructor, you can create a <code><strong>Student</strong></code><strong> </strong> instance by specifying a dictionary containing the student&#x27;s information:</p><pre id="7ecfb1fd-8ee5-498a-b4ef-0a870b5b87b9" class="code"><code># Create a Student instance with dictionary input
+student_info = {&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 20, &quot;major&quot;: &quot;Computer Science&quot;}
+student1 = Student(student_info)
+
+# Print the student&#x27;s information
+student1.print_info()  # Output: Name: Alice Age: 20 Major: Computer Science</code></pre><h3 id="2b7be114-7dd4-4abd-850f-b790477da885" class="block-color-gray_background">【Exercise 7】Define a constructor that takes variable arguments and initializes instance variables using the argument names</h3><pre id="05d77aef-2308-4bc6-b60c-7277ae16cde9" class="code"><code>class Student:
+		# define __init__ that takes variable arguments and initializes instance variables
+    # write your code here
+        
+    def print_info(self):
+        print(f&quot;Name: {self.name}&quot;)
+        print(f&quot;Age: {self.age}&quot;)
+        print(f&quot;Major: {self.major}&quot;)</code></pre><p id="9e39581c-da11-4e62-be4b-b5be6bbc93c0" class="">With this constructor, you can create a <code><strong>Student</strong></code><strong> </strong> instance by specifying any combination of keyword arguments:</p><pre id="38ef717c-dcd5-4637-9ac6-5e9e86c0fdb1" class="code"><code># Create a Student instance with variable arguments
+student1 = Student(name=&quot;Alice&quot;, major=&quot;Computer Science&quot;)
+
+# Print the student&#x27;s information
+student1.print_info()  # Output: Name: Alice Age: 0 Major: Computer Science</code></pre><h3 id="34a7d351-caa9-4279-b979-dbfce3f91dae" class="block-color-gray_background">【Exercise 8】Define a constructor that takes a tuple as an argument and initializes instance variables using the tuple values</h3><pre id="31146b75-f8e4-450a-acf5-fa89fa75e098" class="code"><code>class Student:
+		# define __init__ that takes a tuple as an argument and initializes instance variables    
+		# write your code here
+        
+    def print_info(self):
+        print(f&quot;Name: {self.name}&quot;)
+        print(f&quot;Age: {self.age}&quot;)
+        print(f&quot;Major: {self.major}&quot;)</code></pre><p id="820be286-a24f-4dfd-a9db-3a4a751b67e4" class="">With this constructor, you can create a <code><strong>Student</strong></code><strong> </strong> instance by specifying a tuple containing the student&#x27;s information in the order of <code><strong>(name, age, major)</strong></code><strong> </strong>:</p><pre id="533beefa-9553-4071-9718-8dbfc90f3059" class="code"><code># Create a Student instance with tuple input
+student_info = (&quot;Alice&quot;, 20, &quot;Computer Science&quot;)
+student1 = Student(student_info)
+
+# Print the student&#x27;s information
+student1.print_info()  # Output: Name: Alice Age: 20 Major: Computer Science</code></pre><h2 id="a58a32da-4f9f-4e0f-b969-026a8950ffb0" class="block-color-teal_background">Adding email Attribute and Corresponding Access Methods</h2><h3 id="099ddcb4-495c-48f2-9cbb-8f6bbc6f093b" class="">To confirm your understanding of the material discussed in the class, please complete the following exercises.</h3><h3 id="c0085af0-81f5-491f-8df9-98b82eab5714" class="block-color-gray_background">【Exercise 1】Add an <code><strong>email</strong></code> attribute to the <code><strong>Student</strong></code> class, and modify the <code><strong>__init__</strong></code> method to initialize it as well.</h3><pre id="0a4c45e5-327d-4449-9566-1d28b9227af1" class="code"><code>class Student:
+    def __init__(self, name, age, major, email):
+        # write your code here
+
+    def print_info(self):
+        # write your code here
+</code></pre><pre id="8d87cf1f-b645-40f5-86b4-31b33db9eb6b" class="code"><code># Create a new Student object with an email address
+student1 = Student(&quot;Alice&quot;, 20, &quot;Computer Science&quot;, &quot;alice@example.com&quot;)
+
+# Call the print_info method to display the student&#x27;s information, including their email address
+student1.print_info()</code></pre><p id="2962d297-4442-422c-880a-55c888cef26c" class="">Output:</p><pre id="61b948b3-3e34-4a66-a810-5e1ca178567c" class="code"><code>Name: Alice
+Age: 20
+Major: Computer Science
+Email: alice@example.com</code></pre><h3 id="c69922f7-7349-461b-8602-0c87b426eec1" class="block-color-gray_background">【Exercise 2】Add a method named <code><strong>get_email</strong></code> that returns the student&#x27;s email.</h3><pre id="614bb05d-812b-4264-bd05-6df94bfbc2f5" class="code"><code>class Student:
+    def __init__(self, name, age, major, email):
+        self.name = name
+        self.age = age
+        self.major = major
+        self.email = email
+
+    def print_info(self):
+        print(f&quot;Name: {self.name}&quot;)
+        print(f&quot;Age: {self.age}&quot;)
+        print(f&quot;Major: {self.major}&quot;)
+        print(f&quot;Email: {self.email}&quot;)
+
+		# Add a method named get_email that returns the student&#x27;s email
+    # write your code here
+</code></pre><pre id="5a8cde30-78e4-4abb-b33f-e5605206bcaa" class="code"><code># Create a new Student object
+student1 = Student(&quot;Alice&quot;, 20, &quot;Computer Science&quot;, &quot;alice@example.com&quot;)
+
+# Call the get_email method to retrieve the student&#x27;s email address
+email = student1.get_email()
+print(email)</code></pre><p id="ca96db20-6543-42df-ac72-2d76d5a96874" class="">Output:</p><pre id="624cf986-3b2c-4cbb-8198-9a0aac0dcc4e" class="code"><code>alice@example.com</code></pre><h3 id="c04c69f8-1c19-4cc9-acbc-adb3ef660265" class="block-color-gray_background">【Exercise 3】Add a method named <code><strong>set_email</strong></code> that sets the student&#x27;s email to a new value.</h3><pre id="f61ea60c-a01c-4731-9e3f-0a2ed1f655fe" class="code"><code>class Student:
+    def __init__(self, name, age, major, email):
+        self.name = name
+        self.age = age
+        self.major = major
+        self.email = email
+
+    def print_info(self):
+        print(f&quot;Name: {self.name}&quot;)
+        print(f&quot;Age: {self.age}&quot;)
+        print(f&quot;Major: {self.major}&quot;)
+        print(f&quot;Email: {self.email}&quot;)
+
+		# Add a method named get_email that returns the student&#x27;s email
+    # write your code here
+
+		# Add a method named set_email that sets the student&#x27;s email to a new value
+    # write your code here</code></pre><pre id="8a102ca3-8634-41e3-bcd4-4bdcca6c6a97" class="code"><code># Create a new Student object with an email address
+student1 = Student(&quot;Alice&quot;, 20, &quot;Computer Science&quot;, &quot;alice@example.com&quot;)
+
+# Change the student&#x27;s email address using the set_email method
+student1.set_email(&quot;new-email@example.com&quot;)
+
+# Call the print_info method to display the student&#x27;s information, including their updated email address
+student1.print_info()</code></pre><p id="53bc2675-b10f-43f3-ab35-b1a55cb3e4a3" class="">Output:</p><pre id="c74645f2-a727-4185-99a6-fdf906af1fbc" class="code"><code>Name: Alice
+Age: 20
+Major: Computer Science
+Email: new-email@example.com</code></pre><h3 id="29634984-8f2b-4d93-9a72-0460218c7357" class="block-color-gray_background">【Exercise 4】Modify the <code><strong>__init__</strong></code> method to accept an optional <code><strong>email</strong></code> parameter that defaults to <code><strong>None</strong></code>. If <code><strong>None</strong></code>, the <code><strong>email</strong></code> attribute is not initialized.</h3><pre id="f35819e2-ff15-4eb8-a97b-aeee39d92152" class="code"><code>class Student:
+
+		# define __init__ method to accept an optional email parameter that defaults to None.
+		# write your code here
+
+    def print_info(self):
+        print(f&quot;Name: {self.name}&quot;)
+        print(f&quot;Age: {self.age}&quot;)
+        print(f&quot;Major: {self.major}&quot;)
+        if self.email:
+            print(f&quot;Email: {self.email}&quot;)
+
+    def get_email(self):
+        return self.email
+
+    def set_email(self, email):
+        self.email = email</code></pre><pre id="144ef861-4635-44cc-a69b-5765a04aa6e5" class="code"><code># Create a new Student object with no email address
+student1 = Student(&quot;Alice&quot;, 20, &quot;Computer Science&quot;)
+
+# Call the print_info method to display the student&#x27;s information (no email address should be displayed)
+student1.print_info()</code></pre><p id="59adf9ae-5c72-4dbb-a08a-9402e96d8035" class="">Output:</p><pre id="f30abd52-9b11-40f3-aaea-fde8372c1903" class="code"><code>Name: Alice
+Age: 20
+Major: Computer Science</code></pre><h3 id="c5035287-4dc3-4e93-9ebd-6e722fd303f2" class="block-color-gray_background">【Exercise 5】Add a class method named <code><strong>from_email_string</strong></code> that takes a string containing a student&#x27;s information separated by commas, with the email address last, and returns a new <code><strong>Student</strong></code> object with the information parsed from the string.</h3><pre id="0447e0eb-3401-4bc1-854f-08fb12c417bd" class="code"><code>class Student:
+    def __init__(self, name, age, major, email=None):
+        self.name = name
+        self.age = age
+        self.major = major
+        self.email = email
+
+    def print_info(self):
+        print(f&quot;Name: {self.name}&quot;)
+        print(f&quot;Age: {self.age}&quot;)
+        print(f&quot;Major: {self.major}&quot;)
+        if self.email:
+            print(f&quot;Email: {self.email}&quot;)
+
+    def get_email(self):
+        return self.email
+
+    def set_email(self, email):
+        self.email = email
+
+    @classmethod
+    # add a class method named from_email_string that takes a string containing a student&#x27;s information separated by commas</code></pre><pre id="796e9a04-1d44-41f8-911d-90bf52b0a400" class="code"><code># Create a new Student object using the from_email_string method
+email_string = &quot;Bob, 22, Mathematics, bob@example.com&quot;
+student2 = Student.from_email_string(email_string)
+
+# Call the print_info method to display the student&#x27;s information, including their email address
+student2.print_info()</code></pre><p id="af7e8cd2-adf3-42c7-9e45-9f5765037034" class="">Output:</p><pre id="88a10805-f973-4e37-ac3a-fb32e625e19f" class="code"><code>Name: Bob
+Age: 22
+Major: Mathematics
+Email: bob@example.com</code></pre><h2 id="296e17f9-df26-4748-ba8d-f21aad4b686d" class="block-color-teal_background">User-defined Complex Class</h2><h3 id="0849a735-ba81-46a2-9125-28240c1a6e72" class="block-color-yellow"><strong>Class Declaration:</strong></h3><pre id="9475e682-ce94-4192-8763-e5116e05dada" class="code code-wrap"><code>class Complex:
+    def __init__(self, real, imag):
+        self.real = real
+        self.imag = imag
+    
+    def add(self, other):
+        real_sum = self.real + other.real
+        imag_sum = self.imag + other.imag
+        return Complex(real_sum, imag_sum)
+
+    def subtract(self, other):
+        real_diff = self.real - other.real
+        imag_diff = self.imag - other.imag
+        return Complex(real_diff, imag_diff)
+
+    def multiply(self, other):
+        real_prod = self.real * other.real - self.imag * other.imag
+        imag_prod = self.real * other.imag + self.imag * other.real
+        return Complex(real_prod, imag_prod)
+
+    def divide(self, other):
+        divisor = (other.real ** 2 + other.imag ** 2)
+        real_num = self.real * other.real + self.imag * other.imag
+        imag_num = self.imag * other.real - self.real * other.imag
+        return Complex(real_num/divisor, imag_num/divisor)
+
+    def __str__(self):
+        return &quot;{} + {}i&quot;.format(self.real, self.imag)</code></pre><h2 id="4e090c59-2ba3-4943-bdee-b2270a6b500d" class="block-color-teal_background">Complex Class with Operator Overloading</h2><h3 id="26a4d674-9c12-4b72-b618-d55db237680e" class="block-color-yellow"><strong>Class Declaration:</strong></h3><pre id="56227f15-048d-4935-8f23-e4699a926b53" class="code code-wrap"><code>class Complex:
+    def __init__(self, real, imag):
+        self.real = real
+        self.imag = imag
+
+    def __str__(self):
+        return &quot;{} + {}i&quot;.format(self.real, self.imag)
+
+    def __add__(self, other):
+        return Complex(self.real + other.real, self.imag + other.imag)
+
+    def __sub__(self, other):
+        return Complex(self.real - other.real, self.imag - other.imag)
+
+    def __mul__(self, other):
+        return Complex(self.real * other.real - self.imag * other.imag,
+                       self.real * other.imag + self.imag * other.real)
+
+    def __truediv__(self, other):
+        denominator = other.real ** 2 + other.imag ** 2
+        return Complex((self.real * other.real + self.imag * other.imag) / denominator,
+                       (self.imag * other.real - self.real * other.imag) / denominator)</code></pre><p id="8a03c849-003d-4a64-86a2-4b3f8c566ac8" class="">
+</p><figure id="fc3690ee-a120-4d4d-96a2-ffd51b30a381" class="image"><a href="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(1%206)%202b08444b0b90422d9b49eb26e8be99ce/%25E5%259C%2596%25E7%2589%25873.png"><img style="width:1322px" src="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(1%206)%202b08444b0b90422d9b49eb26e8be99ce/%25E5%259C%2596%25E7%2589%25873.png"/></a></figure></div></article>
+<script>hljs.highlightAll();</script>
+
+<script>hljs.highlightAll();</script>
+</body></html>

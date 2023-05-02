@@ -1,0 +1,846 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Python 物件導向程式設計(OOP) 3</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script></head><body><article id="3ed9623e-1a49-4117-8d77-f1ab2b0c9ef1" class="page sans"><header><img class="page-cover-image" src="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(1%206)%202b08444b0b90422d9b49eb26e8be99ce/notion-Python_(1).png" style="object-position:center 31.08%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(1%206)%202b08444b0b90422d9b49eb26e8be99ce/yang01.png"/></div><h1 class="page-title">Python 物件導向程式設計(OOP) 3</h1><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script></header><div class="page-body"><h1 id="c6010f4e-864d-4cd6-97b1-f52e2c67b4e7" class="block-color-brown_background">參考資料 (References)</h1><h3 id="da0f6828-579f-4a85-a611-58ae5a61186f" class="block-color-yellow">Python 官方「參考資料」網站 (Python.org)</h3><figure id="5083f306-866e-4b96-9030-7372ce3e254e"><a  target="_blank"  target="_blank" href="https://docs.python.org/3/tutorial/classes.html" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">9. Classes</div><div class="bookmark-description">Classes provide a means of bundling data and functionality together. Creating a new class creates a new type of object, allowing new instances of that type to be made. Each class instance can have ...</div></div><div class="bookmark-href"><img src="https://docs.python.org/3/_static/py.svg" class="icon bookmark-icon"/>https://docs.python.org/3/tutorial/classes.html</div></div><img src="https://docs.python.org/3/_static/og-image.png" class="bookmark-image"/></a></figure><h3 id="be052297-5225-4d60-a46a-4264258d2b04" class="block-color-yellow">Additional Online Resources</h3><figure id="3ff209e0-190c-4f7d-8869-00004d6eb50b"><a  target="_blank"  target="_blank" href="https://www.programiz.com/python-programming/object-oriented-programming" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Python Object Oriented Programming (With Examples)</div><div class="bookmark-description">In this tutorial, we’ll learn about Object-Oriented Programming (OOP) in Python with the help of examples.</div></div><div class="bookmark-href"><img src="https://www.programiz.com/sites/tutorial2program/files/favicon.png" class="icon bookmark-icon"/>https://www.programiz.com/python-programming/object-oriented-programming</div></div></a></figure><figure id="ae56ea90-29b4-4885-9335-f60b6d0a3859"><a  target="_blank"  target="_blank" href="https://realpython.com/python3-object-oriented-programming/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Object-Oriented Programming (OOP) in Python 3 – Real Python</div><div class="bookmark-description">In this tutorial, you&#x27;ll learn all about object-oriented programming (OOP) in Python. You&#x27;ll learn the basics of the OOP paradigm and cover concepts like classes and inheritance. You&#x27;ll also see to how instantiate an object from a class.</div></div><div class="bookmark-href"><img src="https://realpython.com/static/favicon.68cbf4197b0c.png" class="icon bookmark-icon"/>https://realpython.com/python3-object-oriented-programming/</div></div><img src="https://files.realpython.com/media/Object-Oriented-Programming-OOP-in-Python-3_Watermarked.0d29780806d5.jpg" class="bookmark-image"/></a></figure><h1 id="edd65383-5cf4-4305-a64e-3f2bc4d76f5d" class="block-color-brown_background">課堂活動</h1><h3 id="1e93259d-d983-4b65-b4ec-3b5542a6ac63" class="block-color-gray_background">【課堂練習 1】Multiple Inheritance</h3><h3 id="6aac4ebc-af7e-4c1a-b823-d5b968ac717c" class="block-color-yellow"><strong><strong>Simple Multiple Inheritance</strong></strong></h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="da00fea0-8086-42fc-831e-c03b265bf12a"><div style="font-size:1.5em"><img class="icon" src="Python%20%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88(OOP)%201%209e1a7af416f04af4a56ff7e6786b1204/yang02.png"/></div><div style="width:100%">In this example, we have three classes: A, B, and C. Both classes A and B have a method named &quot;hello&quot;. Class C inherits from both classes A and B using multiple inheritance. When the &quot;hello&quot; method is called on an instance of class C, Python looks for the method in class A first, because class A was listed first in the list of base classes. Since the &quot;hello&quot; method is found in class A, that method is called, and the output is &quot;Hello from A&quot;.<pre id="bb875e3c-165e-476c-bc95-546250522fe7" class="code"><code>class A:
+    def hello(self):
+        print(&quot;Hello from A&quot;)
+
+class B:
+    def hello(self):
+        print(&quot;Hello from B&quot;)
+
+class C(A, B):
+    pass
+
+obj = C()
+obj.hello() # Output: Hello from A</code></pre><pre id="fc48be1f-3f5f-419f-ad36-d1931b7171b9" class="code"><code>Hello from A</code></pre></div></figure><h3 id="9bffe354-2336-4073-8935-49b119102d0d" class="block-color-yellow"><strong><strong>Method Resolution Order (MRO) in Multiple Inheritance</strong></strong></h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="0ba88937-86e0-4cd8-baec-d029b2cd307b"><div style="font-size:1.5em"><img class="icon" src="Python%20%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88(OOP)%201%209e1a7af416f04af4a56ff7e6786b1204/yang02.png"/></div><div style="width:100%">In this example, we have four classes: A, B, C, and D. Classes B and C both inherit from class A, and class D inherits from both classes B and C using multiple inheritance. Class B overrides the &quot;hello&quot; method defined in class A, and class C also overrides the &quot;hello&quot; method defined in class A. When the &quot;hello&quot; method is called on an instance of class D, Python looks for the method in class B first, because class B was listed first in the list of base classes. Since the &quot;hello&quot; method is found in class B, that method is called, and the output is &quot;Hello from B&quot;.<pre id="3f7aea3c-7483-4df6-93f2-f5e493d1a820" class="code"><code>class A:
+    def hello(self):
+        print(&quot;Hello from A&quot;)
+
+class B(A):
+    def hello(self):
+        print(&quot;Hello from B&quot;)
+
+class C(A):
+    def hello(self):
+        print(&quot;Hello from C&quot;)
+
+class D(B, C):
+    pass
+
+obj = D()
+obj.hello() # Output: Hello from B</code></pre><pre id="655c106e-24b6-422a-aeee-225d3b2410ad" class="code"><code>Hello from B</code></pre></div></figure><h3 id="1ee2bcf7-d834-434b-afae-6ace56934c1b" class="block-color-yellow"><strong><strong>Diamond Inheritance</strong></strong></h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="0a5e9d30-a6ec-42d0-a81a-4d1bc8d40212"><div style="font-size:1.5em"><img class="icon" src="Python%20%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88(OOP)%201%209e1a7af416f04af4a56ff7e6786b1204/yang02.png"/></div><div style="width:100%">In this example, we have four classes: A, B, C, and D. Classes B and C both inherit from class A, and class D inherits from both classes B and C using multiple inheritance. However, class C overrides the &quot;hello&quot; method defined in class A, and class B does not define its own &quot;hello&quot; method. When the &quot;hello&quot; method is called on an instance of class D, Python looks for the method in class B first, because class B was listed first in the list of base classes. Since the &quot;hello&quot; method is not defined in class B, Python looks for the method in class C next, and finds the &quot;hello&quot; method defined in class C. Therefore, the output is &quot;Hello from C&quot;. This situation is known as diamond inheritance, and it can create method resolution order (MRO) conflicts that must be resolved.<pre id="4305a01c-8502-467d-9e1b-74a274a5b9cc" class="code"><code>class A:
+    def hello(self):
+        print(&quot;Hello from A&quot;)
+
+class B(A):
+    pass
+
+class C(A):
+    def hello(self):
+        print(&quot;Hello from C&quot;)
+
+class D(B, C):
+    pass
+
+obj = D()
+obj.hello() # Output: Hello from C</code></pre><pre id="975a2e47-d24e-48d1-96d2-adad9fa076a7" class="code"><code>Hello from C</code></pre></div></figure><p id="e1f114b3-303c-43ec-ab1a-1f62ef8cbeb7" class="">
+</p><h3 id="b02c29d7-64c2-40c9-b158-e872fd842bb6" class="block-color-gray_background">【課堂練習 2】Multiple Level Inheritance</h3><h3 id="b2b881fd-70ca-4721-99bf-42840e9a8f14" class="block-color-yellow">Simple Multi-Level Inheritance</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="d562a4e6-1130-4786-8176-7836a866f76e"><div style="font-size:1.5em"><img class="icon" src="Python%20%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88(OOP)%201%209e1a7af416f04af4a56ff7e6786b1204/yang02.png"/></div><div style="width:100%">This program demonstrates a simple implementation of multiple level inheritance with three classes A, B, and C. Class B inherits from class A and class C inherits from class B. The <code><strong>methodA()</strong></code> is defined in class A, <code><strong>methodB()</strong></code> is defined in class B and <code><strong>methodC()</strong></code> is defined in class C. Finally, we create an object of class C and call all the methods of all the parent classes.<pre id="d386e41c-7ee2-4793-858e-a1838e86e1b6" class="code"><code>class A:
+    def methodA(self):
+        print(&quot;This is method A&quot;)
+
+class B(A):
+    def methodB(self):
+        print(&quot;This is method B&quot;)
+
+class C(B):
+    def methodC(self):
+        print(&quot;This is method C&quot;)
+
+obj = C()
+obj.methodA()
+obj.methodB()
+obj.methodC()</code></pre><pre id="268c059b-15d5-42a9-af26-713c8b8805a8" class="code"><code>This is method A
+This is method B
+This is method C</code></pre></div></figure><h3 id="5b998009-6beb-49c1-9661-5f5d5ffd96b1" class="block-color-yellow">Super Method</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="8f49fc6e-a3b5-4d06-8a6e-61c42537340a"><div style="font-size:1.5em"><img class="icon" src="Python%20%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88(OOP)%201%209e1a7af416f04af4a56ff7e6786b1204/yang02.png"/></div><div style="width:100%">This program demonstrates the use of the <code><strong>super()</strong></code> method to access the methods of parent classes. The <code><strong>method()</strong></code> is defined in all the three classes A, B, and C. The method of class B calls the method of class A using <code><strong>super()</strong></code> and the method of class C calls the method of class B using <code><strong>super()</strong></code>. Finally, we create an object of class C and call the <code><strong>method()</strong></code> of class C.<pre id="e635dfa2-aa3e-453d-9990-32e204e1632f" class="code"><code>class A:
+    def method(self):
+        print(&quot;This is method A&quot;)
+
+class B(A):
+    def method(self):
+        print(&quot;This is method B&quot;)
+        super().method()
+
+class C(B):
+    def method(self):
+        print(&quot;This is method C&quot;)
+        super().method()
+
+obj = C()
+obj.method()</code></pre><pre id="304d04bb-09e5-49b5-99f2-409a9a24df1a" class="code"><code>This is method C
+This is method B
+This is method A</code></pre></div></figure><h3 id="ecebd783-9225-4e04-8b36-72b0f2a8a9bb" class="block-color-yellow">Multi-Level Inheritance with __Init__</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="f1ffe1ad-14e4-47c8-804d-e364cc6fb912"><div style="font-size:1.5em"><img class="icon" src="Python%20%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88(OOP)%201%209e1a7af416f04af4a56ff7e6786b1204/yang02.png"/></div><div style="width:100%">This program demonstrates the use of the <code><strong>__init__()</strong></code> method with multiple level inheritance. The <code><strong>__init__()</strong></code> method is defined in all the three classes A, B, and C. The method of class B calls the <code><strong>__init__()</strong></code> method of class A using <code><strong>super()</strong></code>. Similarly, the method of class C calls the <code><strong>__init__()</strong></code> method of class B using <code><strong>super()</strong></code>. Finally, we create an object of class C which calls all the <code><strong>__init__()</strong></code> methods of all the parent classes.<pre id="a2fd5776-33bb-49e2-a782-695a5411617f" class="code"><code>class A:
+    def __init__(self):
+        print(&quot;Init of A&quot;)
+
+class B(A):
+    def __init__(self):
+        print(&quot;Init of B&quot;)
+        super().__init__()
+
+class C(B):
+    def __init__(self):
+        print(&quot;Init of C&quot;)
+        super().__init__()
+
+obj = C()</code></pre><pre id="080f7ebf-719f-454d-95c3-5116121c4343" class="code"><code>Init of C
+Init of B
+Init of A</code></pre></div></figure><p id="8c4d89c8-d954-4894-9afe-1d47ce668d9d" class="">
+</p><h3 id="a928c5b2-577e-46d6-a42e-7cab2b98fe4e" class="block-color-gray_background">【課堂練習 3】More Multiple Inheritance</h3><h3 id="04ddc548-1e83-4c67-890b-19974d16208a" class="block-color-yellow">Diamond Inheritance</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="70d98202-3e5d-4d6a-a83f-6d407f088220"><div style="font-size:1.5em"><img class="icon" src="Python%20%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88(OOP)%201%209e1a7af416f04af4a56ff7e6786b1204/yang02.png"/></div><div style="width:100%">This program demonstrates the diamond inheritance scenario where class D inherits from both class B and C, which both inherit from class A. In this case, the <code><strong>method()</strong></code> of class A is called only once because of the method resolution order (MRO) algorithm. The MRO algorithm specifies the order in which the base classes are searched for a method or attribute. In this program, the MRO for class D is [D, B, C, A], so when we call <code><strong>obj.method()</strong></code>, it first calls the <code><strong>method()</strong></code> of class D, then class B, then class C, and finally class A.<pre id="92dcb117-ae06-488e-9ff5-ae955cada1dc" class="code"><code>class A:
+    def method(self):
+        print(&quot;This is method A&quot;)
+
+class B(A):
+    def method(self):
+        print(&quot;This is method B&quot;)
+        super().method()
+
+class C(A):
+    def method(self):
+        print(&quot;This is method C&quot;)
+        super().method()
+
+class D(B, C):
+    def method(self):
+        print(&quot;This is method D&quot;)
+        super().method()
+
+obj = D()
+obj.method()</code></pre><pre id="dfc53dcc-f9d6-4d3e-a8c3-b5d9e83faa26" class="code"><code>This is method D
+This is method B
+This is method C
+This is method A</code></pre></div></figure><h3 id="10f72ff5-075e-452b-a255-9779971fc462" class="block-color-yellow">Abstract Classes</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="007f6b86-0391-4922-b088-745ae9f8a805"><div style="font-size:1.5em"><img class="icon" src="Python%20%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88(OOP)%201%209e1a7af416f04af4a56ff7e6786b1204/yang02.png"/></div><div style="width:100%">This program demonstrates the use of abstract classes in multiple level inheritance. The <code><strong>Shape</strong></code> class is an abstract class which defines an abstract method <code><strong>area()</strong></code>. This means that any subclass of <code><strong>Shape</strong></code> must implement the <code><strong>area()</strong></code> method. The <code><strong>Rectangle</strong></code> and <code><strong>Circle</strong></code> classes inherit from <code><strong>Shape</strong></code> and implement the <code><strong>area()</strong></code> method. Finally, we create a list of shapes which contains one <code><strong>Rectangle</strong></code> object and one <code><strong>Circle</strong></code> object. We iterate over the list and call the <code><strong>area()</strong></code> method of each shape object. This program allows us to write generic code that can work with any shape object as long as it implements the <code><strong>area()</strong></code> method.<pre id="e3ad351e-1e37-433c-ac30-504d99a8d8d0" class="code"><code>from abc import ABC, abstractmethod
+
+class Shape(ABC):
+    @abstractmethod
+    def area(self):
+        pass
+
+class Rectangle(Shape):
+    def __init__(self, length, width):
+        self.length = length
+        self.width = width
+
+    def area(self):
+        return self.length * self.width
+
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+
+    def area(self):
+        return 3.14 * self.radius * self.radius
+
+shapes = [Rectangle(5, 10), Circle(7)]
+
+for shape in shapes:
+    print(shape.area())</code></pre><pre id="2dfbac2b-a806-4b94-9184-9061068a4498" class="code"><code>50
+153.86</code></pre></div></figure><h3 id="cde9b8ce-5986-4827-92c1-8178d20ab244" class="block-color-yellow">Method Override</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="ce719012-b847-4656-a50c-42a567fa3ef5"><div style="font-size:1.5em"><img class="icon" src="Python%20%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88(OOP)%201%209e1a7af416f04af4a56ff7e6786b1204/yang02.png"/></div><div style="width:100%">This program demonstrates method overriding in multiple level inheritance. The <code><strong>method()</strong></code> is defined in all the four classes A, B, C, and D. The method of class B overrides the method of class A, the method of class C overrides the method of class B, and the method of class D overrides the method of class C. Finally, we create four objects and call the <code><strong>method()</strong></code> of each object. Since the method is overridden in each subclass, the output will be different for each object.<pre id="2b796bcb-ec28-47f6-a03f-c50117f95a4b" class="code"><code>class A:
+    def method(self):
+        print(&quot;This is method A&quot;)
+
+class B(A):
+    def method(self):
+        print(&quot;This is method B&quot;)
+
+class C(B):
+    def method(self):
+        print(&quot;This is method C&quot;)
+
+class D(C):
+    def method(self):
+        print(&quot;This is method D&quot;)
+
+obj1 = A()
+obj2 = B()
+obj3 = C()
+obj4 = D()
+
+obj1.method()
+obj2.method()
+obj3.method()
+obj4.method()</code></pre><pre id="4f3fda94-c23f-4627-a3e2-b9caa8a7ddfa" class="code"><code>This is method A
+This is method B
+This is method C
+This is method D</code></pre></div></figure><p id="9d1f8a34-1352-4de7-af44-68b18fb470e1" class="">
+</p><h1 id="baf65e51-8aa0-4171-ab8a-9791e45e676b" class="block-color-brown_background">課堂作業</h1><h3 id="cbdcde97-c68d-4045-b675-0591598281ad" class="block-color-gray_background">【作業 1】Playing Arkanoid with Machine Learning and Blockly</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="c2902f75-8fd8-4e86-8fc5-de64d2f25122"><div style="font-size:1.5em"><img class="icon" src="Python%20%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88(OOP)%201%209e1a7af416f04af4a56ff7e6786b1204/800x800.png"/></div><div style="width:100%">In this assignment, we will be utilizing Machine Learning techniques to play PAIA&#x27;s Arkanoid using Blockly. Blockly is a visual programming language that enables users to create programs by dragging and dropping blocks. We will explore Machine Learning by playing Arkanoid, a classic arcade game where the player controls a paddle to bounce a ball and break bricks. By using Blockly, users can manipulate the paddle&#x27;s movements and observe how they impact gameplay. Through playing Arkanoid with Blockly, users can develop computational thinking skills and foster creativity while enjoying the game.</div></figure><ul id="5c0dd7d5-baac-46e9-a593-38eef6102767" class="bulleted-list"><li style="list-style-type:disc"><a  target="_blank"  target="_blank" href="https://www.paia-arena.com/">PAIA Official Website</a></li></ul><ul id="9c2c01c1-b4ff-4abe-a6ad-9b7c5748ec0e" class="bulleted-list"><li style="list-style-type:disc"><a  target="_blank"  target="_blank" href="https://github.com/PAIA-Playful-AI-Arena/Paia-Desktop/releases/download/v2.4.1/PAIA-Desktop-win32-x64-2.4.1.zip">Download PAIA Desktop Application</a></li></ul><p id="b009271a-1f8f-49bf-92f1-2ef834d06d2c" class="">
+</p><figure id="ef802ef4-c4d1-4e38-b00e-c0fd73bb7c3e" class="image"><a href="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(1%206)%202b08444b0b90422d9b49eb26e8be99ce/%25E5%259C%2596%25E7%2589%25873.png"><img style="width:1322px" src="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(1%206)%202b08444b0b90422d9b49eb26e8be99ce/%25E5%259C%2596%25E7%2589%25873.png"/></a></figure></div></article>
+<script>hljs.highlightAll();</script>
+
+<script>hljs.highlightAll();</script>
+</body></html>

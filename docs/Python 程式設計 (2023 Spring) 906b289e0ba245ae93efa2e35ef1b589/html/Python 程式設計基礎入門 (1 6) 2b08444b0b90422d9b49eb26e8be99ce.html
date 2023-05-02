@@ -1,0 +1,692 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Python 程式設計基礎入門 (1/6)</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script></head><body><article id="2b08444b-0b90-422d-9b49-eb26e8be99ce" class="page sans"><header><img class="page-cover-image" src="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(1%206)%202b08444b0b90422d9b49eb26e8be99ce/notion-Python_(1).png" style="object-position:center 31.08%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(1%206)%202b08444b0b90422d9b49eb26e8be99ce/yang01.png"/></div><h1 class="page-title">Python 程式設計基礎入門 (1/6)</h1><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script></header><div class="page-body"><h1 id="63acf849-d32b-403a-bf3a-c24387669663" class="block-color-brown_background">參考資料 (References)</h1><h3 id="4f382652-b650-4668-9f9b-cf5dabb19719" class="block-color-yellow">有興趣可以瞭解一下電腦程式語言的發展史…</h3><figure id="205fd21b-b554-4904-981e-46d1005f5f23"><a  target="_blank"  target="_blank" href="https://www.hp.com/us-en/shop/tech-takes/computer-history-programming-languages" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Computer History: A Timeline of Computer Programming Languages | HP® Tech Takes</div><div class="bookmark-description">In today&#x27;s world, computer programming is required to keep the systems and devices we use every day operating smoothly. Programming languages enable humans to interact with machines and make them perform necessary operations. Humans and machines process information differently, and programming languages are the key to bridging the gap between people and computers.</div></div><div class="bookmark-href"><img src="https://www.hp.com/favicon.ico" class="icon bookmark-icon"/>https://www.hp.com/us-en/shop/tech-takes/computer-history-programming-languages</div></div><img src="https://store.hp.com/app/assets/images/uploads/prod/computer-history-timeline-programming-languages1604677346377387.jpg" class="bookmark-image"/></a></figure><h3 id="71c9df72-7bff-4d30-b09c-a574f411656a" class="block-color-yellow">近代電腦程式語言的「關注度」排行榜</h3><figure id="2fe7cd0d-f0e2-44d6-aee8-38d4ca7804e0"><a  target="_blank"  target="_blank" href="https://www.tiobe.com/tiobe-index/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">TIOBE Index - TIOBE</div><div class="bookmark-description">C++ is TIOBE&#x27;s programming language of the year 2022. It has won this title because C++ gained most popularity (+4.62%) in 2022. Runners up are C (+3.82%) and Python (+2.78%). Interestingly, C++ surpassed Java to become the number 3 of the TIOBE index in November 2022.</div></div><div class="bookmark-href"><img src="https://www.tiobe.com/wp-content/uploads/2022/06/cropped-android-chrome-512x512-1-192x192.png" class="icon bookmark-icon"/>https://www.tiobe.com/tiobe-index/</div></div><img src="https://www.tiobe.com/wp-content/themes/tiobe/tiobe-index/images/Assembly_language.png" class="bookmark-image"/></a></figure><h3 id="1207ae4e-9117-45d3-a696-b75a078f96af" class="block-color-yellow">本課程使用的「參考資料」/「開發工具」網站</h3><figure id="edce1b49-2cd4-4978-b912-b51a8d5bc8fd"><a  target="_blank"  target="_blank" href="https://www.python.org/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Welcome to Python.org</div><div class="bookmark-description">The official home of the Python Programming Language</div></div><div class="bookmark-href"><img src="https://www.python.org/static/favicon.ico" class="icon bookmark-icon"/>https://www.python.org/</div></div><img src="https://www.python.org/static/opengraph-icon-200x200.png" class="bookmark-image"/></a></figure><figure id="852024c9-5d08-4604-9f20-2c0df74419ab"><a  target="_blank"  target="_blank" href="https://code.visualstudio.com/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Visual Studio Code - Code Editing. Redefined</div><div class="bookmark-description">Visual Studio Code is a code editor redefined and optimized for building and debugging modern web and cloud applications. Visual Studio Code is free and available on your favorite platform - Linux, macOS, and Windows.</div></div><div class="bookmark-href"><img src="https://code.visualstudio.com/favicon.ico" class="icon bookmark-icon"/>https://code.visualstudio.com/</div></div><img src="https://code.visualstudio.com/opengraphimg/opengraph-home.png" class="bookmark-image"/></a></figure><figure id="a2b92308-a7aa-42d9-b7c8-5d03f1b370a4"><a  target="_blank"  target="_blank" href="https://snakify.org/en/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Snakify - Python 3 Interactive Course</div><div class="bookmark-description">Teach Python 3 and web design with 200+ exercises - Learn Python 3 - Snakify Welcome to our interactive manual of Python 3 programming language. This is an introductory course that is way different from the others.</div></div><div class="bookmark-href"><img src="https://snakify.org/static/favicon.ico?3c9fe09" class="icon bookmark-icon"/>https://snakify.org/en/</div></div><img src="https://snakify.org/static/images/pony.png" class="bookmark-image"/></a></figure><figure id="afb825d9-febe-42e5-9428-a6403bd5603d"><a  target="_blank"  target="_blank" href="https://github.com/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">GitHub: Let&#x27;s build from here</div><div class="bookmark-description">GitHub is where over 94 million developers shape the future of software, together. Contribute to the open source community, manage your Git repositories, review code like a pro, track bugs and features, power your CI/CD and DevOps workflows, and secure code before you commit it.</div></div><div class="bookmark-href"><img src="https://github.com/favicon.ico" class="icon bookmark-icon"/>https://github.com/</div></div><img src="https://github.githubassets.com/images/modules/site/social-cards/campaign-social.png" class="bookmark-image"/></a></figure><figure id="34088e9e-d374-4365-a0a1-29ee1339c074"><a  target="_blank"  target="_blank" href="https://www.anaconda.com/products/distribution" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Anaconda | Anaconda Distribution</div><div class="bookmark-description">Anaconda&#x27;s open-source Distribution is the easiest way to perform Python/R data science and machine learning on a single machine.</div></div><div class="bookmark-href"><img src="https://www.anaconda.com/assets/build/favicons/favicon-c717e30d1c.ico" class="icon bookmark-icon"/>https://www.anaconda.com/products/distribution</div></div><img src="https://assets.anaconda.com/production/anaconda-meta.jpg?w=1200&amp;h=630&amp;q=82&amp;auto=format&amp;fit=clip&amp;dm=1632326952&amp;s=2b336a00fa13405f84ce2f5b74e21fee" class="bookmark-image"/></a></figure><h1 id="013fbc92-84da-473e-9f23-59cecd97120f" class="block-color-brown_background">課堂活動</h1><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="e74260cc-f4b9-4e50-bbe8-156d263f267b"><div style="font-size:1.5em"><img class="icon" src="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(1%206)%202b08444b0b90422d9b49eb26e8be99ce/yang02.png"/></div><div style="width:100%">This week, we&#x27;ll cover:<ol type="1" id="9b8021fb-9643-49e2-a83c-b7a338f7cb28" class="numbered-list" start="1"><li>Registering for a <a  target="_blank"  target="_blank" href="https://snakify.org/">Snakify.org</a> account to learn Python basics</li></ol><ol type="1" id="beba40f1-b24c-4420-9ea7-399a387bf755" class="numbered-list" start="2"><li>Installing the Python interpreter, Visual Studio Code, and the necessary Python extensions</li></ol><ol type="1" id="6421013a-e1a3-4132-9e8e-0d02953e87f5" class="numbered-list" start="3"><li>Using the registered Snakify account to work on problems from Lesson 1.</li></ol></div></figure><h3 id="7a0edaed-f665-4fb4-9548-3d661e0b6646" class="block-color-gray_background">【課堂練習 1】註冊/使用 Snakify 學習 Python 基礎</h3><div id="625c7223-5df2-4000-8c6b-42a39d35fd00" class="column-list"><div id="689e173e-606d-4c5e-a2de-0eb0953f773c" style="width:56.25%" class="column"><ul id="46d08494-99b0-424e-b2f8-56df333371e0" class="bulleted-list"><li style="list-style-type:disc">To register and start using Snakify to learn Python basics, please follow these steps:<ol type="1" id="d87f0300-8a0f-477a-93c7-aed9cd07c92e" class="numbered-list" start="1"><li>Go to the Snakify website (<a  target="_blank"  target="_blank" href="https://snakify.org/"><strong>https://snakify.org/</strong></a>).</li></ol><ol type="1" id="b67b9aa4-4ee9-4ac4-9234-41a4116cf625" class="numbered-list" start="2"><li>Click on the &quot;Registration&quot; button on the top right corner of the page.</li></ol><ol type="1" id="4808b049-96d1-4cd1-b076-df67efa6cd1a" class="numbered-list" start="3"><li>Fill out the registration form with your email address, name, password, and “Teacher’s email”.</li></ol><ol type="1" id="bd3fd41a-8011-40d4-8c16-e88f01becf76" class="numbered-list" start="4"><li>Teacher’s Snakify email:<p id="1f622f1c-e3e7-43ba-ac82-90530584e1ae" class="">四技電子一甲：<strong><mark class="highlight-yellow">pyprog-2023s-ee-a@stust.edu.tw</mark></strong></p><p id="528d2640-201b-4644-9905-503f7adbbb64" class="">四技電子一乙：<strong><mark class="highlight-yellow">pyprog-2023s-ee-b@stust.edu.tw</mark></strong></p><p id="7a42988c-3420-44af-954e-13d65b350199" class="">五專資工四甲 :<strong> </strong><strong><mark class="highlight-yellow">pyprog-2023s-cs@stust.edu.tw</mark></strong></p></li></ol><ol type="1" id="f00d8d8c-d60c-4301-9b60-f793fb4c3b40" class="numbered-list" start="5"><li>Log in to your Snakify account.</li></ol><p id="7ff1cc8f-1c93-4cea-b393-1166592ae7d0" class="">Once you are logged in, you will be able to access the Python course materials. The course is divided into chapters and lessons, each one containing a task to be solved using Python. Snakify provides a Python interpreter on the website, so you can write and run your code directly on the platform, and get feedback on your solution. As you progress through the course, you will learn the basics of Python programming, including data types, variables, loops, conditionals, functions, collection data types, and many more.</p><p id="b13dfa00-9a11-4f86-bad0-921c80accc1c" class="">
+</p></li></ul></div><div id="8adad6d9-1d4d-471e-90fa-db5f1b237a99" style="width:43.75%" class="column"><figure id="8e9a3e67-0aae-480a-a866-6ecfaa5d6531" class="image"><a href="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(1%206)%202b08444b0b90422d9b49eb26e8be99ce/Untitled.png"><img style="width:384px" src="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(1%206)%202b08444b0b90422d9b49eb26e8be99ce/Untitled.png"/></a></figure></div></div><h3 id="30b8a4f4-06a1-48db-8ae3-1567c4007a42" class="block-color-gray_background">【課堂練習 2】下載並安裝 Python Interperter 和 Visual Studio Code</h3><ul id="202a0187-62d2-4949-95d2-f7adcb2dbdc5" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Download/Install Python Interpreter:</strong></mark><mark class="highlight-yellow"> </mark><ol type="1" id="cc9e4769-03bb-4609-bd80-ccd82530ebd9" class="numbered-list" start="1"><li>Go to the official Python website (<a  target="_blank"  target="_blank" href="https://www.python.org/"><strong>https://www.python.org/</strong></a>) and click on the &quot;Download&quot; button. Download the latest version for your operating system (Windows/macOS/Linux).</li></ol><ol type="1" id="f5d41bb3-5b15-442b-906f-15d54b4cc3d5" class="numbered-list" start="2"><li>Run the installer and follow the prompts to install Python on your computer. Make sure to select the option to add Python to your system&#x27;s PATH, so that it can be accessed from the command line.</li></ol></li></ul><ul id="24d42166-d9ac-4fab-a8b4-b025e24b32b6" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Download/Install Visual Studio Code: </strong></mark><ol type="1" id="e6957048-bcb7-4144-880b-8c0aede7a6b9" class="numbered-list" start="1"><li>Go to the Visual Studio Code website (<a  target="_blank"  target="_blank" href="https://code.visualstudio.com/"><strong>https://code.visualstudio.com/</strong></a>) and click on the &quot;Download&quot; button. Select the appropriate version for your operating system and download the installer.</li></ol><ol type="1" id="9877f7dd-6046-422e-9ce7-b060cbede4c6" class="numbered-list" start="2"><li>Run the installer and follow the prompts to install Visual Studio Code on your computer. Once installation is complete, launch the program and you are ready to start coding.</li></ol><ol type="1" id="1d287106-219e-40a3-a949-0a5ac878c9c7" class="numbered-list" start="3"><li>Install Python Extension: Once you have Visual Studio Code open, press F1 or Ctrl+Shift+P (Windows/Linux) or Cmd+Shift+P (macOS), then type &quot;Python&quot; and select the option &quot;Python: Select Interpreter&quot; and then select the python version you have installed.</li></ol></li></ul><h1 id="37c78d76-18a3-4603-88c7-899d01e3986c" class="block-color-brown_background">課堂作業</h1><h3 id="978cd3ad-b242-40a3-8097-ab27a5e2621a" class="block-color-gray_background">【作業 1】Online practice on the website <a href="http://snakify.org/">Snakify.org</a>: </h3><ul id="85fdcdf7-c05b-4655-968a-8eb522f00953" class="bulleted-list"><li style="list-style-type:disc">Please log in to your Snakify account that you registered in 【Classroom Practice 1】 and complete the following problems.</li></ul><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="79844b13-6e10-46f4-ab0a-aac993e02ba5"><div style="font-size:1.5em"><span class="icon">🖥️</span></div><div style="width:100%"><strong>Lesson 1: Input, print and numbers</strong><p id="80e365a0-a2dd-475a-8081-b4374f4c0635" class=""><strong>Problem «</strong><strong><a  target="_blank"  target="_blank" href="https://snakify.org/en/lessons/print_input_numbers/problems/aplusbplusc/">Sum of three numbers</a></strong><strong>»</strong></p><p id="87a41cb1-1f61-488b-8a3f-c575176617b1" class=""><strong>Problem «</strong><strong><a  target="_blank"  target="_blank" href="https://snakify.org/en/lessons/print_input_numbers/problems/hi_john/">Hi John</a></strong><strong>»</strong></p><p id="b03c51c5-7340-4fc6-bbf2-d656fcb5c683" class=""><strong>Problem «</strong><a  target="_blank"  target="_blank" href="https://snakify.org/en/lessons/print_input_numbers/problems/square/"><strong>Square</strong></a><strong>»</strong></p><p id="72ca39dd-9243-4aa7-a030-83476b76c0f0" class=""><strong>Problem «</strong><a  target="_blank"  target="_blank" href="https://snakify.org/en/lessons/print_input_numbers/problems/area_of_right_triangle/"><strong>Area of right-angled triangle</strong></a><strong>»</strong></p><p id="93977894-d85a-462a-9db4-0f70e13b53d4" class=""><strong>Problem «</strong><a  target="_blank"  target="_blank" href="https://snakify.org/en/lessons/print_input_numbers/problems/hello_harry/"><strong>Hello, Harry!</strong></a><strong>»</strong></p><p id="d0f9d290-9df6-4c0b-adaa-ecfe4bc11dde" class=""><strong>Problem «</strong><a  target="_blank"  target="_blank" href="https://snakify.org/en/lessons/print_input_numbers/problems/apple_sharing/"><strong>Apple sharing</strong></a><strong>»</strong></p><p id="d2fcc0e7-4827-4421-aab2-22a4d091c3e1" class=""><strong>Problem «</strong><a  target="_blank"  target="_blank" href="https://snakify.org/en/lessons/print_input_numbers/problems/previous_and_next/"><strong>Previous and next</strong></a><strong>»</strong></p><p id="d706debf-6e67-467a-893e-cb7bc1d1b7dc" class=""><strong>Problem «</strong><a  target="_blank"  target="_blank" href="https://snakify.org/en/lessons/print_input_numbers/problems/two_timestamps/"><strong>Two timestamps</strong></a><strong>»</strong></p><p id="a1a01285-b4c8-4e21-bb6c-fd78f2f5de60" class=""><strong>Problem «</strong><a  target="_blank"  target="_blank" href="https://snakify.org/en/lessons/print_input_numbers/problems/school_desks/"><strong>School desks</strong></a><strong>»</strong></p></div></figure><h3 id="d4a678ad-3c3b-4aa3-be22-afd8b86221f2" class="block-color-gray_background">【作業 2】Write a program that takes a three-digit number as input and prints its digits separately.<strong><strong> </strong></strong></h3><ul id="633d1fd7-4b7e-482a-b40b-a3019fd26bac" class="bulleted-list"><li style="list-style-type:disc">Please refer to the example for &quot;two-digit&quot; processing below and complete the task requirements.</li></ul><pre id="1c4c04ca-8233-4940-9aae-eb04273aabba" class="code code-wrap"><code>number = int(input(&quot;Enter a two-digit number: &quot;))
+
+# using integer division (//) and modulo operator (%)
+tens = number // 10
+ones = number % 10
+
+print(&quot;The tens digit is:&quot;, tens)
+print(&quot;The ones digit is:&quot;, ones)</code></pre><h3 id="9bbef833-3ffc-48b6-8901-784fa2f345a1" class="block-color-gray_background">【作業 3】Write a program that takes a three-digit number as input and reverse its digits.</h3><ul id="ff3a568c-9a65-45b1-95c2-e60086636b7c" class="bulleted-list"><li style="list-style-type:disc">Here are some sample test cases with expected outputs for the homework problem：</li></ul><pre id="70f06669-f0c4-4eff-a9bf-87bed495b23c" class="code code-wrap"><code>Test case 1:
+Input: 123
+Output: 321
+
+Test case 2:
+Input: 456
+Output: 654
+
+Test case 3:
+Input: 789
+Output: 987</code></pre><p id="6022df2f-2e6b-419b-a92d-c1152fcf929e" class="">
+</p><figure id="a4ca0360-1558-4fd0-9323-eb16598226c5" class="image"><a href="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(1%206)%202b08444b0b90422d9b49eb26e8be99ce/%25E5%259C%2596%25E7%2589%25873.png"><img style="width:1322px" src="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(1%206)%202b08444b0b90422d9b49eb26e8be99ce/%25E5%259C%2596%25E7%2589%25873.png"/></a></figure></div></article>
+<script>hljs.highlightAll();</script>
+
+<script>hljs.highlightAll();</script>
+</body></html>

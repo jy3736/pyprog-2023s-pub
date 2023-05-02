@@ -1,0 +1,792 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Python 程式設計基礎入門 (3/6)</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="dcb75769-dc85-4e61-b07c-dabcf90f7ee3" class="page sans"><header><img class="page-cover-image" src="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(1%206)%202b08444b0b90422d9b49eb26e8be99ce/notion-Python_(1).png" style="object-position:center 31.08%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(1%206)%202b08444b0b90422d9b49eb26e8be99ce/yang01.png"/></div><h1 class="page-title">Python 程式設計基礎入門 (3/6)</h1></header><div class="page-body"><h1 id="a74b731f-fd18-454d-a12a-ef66b83a0c6d" class="block-color-brown_background">參考資料 (References)</h1><h3 id="5ed3ad71-1e71-4f5b-b7a3-c3ea1af02622" class="block-color-yellow">線上 Python 程式練習網站 (Snakify.org)</h3><figure id="56a885b4-3df2-4844-901b-c685c7e2eb64"><a href="https://snakify.org/en/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Snakify - Python 3 Interactive Course</div><div class="bookmark-description">Teach Python 3 and web design with 200+ exercises - Learn Python 3 - Snakify Welcome to our interactive manual of Python 3 programming language. This is an introductory course that is way different from the others.</div></div><div class="bookmark-href"><img src="https://snakify.org/static/favicon.ico?3c9fe09" class="icon bookmark-icon"/>https://snakify.org/en/</div></div><img src="https://snakify.org/static/images/pony.png" class="bookmark-image"/></a></figure><h3 id="a9e25984-480d-4914-ab6e-5125dbec0ab2" class="block-color-yellow">Python 官方「參考資料」網站 (Python.org)</h3><figure id="b1af6135-bdd1-43f2-a85a-dbc6ec09324f"><a href="https://docs.python.org/3/index.html" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">3.11.1 Documentation</div><div class="bookmark-description">Welcome! This is the official documentation for Python 3.11.1.</div></div><div class="bookmark-href"><img src="https://docs.python.org/favicon.ico" class="icon bookmark-icon"/>https://docs.python.org/3/index.html</div></div></a></figure><h1 id="bc425c0b-35dc-4dc7-acb8-8112d1523b7c" class="block-color-brown_background">課堂活動</h1><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="a1fa8ba4-b231-4c85-a1e1-aaa9901acdb5"><div style="font-size:1.5em"><img class="icon" src="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(3%206)%20dcb75769dc854e61b07cdabcf90f7ee3/yang04b.png"/></div><div style="width:100%">This week, the course covers the following topics in Python programming:<ul id="933383f8-2a94-4121-977d-e10f7ef68f82" class="bulleted-list"><li style="list-style-type:disc">For loops and the range function: Students will learn how to use for loops to iterate through a range of values and perform certain operations on each iteration. They will also learn how to use the range function to generate sequences of numbers to use in for loops.</li></ul><ul id="60adc722-5bfa-4df0-9ebb-9d730c37b90e" class="bulleted-list"><li style="list-style-type:disc">Functions: Students will learn how to define and call functions in Python, and how to pass arguments and return values. They will also learn how to use built-in functions and how to create their own functions.</li></ul><p id="dfaa1912-ba7a-444b-868f-96d42d3cdc4c" class="">Throughout the week, students will have the opportunity to practice their new skills through a variety of coding exercises. After completing this lecture, students will have a solid understanding of for loops with ranges and functions in Python.</p><p id="37cccabb-85af-4641-9ec8-e55533c28879" class="">
+</p><p id="b2884199-63fd-419b-aa08-8b082daf1bae" class="">Source : Snakify.org</p><p id="709a136b-99a2-48b9-a747-2964cfe84121" class=""><a href="https://snakify.org/en/lessons/for_loop_range/"><strong>Lesson 4 : For loop with range</strong></a></p><p id="91452ea4-26c5-4a9b-809c-ad40ecf4eaa9" class=""><strong><a href="https://snakify.org/en/lessons/functions/">Lesson 8 : Functions and recursion</a></strong></p></div></figure><p id="0956949e-246a-4160-84a4-4e190e3c59b4" class="">
+</p><h3 id="856287a6-3114-4177-affb-1538be71b8c9" class="block-color-gray_background">【課堂練習 1】<strong><strong>Product of N numbers</strong></strong></h3><figure id="df29e3eb-804b-4afb-988a-140836a1037f"><div class="source"><a href="https://player.soundon.fm/p/8faaae18-d718-46a4-b9a8-8a17a7674c41/episodes/6b1996c2-4d43-4200-a647-c02918815899">https://player.soundon.fm/p/8faaae18-d718-46a4-b9a8-8a17a7674c41/episodes/6b1996c2-4d43-4200-a647-c02918815899</a></div></figure><ul id="b5edaaeb-11b8-4c1b-9c69-4f1aa1528f94" class="bulleted-list"><li style="list-style-type:disc">Given N integers in the input, read them and output their product. </li></ul><ul id="538c8a94-c29f-4200-9937-4ebc57684be6" class="bulleted-list"><li style="list-style-type:disc">The first line of input will contain a positive integer N, representing the number of integers that will be inputted in the following N lines. </li></ul><ul id="6aa482fe-08fd-4b71-b7e9-646ffee19db2" class="bulleted-list"><li style="list-style-type:disc">Print the product of these N integers.</li></ul><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="6de275b8-13e8-4df7-bf72-268c1d3bedd0"><div style="font-size:1.5em"><img class="icon" src="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(3%206)%20dcb75769dc854e61b07cdabcf90f7ee3/yang02.png"/></div><div style="width:100%">Example Solution<pre id="713b0b73-232a-4c9a-89f1-0aeebc9bbb74" class="code code-wrap"><code>n = int(input())
+product = 1
+
+for i in range(n):
+    num = int(input())
+    product *= num
+
+print(product)</code></pre></div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="8e1bc193-17bb-45cd-b4ba-9a5403babee5"><div style="font-size:1.5em"><span class="icon">🖥️</span></div><div style="width:100%">Program Output<pre id="cf993f87-47d3-465a-86e8-27d8c67b9569" class="code"><code>PS week04&gt; Get-Content .\dat01a.txt                    
+5
+1
+2
+3
+4
+5
+PS week04&gt; Get-Content .\dat01a.txt | python .\lab01.py
+120
+
+PS week04&gt; Get-Content .\dat01b.txt 
+8
+2
+2
+2
+2
+2
+2
+2
+2
+PS week04&gt; Get-Content .\dat01b.txt | python .\lab01.py
+256</code></pre></div></figure><h3 id="2e912beb-15f1-42f0-bdac-1c24244e2cbe" class="block-color-gray_background">【課堂練習 2】<strong><strong>Squares in range</strong></strong></h3><figure id="449881f0-0d95-45e5-af8e-0ed0fa4084d9"><div class="source"><a href="https://player.soundon.fm/p/8faaae18-d718-46a4-b9a8-8a17a7674c41/episodes/e1a55d9b-1445-42c4-b562-fd595e17d9f8">https://player.soundon.fm/p/8faaae18-d718-46a4-b9a8-8a17a7674c41/episodes/e1a55d9b-1445-42c4-b562-fd595e17d9f8</a></div></figure><ul id="abc771d4-7e01-4b39-8741-e3c938707a0b" class="bulleted-list"><li style="list-style-type:disc">Print the squares of all integers between A and B inclusive, without spaces around the * and = symbol. </li></ul><ul id="0d873ea4-57f5-4561-9058-098c39429fe7" class="bulleted-list"><li style="list-style-type:disc">Use the sep argument in the print() function to achieve this.</li></ul><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="7be30c9a-01fe-4dd8-9d5f-7e0528ee0f1b"><div style="font-size:1.5em"><img class="icon" src="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(3%206)%20dcb75769dc854e61b07cdabcf90f7ee3/yang02.png"/></div><div style="width:100%">Example Solution<pre id="b1418680-5fd4-44e4-8b0c-56f0bd7cc8f4" class="code"><code>a = int(input())
+b = int(input())
+
+for i in range(a, b+1):
+    print(i, &quot;*&quot;, i, &quot;=&quot;, i*i, sep=&#x27;&#x27;)</code></pre></div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="aaa0d692-d0b5-4d0a-af5c-9b4b513bf40f"><div style="font-size:1.5em"><span class="icon">🖥️</span></div><div style="width:100%">Program Output<pre id="52b30977-dfa4-49e8-ad7c-6442dccc8b8c" class="code"><code>PS week04&gt; echo 6 9 | python .\lab02.py 
+6*6=36
+7*7=49
+8*8=64
+9*9=81
+
+PS week04&gt; echo 1 5 | python .\lab02.py
+1*1=1
+2*2=4
+3*3=9
+4*4=16
+5*5=25</code></pre></div></figure><p id="dc6ce15e-da31-4345-8c1d-524e923c5d65" class="">
+</p><h3 id="9bf310aa-55dd-463f-bf8b-47e7db64d2ea" class="block-color-gray_background">【課堂練習 3】<strong><strong>Is prime</strong></strong></h3><figure id="dfa3d7b8-821f-4cff-839a-5e75ebc615ff"><div class="source"><a href="https://player.soundon.fm/p/8faaae18-d718-46a4-b9a8-8a17a7674c41/episodes/1726addd-8883-4445-802b-651303a47d8f">https://player.soundon.fm/p/8faaae18-d718-46a4-b9a8-8a17a7674c41/episodes/1726addd-8883-4445-802b-651303a47d8f</a></div></figure><ul id="084684c6-1631-4730-bad4-54a7c4c5bac0" class="bulleted-list"><li style="list-style-type:disc">Determine if a given integer N &gt; 1 is a prime number and print PRIME if it is, and print COMPOSITE if it is not. </li></ul><ul id="c5ee0a13-6b65-45d5-90b5-a58658acf3ab" class="bulleted-list"><li style="list-style-type:disc">A prime number is a natural number greater than 1 that is only divisible by 1 and itself.</li></ul><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="525d996e-75a3-490c-824e-7c8ea085876f"><div style="font-size:1.5em"><img class="icon" src="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(3%206)%20dcb75769dc854e61b07cdabcf90f7ee3/yang02.png"/></div><div style="width:100%">Example Solution<pre id="c9b89eb2-d2d9-4e4f-b99d-b638c24c5b89" class="code code-wrap"><code>N = int(input())
+
+if N &lt;= 1:
+    print(&quot;COMPOSITE&quot;)
+else:
+    for i in range(2, N-1):
+        if N % i == 0:
+            print(&quot;COMPOSITE&quot;)
+            break
+    else:
+        print(&quot;PRIME&quot;)</code></pre></div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="7cde8075-9150-428d-b06c-658c6255200e"><div style="font-size:1.5em"><img class="icon" src="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(3%206)%20dcb75769dc854e61b07cdabcf90f7ee3/yang04b%201.png"/></div><div style="width:100%">A better way to quickly determine which numbers are prime.<pre id="37d6a26c-6002-4612-9e1e-56f96a8115de" class="code code-wrap"><code>import math
+
+N = int(input())
+if N &lt;= 1:
+    print(&quot;COMPOSITE&quot;)
+elif N &lt;= 3:
+    print(&quot;PRIME&quot;)
+elif N % 2 == 0 or N % 3 == 0:
+    print(&quot;COMPOSITE&quot;)
+else:
+    for i in range(5, int(math.sqrt(N))+1, 6):
+        if N % i == 0 or N % (i+2) == 0:
+            print(&quot;COMPOSITE&quot;)
+            break
+    else:
+        print(&quot;PRIME&quot;)</code></pre><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="c815308e-2c70-4280-8084-9538de89b2b1"><div style="font-size:1.5em"><span class="icon">🖥️</span></div><div style="width:100%">When determining whether a number N is a prime or not, it is only required to check up to the square root of N (i.e., sqrt(N)) because of a mathematical property of prime numbers.<p id="01639dfa-c8c4-456b-92ea-f9ae135eec1f" class="">The property is that every composite number (i.e., a number that is not prime) can be factored into two factors that are both less than or equal to its square root. In other words, if N is composite, then there exist two factors a and b, where a and b are both integers and a*b = N, and both a and b are less than or equal to sqrt(N).</p><p id="d8997142-771a-4534-bb1c-fd9aa7539106" class="">The script starts by iterating through a range of numbers <code><strong>i</strong></code>starting from 5 and going up to the square root of <code><strong>N</strong></code>. The step size is set to 6, which means that <code><strong>i</strong></code>
+ and <code><strong>i+2</strong></code>are alternately checked for divisibility. This is because all primes greater than 3 can be written in the form <code>6k±1</code>, so only checking every 6th number starting from 5, and alternating between checking <code><strong>i</strong></code>and <code><strong>i+2</strong></code>, can skip a lot of unnecessary checks.</p></div></figure></div></figure><h3 id="f9065e46-f075-44d3-87ba-025e86a6f9e3" class="block-color-gray_background">【課堂練習 4】<strong><strong>Print primes in range</strong></strong></h3><figure id="12130cb7-142b-4154-8073-f289c6ecb418"><div class="source"><a href="https://player.soundon.fm/p/8faaae18-d718-46a4-b9a8-8a17a7674c41/episodes/eb9931bb-9f77-412e-bf1b-1ed161add621">https://player.soundon.fm/p/8faaae18-d718-46a4-b9a8-8a17a7674c41/episodes/eb9931bb-9f77-412e-bf1b-1ed161add621</a></div></figure><ul id="c82113db-90e0-4c13-8f9e-053dd6d44ef2" class="bulleted-list"><li style="list-style-type:disc">Given two integers A and B, print all prime numbers between A and B, including A and B if they are prime. </li></ul><ul id="eceb2123-4fec-4cf6-b4b7-bee90ad53265" class="bulleted-list"><li style="list-style-type:disc">A prime number is defined as a natural number greater than 1 that is only divisible by 1 and itself, with no other positive factors.</li></ul><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="ee411754-090c-4868-92c9-a790640b3cda"><div style="font-size:1.5em"><img class="icon" src="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(3%206)%20dcb75769dc854e61b07cdabcf90f7ee3/yang02.png"/></div><div style="width:100%">Example Solution<pre id="0ef90670-648f-4def-944b-288985996a17" class="code code-wrap"><code>def is_prime(N):
+    if N &lt;= 1:
+        return False
+    for i in range(2, N):
+        if N % i == 0:
+            return False
+    return True
+
+def main():    
+	a = int(input())
+	b = int(input())
+	for n in range(a,b+1):
+	    if is_prime(n): print(n)
+
+if __name__==&quot;__main__&quot;:
+	main()</code></pre></div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="26e4c697-2f82-455e-ba41-679af61dbf99"><div style="font-size:1.5em"><span class="icon">🖥️</span></div><div style="width:100%">Program Output<pre id="834dc829-ce87-4140-b03c-505c5e567d80" class="code"><code>PS week04&gt; echo 1 20 | python .\lab04.py   
+2
+3
+5
+7
+11
+13
+17
+19
+
+PS week04&gt; echo 100 150 | python .\lab04.py
+101
+103
+107
+109
+113
+127
+131
+137
+139
+149</code></pre></div></figure><h3 id="5a84f645-fe90-4f12-ad83-54ce08e04b4c" class="block-color-gray_background">【課堂練習 5】<strong><strong>Number of primes in range</strong></strong></h3><figure id="d606b809-c6e3-408b-99a1-95876ee07849"><div class="source"><a href="https://player.soundon.fm/p/8faaae18-d718-46a4-b9a8-8a17a7674c41/episodes/30eeb171-3373-4da8-a91c-723b8b97252b">https://player.soundon.fm/p/8faaae18-d718-46a4-b9a8-8a17a7674c41/episodes/30eeb171-3373-4da8-a91c-723b8b97252b</a></div></figure><ul id="5eb4b106-a7e9-4296-8d56-6035d8188029" class="bulleted-list"><li style="list-style-type:disc">Given two integers A and B, determine the count of prime numbers between A and B, including A and B if they are prime. </li></ul><ul id="b0947b56-5bc5-4c8f-a228-fb40e430fcb6" class="bulleted-list"><li style="list-style-type:disc">A prime number is defined as a natural number greater than 1 that is only divisible by 1 and itself, with no other positive factors. </li></ul><ul id="f3d0d35f-7c1c-49f3-861d-f1b3ef6f0469" class="bulleted-list"><li style="list-style-type:disc">Print the total number of prime numbers found in the given range.</li></ul><pre id="daeea342-8c66-4457-9fa5-ef33be6a3bfe" class="code code-wrap"><code>import math
+
+def count_primes(A, B):
+    count = 0
+    for num in range(A, B+1):
+        if num &gt; 1:
+            for i in range(2, int(math.sqrt(num))+1):
+                if num % i == 0:
+                    break
+            else:
+                count += 1
+    return count
+
+a = int(input())
+b = int(input())
+
+print(count_primes(a,b))</code></pre><h1 id="b18ad807-9a91-4bb4-a0fc-ed9fba5bfc2d" class="block-color-brown_background">課堂作業</h1><h3 id="f051b0fb-312f-4308-bc13-12fb3b27c584" class="block-color-gray_background">【作業 1】Online practice on the website <a href="http://snakify.org/">Snakify.org</a>: </h3><ul id="4133b129-23bf-4053-9a1d-9ed2d381c60f" class="bulleted-list"><li style="list-style-type:disc">Please log in to your Snakify account and complete the following problems.</li></ul><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="ad88be44-c83d-4c76-b2f4-7108bd6e12ee"><div style="font-size:1.5em"><span class="icon">🖥️</span></div><div style="width:100%"><strong>Lesson 4 : For loop with range</strong><p id="e807a99a-ce9e-439a-84bd-1682ec70815c" class=""><strong><strong>Problem «</strong></strong><a href="https://snakify.org/en/lessons/for_loop_range/problems/series_1/"><strong><strong>Series - 1</strong></strong></a><strong><strong>»</strong></strong></p><p id="e553449d-ed18-48b6-a2e3-80f9421c1f5d" class=""><strong><strong>Problem «</strong></strong><a href="https://snakify.org/en/lessons/for_loop_range/problems/series_2/"><strong><strong>Series - 2</strong></strong></a><strong><strong>»</strong></strong></p><p id="6a59f382-29f3-45fe-bc09-530d7666b9ff" class=""><strong><strong>Problem «</strong></strong><a href="https://snakify.org/en/lessons/for_loop_range/problems/sum_of_ten_numbers/"><strong><strong>Sum of ten numbers</strong></strong></a><strong><strong>»</strong></strong></p><p id="7301dabf-5467-47c0-9d12-8c0b8b123d44" class=""><strong><strong>Problem «</strong></strong><a href="https://snakify.org/en/lessons/for_loop_range/problems/suf_of_n_numbers/"><strong><strong>Sum of N numbers</strong></strong></a><strong><strong>»</strong></strong></p><p id="592255da-f780-4edb-bb21-3dd00bd435d6" class=""><strong><strong>Problem «</strong></strong><a href="https://snakify.org/en/lessons/for_loop_range/problems/sum_of_cubes/"><strong><strong>Sum of cubes</strong></strong></a><strong><strong>»</strong></strong></p><p id="c89b9e15-5c2f-4d4f-876e-102e21baf4cd" class=""><strong><strong>Problem «</strong></strong><a href="https://snakify.org/en/lessons/for_loop_range/problems/factorial/"><strong><strong>Factorial</strong></strong></a><strong><strong>»</strong></strong></p><p id="deac8690-ed8a-46a5-9f60-e5390e77d37f" class=""><strong><strong>Problem «</strong></strong><a href="https://snakify.org/en/lessons/for_loop_range/problems/how_many_zeroes/"><strong><strong>The number of zeros</strong></strong></a><strong><strong>»</strong></strong></p><p id="ad2d68fb-9a57-423a-8637-748069cec499" class=""><strong><strong>Problem «</strong></strong><a href="https://snakify.org/en/lessons/for_loop_range/problems/sum_of_factorials/"><strong><strong>Adding factorials</strong></strong></a><strong><strong>»</strong></strong></p><p id="9bffa5c9-cf55-482a-86b0-1d2afe798779" class=""><strong><strong>Problem «</strong></strong><a href="https://snakify.org/en/lessons/for_loop_range/problems/ladder/"><strong><strong>Ladder</strong></strong></a><strong><strong>»</strong></strong></p><p id="ba396565-9a2f-4f1a-bafb-eec058385674" class=""><strong><strong>Problem «</strong></strong><a href="https://snakify.org/en/lessons/for_loop_range/problems/lost_card/"><strong><strong>Lost card</strong></strong></a><strong><strong>»</strong></strong></p></div></figure><h3 id="29f1d85b-d5e6-4663-8276-8a4d83cb8520" class="block-color-gray_background">【作業 2】Online practice on the website <a href="http://snakify.org/">Snakify.org</a>: </h3><ul id="2d32af72-133f-4dff-8940-fd99592263a3" class="bulleted-list"><li style="list-style-type:disc">Please log in to your Snakify account and complete the following problems.</li></ul><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="3974cc4c-ffe8-4f72-b78b-ae96d5f0c3ac"><div style="font-size:1.5em"><span class="icon">🖥️</span></div><div style="width:100%"><strong>Lesson 8 : Functions and recursion</strong><p id="dfddeca4-ea56-4c00-9e77-eff98120b29c" class=""><strong><strong>Problem «</strong></strong><a href="https://snakify.org/en/lessons/functions/problems/length_of_segment/"><strong><strong>The length of the segment</strong></strong></a><strong><strong>»</strong></strong></p><p id="222ed25a-6088-43f0-8774-147bdca42c2c" class=""><strong><strong>Problem «</strong></strong><a href="https://snakify.org/en/lessons/functions/problems/negative_power/"><strong><strong>Negative exponent</strong></strong></a><strong><strong>»</strong></strong></p><p id="8069feed-5ad6-48d0-a8b9-b38fa3f96976" class=""><strong><strong>Problem «</strong></strong><a href="https://snakify.org/en/lessons/functions/problems/capitalize/"><strong><strong>Uppercase</strong></strong></a><strong><strong>»</strong></strong></p><p id="cd567aa5-89bc-44cd-b6d7-31261a844f0f" class=""><strong><strong>Problem «</strong></strong><a href="https://snakify.org/en/lessons/functions/problems/power_rec/"><strong><strong>Exponentiation</strong></strong></a><strong><strong>»</strong></strong></p><p id="631d63f1-64eb-425a-beef-d749965eb645" class=""><strong><strong>Problem «</strong></strong><a href="https://snakify.org/en/lessons/functions/problems/reverse_rec/"><strong><strong>Reverse the sequence</strong></strong></a><strong><strong>»</strong></strong></p><p id="01e2132f-dfcf-4cc4-8d3b-9110275127d7" class=""><strong><strong>Problem «</strong></strong><a href="https://snakify.org/en/lessons/functions/problems/fibonacci_rec/"><strong><strong>Fibonacci numbers</strong></strong></a><strong><strong>»</strong></strong></p></div></figure><figure id="22a32dc7-d4e4-455c-9afd-88a7dee2418b" class="image"><a href="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(1%206)%202b08444b0b90422d9b49eb26e8be99ce/%25E5%259C%2596%25E7%2589%25873.png"><img style="width:1322px" src="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(1%206)%202b08444b0b90422d9b49eb26e8be99ce/%25E5%259C%2596%25E7%2589%25873.png"/></a></figure><figure id="cfdfeef2-e9e0-47a2-bbce-50fe168d8325" class="link-to-page"><a href="Python%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%20(3%206)%20dcb75769dc854e61b07cdabcf90f7ee3/Formative%20Assessment%20cfdfeef2e9e047a2bbce50fe168d8325.html">Formative Assessment</a></figure></div></article></body></html>

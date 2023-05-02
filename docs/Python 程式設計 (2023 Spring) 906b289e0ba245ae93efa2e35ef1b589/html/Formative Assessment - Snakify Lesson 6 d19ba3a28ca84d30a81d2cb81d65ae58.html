@@ -1,0 +1,790 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Formative Assessment - Snakify Lesson 6</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script></head><body><article id="d19ba3a2-8ca8-4d30-a81d-2cb81d65ae58" class="page sans"><header><img class="page-cover-image" src="%E6%9C%9F%E4%B8%AD%E6%B8%AC%E9%A9%97%E8%A7%A3%E7%AD%94%20(Midterm%20Exam%20Solutions)%20b54b2d01431e47f9b96c059e3ef0eb19/1.png" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">📝</span></div><h1 class="page-title">Formative Assessment - Snakify Lesson 6</h1><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script></header><div class="page-body"><p id="e1de84e0-de45-455c-a917-dadd4f6c0c7f" class="">
+</p><p id="345225da-0ea0-45f2-82ea-b1056c82194b" class="">This assessment is designed to test your understanding of Snakify Lesson 6: While loops. Snakify is an online platform that teaches Python programming through interactive exercises. Lesson 6 covers the basics of while loops, such as how to use them for repeated actions, how to control their termination condition, and how to avoid infinite loops. The assessment contains two parts: easy and slightly harder. Each part has 10 multiple-choice questions that cover different aspects of while loops, such as syntax, logic, and common applications. You will have 20 minutes to complete each part. The assessment will help you consolidate your knowledge of while loops and prepare you for more advanced topics in Python programming.</p><h2 id="06d6a04d-7b9e-46bc-8d24-5635583f0685" class="block-color-teal_background">Easy</h2><ol type="1" id="4775caa6-333b-4ce8-9798-1c72a050580e" class="numbered-list" start="1"><li>What is the general syntax of a while loop in Python?
+a) while condition: statement
+b) while (condition): statement
+c) while condition {statement}
+d) while (condition) {statement}
+<em>Answer: a</em></li></ol><ol type="1" id="99641cbf-f111-4b28-b5ef-c539ace9aab1" class="numbered-list" start="2"><li>What is the output of this code?<pre id="306fece9-0a5c-41fe-9a02-f5da26077dae" class="code code-wrap"><code>x = 5
+while x &gt; 0:
+    print(x)
+    x -= 1</code></pre><p id="81bef5d3-7470-4bf9-8eae-ca36e708dbec" class="">a) 5 4 3 2 1
+b) 5 4 3 2
+c) 5\n4\n3\n2\n1\n
+d) Syntax Error</p><p id="2026b606-a326-41f4-9fe7-a1c143c87b8b" class=""><em>Answer: c</em></p></li></ol><ol type="1" id="31d381d8-a9fd-4c43-87fe-fefd7648920b" class="numbered-list" start="3"><li>How can you make a while loop terminate when a certain condition is met?
+a) Use a break statement inside the loop body
+b) Use a continue statement inside the loop body
+c) Use an else statement after the loop body
+d) <em>Any of the above
+Answer: a</em></li></ol><ol type="1" id="5d615f9b-5f74-461c-be3f-e775cfc9889e" class="numbered-list" start="4"><li>What is the purpose of using an else statement after a while loop?
+a) To execute some code when the loop condition becomes False
+b) To execute some code when the loop condition becomes True
+c) To execute some code when the loop terminates normally (without break)
+d) <em>Both a and c</em><p id="78cd8f48-cd8a-4e69-b110-a5be4793d35b" class=""><em>Answer: d</em></p></li></ol><ol type="1" id="7e93e3e5-75a2-4e04-9d45-30a8929631fb" class="numbered-list" start="5"><li>What is an infinite loop?
+a) A loop that never starts
+b) A loop that never ends
+c) None of the above
+d) <em>Both b and c</em><p id="c5ffcd02-9487-47ef-a045-619485b7073c" class=""><em>Answer: b</em></p></li></ol><ol type="1" id="fd34e8cf-d83b-4566-9b8f-31ea29977f2a" class="numbered-list" start="6"><li>How can you avoid creating an infinite loop?
+a) Make sure the loop condition can become False at some point
+b) Make sure to update the variables used in the loop condition inside the loop body
+c) Make sure to use break or continue statements appropriately inside the loop body
+d) <em>All of the above</em><p id="2e15e492-d016-4752-a293-f3a292f5ef0a" class=""><em>Answer: d</em></p></li></ol><ol type="1" id="faa4fc27-a4aa-41ed-86fc-0240dc18ad3b" class="numbered-list" start="7"><li>What is a common application of while loops in programming?
+a) <em>Validating user input</em>
+b) <em>Reading data from files</em>
+c) <em>Performing repeated actions until a goal is reached</em>
+d) <em>All of the above</em><p id="c1b95ada-cad5-4c00-9e6a-a2ebed8f2a4d" class=""><em>Answer: d</em></p></li></ol><ol type="1" id="1c669fb5-25fb-4a9e-a1ed-61102ef185d0" class="numbered-list" start="8"><li>What is wrong with this code?<pre id="43f169b2-5627-4584-8245-c58a8905394c" class="code code-wrap"><code>n = int(input())
+while n &gt; 0:
+    print(n %10)
+    n //=10</code></pre><p id="611a6c7c-7310-426b-85d9-3a0a58179bc5" class="">a) <em>It will cause an error if n is negative or zero</em>
+b) <em>It will print n in reverse order</em>
+c) <em>It will not print anything if n has only one digit</em>
+d) <em>It will create an infinite loop if n has more than one digit</em></p><p id="637ba8ba-f761-4008-bfd9-fb357a9f9a60" class=""><em>Answer: b</em></p></li></ol><ol type="1" id="baa20295-90ec-4523-bab2-6aa9a20c795d" class="numbered-list" start="9"><li>How can you fix this code to make it work as intended?<pre id="5e1d5833-ce66-4bfa-8d91-7c00ab72fb1f" class="code code-wrap"><code>n = int(input())
+sum =0
+while n !=0:
+    sum +=n
+print(sum)</code></pre><p id="9385fc77-f4cc-4f39-a6a9-337ae88f818d" class="">a) <em>Add n = int(input()) inside the loop body</em>
+b) <em>Add sum = sum + n inside the loop body</em>
+c) <em>Add n -=1 inside the loop body</em>
+d) <em>Add break inside the loop body</em></p><p id="3b2589ae-0783-4940-9827-bd2613720ba0" class=""><em>Answer: a</em></p></li></ol><ol type="1" id="3eca754d-2d2e-4bdb-a770-7157bd751306" class="numbered-list" start="10"><li>What is the output of this code?<pre id="9ab06429-6840-44d9-993d-7ae94a1d312e" class="code code-wrap"><code>n = 10
+while n &gt; 0:
+    if n % 2 == 0:
+        print(n, end=&quot; &quot;)
+    n -= 1</code></pre><p id="91f365ba-a010-4dcd-8846-258789c7af85" class="">a) 10 8 6 4 2 </p><p id="3e610e29-a6b5-4f61-887c-67736d0d1c09" class="">b) 9 7 5 3 1 </p><p id="855c0cd5-217a-4083-af6b-581a6d7a2407" class="">c) Syntax Error </p><p id="0ec7bb51-2687-48cc-97e0-21a238ea7869" class="">d) Infinite Loop</p><p id="2cea63d5-fc45-4ba4-8f10-12c5746708c3" class="">Answer: a</p></li></ol><h2 id="7831580f-fff5-41b7-86e9-4730f441a9b1" class="block-color-teal_background">Slightly Harder</h2><ol type="1" id="4c35b573-00e6-4c96-aec6-01438ef7948a" class="numbered-list" start="1"><li>What is the output of this code?<pre id="dbc67629-ba43-4ee9-85c0-d15e3e4974ae" class="code code-wrap"><code>x = 1
+while x &lt; 10:
+    print(x ** 2)
+    x += 2</code></pre><p id="3a334c1e-799a-4d16-afe5-fbf07813141c" class="">a) 1\n9\n25\n49\n81\n </p><p id="be0271f2-99cb-4a7b-a677-4bed4eed9385" class="">b) Syntax Error </p><p id="a19d18a9-2f41-45fc-9dd4-ec58cd801ae3" class="">c) Infinite Loop </p><p id="6f8d4e33-8bd1-4309-825c-c0f214cdaa26" class="">d) None of the above </p><p id="836979c7-99b1-49ae-a8e8-79f6f0357579" class="">Answer: a</p></li></ol><ol type="1" id="33c0cacb-bf8e-4e63-b92f-8fdca5316acd" class="numbered-list" start="2"><li>How can you modify this code to make it print the numbers from 1 to n in one line, separated by spaces?<pre id="c5652d63-b3f5-4c0c-83fc-639f50882788" class="code code-wrap"><code>n = int(input())
+i = 1
+while i &lt;= n:
+    print(i)
+    i += 1</code></pre><p id="e385935a-c118-41c6-b360-675657ab3a4e" class="">a) Add sep=&quot; &quot; inside the print function </p><p id="9124d166-cbfa-46d2-84db-9285e937857a" class="">b) Add end=&quot; &quot; inside the print function </p><p id="d841e66e-0ea9-49ba-8c39-dc3fb653cc92" class="">c) Add join(&quot; &quot;) inside the print function </p><p id="7b647d3d-076b-4aaa-b8b0-02a493cf31ba" class="">d) None of the above </p><p id="91dd61b0-b21e-4b4d-81eb-88e94f0f4591" class="">Answer: b</p></li></ol><ol type="1" id="f18fa0e4-f307-4cc3-b25b-3cee14d2ff71" class="numbered-list" start="3"><li>What is a common mistake when using while loops with user input? <p id="4aff6235-9e13-4994-9df1-b85d7f736c81" class="">a) Forgetting to convert the input to the appropriate data type </p><p id="307bdbea-7474-4b49-bb38-4cdb8d3fabd6" class="">b) Forgetting to update the input variable inside the loop body </p><p id="ca940b16-6958-4513-9a18-4e0c35e92c85" class="">c) Forgetting to check if the input is valid or not </p><p id="d66c0f46-38fd-43ba-b98e-a4cfaac32e12" class="">d) All of the above </p><p id="0b954cf0-ffac-449a-9550-9f7485b140e0" class="">Answer: d</p></li></ol><ol type="1" id="f3a74c35-112e-4702-be4c-ba2656678761" class="numbered-list" start="4"><li>What is the output of this code if 6 is inputted?<pre id="0bd8b9d8-4647-4b40-8c6c-f108060cac52" class="code code-wrap"><code>n = int(input())
+factorial = 1
+while n &gt; 0:
+    factorial *= n
+    n -= 2
+print(factorial)</code></pre><p id="701b4c28-8685-4b6b-9660-6bd1f742b308" class="">a) 1</p><p id="6a10a07f-bdeb-413a-acb4-16b4566d3d94" class="">b) 15</p><p id="266015ff-eb7a-42c1-9065-c2424ddefc72" class="">c) 48</p><p id="15f1437e-3744-4df1-96a9-4bffe960f0dd" class="">d) None of the above</p><p id="7fb54c8c-ccb4-4fe2-b72b-6980e5614780" class="">Answer: c</p></li></ol><ol type="1" id="2edf0a29-68ef-4109-a877-3870172b4910" class="numbered-list" start="5"><li>How can you fix this code to make it work as intended?<pre id="d58220c5-7d1f-472b-b762-41e1addffb43" class="code code-wrap"><code>password = &quot;secret&quot;
+guess = input()
+while guess != password:
+    print(&quot;Wrong password&quot;)
+print(&quot;Access granted&quot;)</code></pre><p id="70d2ddd2-9d85-42bc-a255-be5ca39af5cf" class="">a) Add break after print(“Wrong password”) </p><p id="fbb9fec5-7570-4728-ae0a-e46e5cb540b6" class="">b) Add guess = input() inside the loop body </p><p id="c829cee9-3fc0-4261-a59b-9d8c42580cdd" class="">c) Add else after while guess != password: </p><p id="8b5bd13d-3220-41d8-b5de-4a750b4d98a3" class="">d) None of the above </p><p id="29bcac6b-aabe-446f-befe-503826423a0d" class="">Answer: b</p></li></ol><ol type="1" id="393a67d0-8661-4009-8ce1-f5f17d3a40aa" class="numbered-list" start="6"><li>What is the output of this code?<pre id="5aa322e9-06e5-45b9-b048-4121abcf6bdf" class="code"><code>n = 5
+while n &gt; 0:
+	print(n)
+	if n % 2 == 0:
+		n //= 2
+	else:
+		n -= 1</code></pre><p id="3057e4dd-fe5e-41f2-9ee0-5788c36fe425" class="">a) Syntax Error
+b) Infinite Loop
+c) 5\n4\n2\n1\n
+d) None of the above
+Answer: c</p></li></ol><ol type="1" id="17e6ab9c-30c5-42e4-a408-78808c5a6f1c" class="numbered-list" start="7"><li>How can you modify this code to make it print &quot;Hello&quot; repeatedly until the user types &quot;stop&quot;?<pre id="b3405624-fe35-488f-a0b1-9e111d29fd0c" class="code"><code>word = input()
+while word != &quot;stop&quot;:
+	print(&quot;Hello&quot;)</code></pre><p id="e75ecad7-398d-4949-aa30-bb58750dec0b" class="">a) Add word = input() before print(”hello”)
+b) Add word = input()  after print(&quot;Hello&quot;)
+c) Add continue after print(&quot;Hello&quot;)
+d) None of the above
+Answer: b</p></li></ol><ol type="1" id="040e504a-660c-453b-b79f-4b94cecbedfa" class="numbered-list" start="8"><li>What is wrong with this code?<pre id="e9fa99f7-7b39-45c6-ba1a-edf53e2548b6" class="code"><code>n = int(input())
+sum = 0
+count = 0
+while sum &lt; n:
+	x = int(input())
+	sum += x
+	count += 1
+print(count)</code></pre><p id="98ccb44f-e2ea-4f96-bf14-944a5112f653" class="">a) It will cause an error if n is zero or negative
+b) It will create an infinite loop if x is zero or negative
+c) It will not print anything if sum is equal to n
+d) None of the above
+Answer: b</p></li></ol><ol type="1" id="b5ed4dd0-8521-424f-81bf-a3dab9d2e801" class="numbered-list" start="9"><li>How can you fix this code to make it work as intended? Hint: This code should print an inverted triangle.<pre id="844b9c14-643e-4f25-b32f-6ad3f4783071" class="code"><code>n = int(input())
+i = 1
+while i &lt;= n:
+	j = i
+	while j &lt;= i:
+		print(j, end=&quot; &quot;)
+		j += 1
+	print()
+	i += 1</code></pre><p id="294b6807-5826-49a2-ba03-d98612f69ef1" class="">a) Change j &lt;= i to j &lt; i in the inner loop condition
+b) Change j &lt;= i to j &lt;= n in the inner loop condition
+c) Change j += 1 to j *= i in the inner loop body
+d) None of the above
+Answer: b</p></li></ol><ol type="1" id="cb00ee21-bb2b-4149-b8ee-dbdb660a3ed4" class="numbered-list" start="10"><li>How can you fix this code to make it work as intended? Hint: This code should print a triangle of asterisks with n rows.<pre id="60f78586-6341-4658-ad06-b98bb2d01eae" class="code code-wrap"><code>n = int(input())
+i = 1
+while i &lt;= n:
+    j = 1
+    while j &lt;= i:
+        print(&quot;*&quot;, end=&quot; &quot;)
+        j -= 1
+    print()
+    i += 1</code></pre><p id="74189e0d-f55a-49db-bd9f-62d6c946ecec" class="">a) Change end=&quot; &quot; to end=“” in the print function </p><p id="e6ec2b7c-4068-44f2-b889-d91db13c09ce" class="">b) Change j &lt;= i to j &lt; i in the inner loop condition </p><p id="c68c471e-cd13-488f-9972-aa64b79f5c82" class="">c) Change j -= 1 to j += 1 in the inner loop body </p><p id="dc182d95-0dc9-4514-891e-dce725fd7abe" class="">d) All of the above</p><p id="575870b3-45dc-4e76-88a9-c1ebb2c0d4a4" class="">Answer: c</p></li></ol><p id="ee8f97eb-6cc6-48e0-9803-e8960b5e73f6" class="">
+</p><figure id="f9482c9e-6765-4eee-9ed9-1bbc30dd7cc4" class="image"><a href="%E6%9C%9F%E4%B8%AD%E6%B8%AC%E9%A9%97%E8%A7%A3%E7%AD%94%20(Midterm%20Exam%20Solutions)%20b54b2d01431e47f9b96c059e3ef0eb19/%25E5%259C%2596%25E7%2589%25873.png"><img style="width:1322px" src="%E6%9C%9F%E4%B8%AD%E6%B8%AC%E9%A9%97%E8%A7%A3%E7%AD%94%20(Midterm%20Exam%20Solutions)%20b54b2d01431e47f9b96c059e3ef0eb19/%25E5%259C%2596%25E7%2589%25873.png"/></a></figure><p id="f0955220-dbc5-499e-bb90-c2118f779b75" class="">
+</p><p id="7495d051-5e52-4aec-b2e6-bbdebb78eb4a" class="">
+</p><p id="4237eaf0-8b43-4cf3-a147-1be7869d7792" class="">
+</p></div></article>
+<script>hljs.highlightAll();</script>
+
+<script>hljs.highlightAll();</script>
+</body></html>
