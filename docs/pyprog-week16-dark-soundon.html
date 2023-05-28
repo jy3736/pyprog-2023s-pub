@@ -1,0 +1,788 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Exploring Generative AI in Game-based Learning</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script></head><body><article id="3dcd1a6b-a4f8-42d6-945e-0a47f0237801" class="page sans"><header><img class="page-cover-image" src="Exploring%20Generative%20AI%20in%20Game-based%20Learning%203dcd1a6ba4f842d6945e0a47f0237801/notion-Python_(1).png" style="object-position:center 31.08%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Exploring%20Generative%20AI%20in%20Game-based%20Learning%203dcd1a6ba4f842d6945e0a47f0237801/yang01.png"/></div><h1 class="page-title">Exploring Generative AI in Game-based Learning</h1><p class="page-description"></p><link rel="stylesheet" href="dark-theme.css"><link rel="stylesheet"  target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark-dimmed.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script></header><div class="page-body"><h1 id="fe44c0dc-e41f-4d8e-ae67-15ec8022bf9e" class="block-color-brown_background">參考資料 (References)</h1><h3 id="a93d1e78-4129-444e-b286-f73587ddfc70" class="block-color-yellow">Python 官方「參考資料」網站 (Python.org)</h3><figure id="46f89c91-01d6-4935-86f6-572ec36e2a32"><a  target="_blank" href="https://docs.python.org/3/tutorial/classes.html" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">9. Classes</div><div class="bookmark-description">Classes provide a means of bundling data and functionality together. Creating a new class creates a new type of object, allowing new instances of that type to be made. Each class instance can have ...</div></div><div class="bookmark-href"><img src="https://docs.python.org/3/_static/py.svg" class="icon bookmark-icon"/>https://docs.python.org/3/tutorial/classes.html</div></div><img src="https://docs.python.org/3/_static/og-image.png" class="bookmark-image"/></a></figure><h3 id="12812fe2-bcc1-4a53-8e2b-371580508811" class="block-color-yellow">Additional Online Resources</h3><figure id="a4f1225e-41dd-495a-9564-ce5f1b9d2a6e"><a  target="_blank" href="https://www.programiz.com/python-programming/object-oriented-programming" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Python Object Oriented Programming (With Examples)</div><div class="bookmark-description">In this tutorial, we’ll learn about Object-Oriented Programming (OOP) in Python with the help of examples.</div></div><div class="bookmark-href"><img src="https://www.programiz.com/sites/tutorial2program/files/favicon.png" class="icon bookmark-icon"/>https://www.programiz.com/python-programming/object-oriented-programming</div></div></a></figure><figure id="aaefd1b2-d4d3-4beb-b616-7c340688f159"><a  target="_blank" href="https://realpython.com/python3-object-oriented-programming/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Object-Oriented Programming (OOP) in Python 3 – Real Python</div><div class="bookmark-description">In this tutorial, you&#x27;ll learn all about object-oriented programming (OOP) in Python. You&#x27;ll learn the basics of the OOP paradigm and cover concepts like classes and inheritance. You&#x27;ll also see to how instantiate an object from a class.</div></div><div class="bookmark-href"><img src="https://realpython.com/static/favicon.68cbf4197b0c.png" class="icon bookmark-icon"/>https://realpython.com/python3-object-oriented-programming/</div></div><img src="https://files.realpython.com/media/Object-Oriented-Programming-OOP-in-Python-3_Watermarked.0d29780806d5.jpg" class="bookmark-image"/></a></figure><p id="f7833aa0-f6b4-4dc6-9acf-5f37462f51e8" class="">
+</p><figure id="7b393137-eb5c-46ec-9b4c-70c5b9fb1ec6"><a  target="_blank" href="https://docs.paia-arena.com/zh-tw/paia-desktop" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Paia Desktop | PAIA</div><div class="bookmark-description">Grav is an easy to use, yet powerful, open source flat-file CMS</div></div><div class="bookmark-href">https://docs.paia-arena.com/zh-tw/paia-desktop</div></div></a></figure><h1 id="55c70e8a-750b-49aa-8e48-69ce894f96b1" class="block-color-brown_background">課堂活動</h1><h3 id="062d0cb0-0094-4d65-8178-58947e2fabeb" class="block-color-gray_background">【課堂練習 1】Learning the Arknoid Fundamentals with Generative AI</h3><h3 id="fcfc23a2-631e-4435-bd65-2e7aae91529c" class="block-color-yellow">Arkanoid Example Script</h3><pre id="b06cec4b-6df2-4d64-bd41-4da44314ca99" class="code"><code>&quot;&quot;&quot;
+The template of the main script of the machine learning process
+&quot;&quot;&quot;
+
+class MLPlay:
+    def __init__(self, *args, **kwargs):
+        &quot;&quot;&quot;
+        Constructor
+        &quot;&quot;&quot;
+        self.ball_served = False
+
+    def update(self, scene_info, keyboard=[], *args, **kwargs):
+        &quot;&quot;&quot;
+        Generate the command according to the received `scene_info`.
+        &quot;&quot;&quot;
+        # Make the caller to invoke `reset()` for the next round.
+        if (scene_info[&quot;status&quot;] == &quot;GAME_OVER&quot; or
+            scene_info[&quot;status&quot;] == &quot;GAME_PASS&quot;):
+            return &quot;RESET&quot;
+
+        if not self.ball_served:
+            self.ball_served = True
+            command = &quot;SERVE_TO_LEFT&quot;
+        else:
+            command = &quot;MOVE_LEFT&quot;
+
+        return command
+
+    def reset(self):
+        &quot;&quot;&quot;
+        Reset the status
+        &quot;&quot;&quot;
+        self.ball_served = False</code></pre><p id="a3267049-e870-4b68-9b58-13ebf50d438e" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="70a6944f-9de3-4fed-a2b4-db331998498c"><div style="font-size:1.5em"><img class="icon" src="Exploring%20Generative%20AI%20in%20Game-based%20Learning%203dcd1a6ba4f842d6945e0a47f0237801/icons8-bing-240.png"/></div><div style="width:100%">這個腳本定義了一個名為 MLPlay 的類別，它是機器學習過程的主要腳本的模板。它有三個方法：<ul id="d9738f0c-5893-413f-aac4-162a90b1d92f" class="bulleted-list"><li style="list-style-type:disc"><code>__init__(self, *args, **kwargs)</code>：這是建構子，它在建立類別的實例時被調用。它接受任意數量和類型的參數，但是在這個腳本中沒有使用。它只做了一件事，就是將實例屬性 <code>self.ball_served</code> 設為 False，表示球還沒有發出。</li></ul><ul id="f216753c-8d33-48be-8e95-60577a3f7dc7" class="bulleted-list"><li style="list-style-type:disc"><code>update(self, scene_info, keyboard=[], *args, **kwargs)</code>：這是更新方法，它根據收到的 <code>scene_info</code> 產生指令。 <code>scene_info</code> 是一個字典，包含了遊戲場景的資訊，例如球的位置、速度、方向等。 <code>keyboard</code> 是一個列表，包含了使用者按下的鍵盤按鍵。這兩個參數都是必需的，其他的參數則是可選的。這個方法會根據遊戲狀態來決定要回傳什麼指令。如果遊戲結束或通關，則回傳 &quot;RESET&quot;；如果球還沒有發出，則將 <code>self.ball_served</code> 為 True 並回傳 &quot;SERVE_TO_LEFT&quot;；否則回傳 &quot;MOVE_LEFT&quot;。</li></ul><ul id="1c33b769-46cd-4db1-861e-759379d19a84" class="bulleted-list"><li style="list-style-type:disc"><code>reset(self)</code>：這是重置方法，它在每一回合開始時被調用。它只做了一件事，就是將 <code>self.ball_served</code> 設為 False，表示球還沒有發出。</li></ul><p id="a236468f-0f49-4e73-ae8a-4c50b703b058" class="">這個腳本使用了許多 python 的特性，例如物件導向、動態類型、動態綁定、模組和套件等。它的語法簡單易學，強調可讀性和減少程式維護的成本。</p></div></figure><p id="a10ba90c-0990-4e1b-9d81-1461ef9423c9" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="17eba91c-d320-44c4-9fbd-934fd8f5ca3e"><div style="font-size:1.5em"><img class="icon" src="Exploring%20Generative%20AI%20in%20Game-based%20Learning%203dcd1a6ba4f842d6945e0a47f0237801/icons8-chatgpt-480.png"/></div><div style="width:100%">在這個腳本中，我們定義了一個名為 &quot;MLPlay&quot; 的類別。這個類別用於機器學習的主要腳本。<p id="eebcaa2e-4ed8-46fb-8210-8dae7568c5d9" class="">腳本中的 <code><strong>__init__</strong></code> 方法是類別的建構子，用於初始化一些變數。在這裡，我們初始化了一個名為 <code><strong>ball_served</strong></code> 的變數，並將其設置為 <code><strong>False</strong></code>。</p><p id="febe1e34-e47a-4386-a7f2-a57a74cbccc4" class=""><code><strong>update</strong></code> 方法用於根據收到的 <code><strong>scene_info</strong></code> 生成命令。如果遊戲狀態為 &quot;GAME_OVER&quot; 或 &quot;GAME_PASS&quot;，則返回 &quot;RESET&quot; 命令，表示需要重置遊戲狀態。</p><p id="77d5d1e4-3b8e-4f9b-a23a-c151414fa991" class="">如果球還未發球（<code><strong>ball_served</strong></code> 為 <code><strong>False</strong></code>），則將其設置為 <code><strong>True</strong></code>，並返回 &quot;SERVE_TO_LEFT&quot; 命令，表示將球發往左側。否則，返回 &quot;MOVE_LEFT&quot; 命令，表示向左移動。</p><p id="444eb0f2-7af6-4b39-89c4-f9fbf290a27c" class=""><code><strong>reset</strong></code> 方法用於重置遊戲狀態，將 <code><strong>ball_served</strong></code> 設置為 <code><strong>False</strong></code>。</p><p id="b4f0b759-115c-4b49-9b38-e8548521a469" class="">需要注意的是，此腳本目前還缺少處理遊戲場景和鍵盤輸入的實現。<code><strong>update</strong></code> 方法僅根據遊戲狀態和 <code><strong>ball_served</strong></code> 狀態返回預定義的命令。您需要進一步開發此腳本，以包含所需的機器學習功能。</p></div></figure><p id="5cf4530e-d254-4cd3-99f9-01c0655fec55" class="">
+</p><h3 id="472549fa-220a-4d4c-808b-6497871440e7" class="block-color-gray_background">【課堂練習 2】Unraveling the Python Script with Generative AI</h3><h3 id="675e4981-aa95-4e9c-87d3-545e5dab4085" class="block-color-yellow">Arknoid Example Script - manual.py</h3><pre id="387af8a9-3099-4f8f-8b86-ff12e273f071" class="code"><code>import pickle
+import os
+import pygame
+
+class MLPlay:
+    def __init__(self, *args, **kwargs):
+        self.ball_served = False
+        self.actions = []
+        self.positions = []
+    def update(self, scene_info, keyboard, *args, **kwargs):
+        if scene_info[&#x27;status&#x27;] == &quot;GAME_PASS&quot; or scene_info[&#x27;status&#x27;] == &quot;GAME_OVER&quot;:
+            with open(os.path.join(os.path.dirname(__file__), &#x27;target.pickle&#x27;), &#x27;wb&#x27;) as f:
+                pickle.dump(self.actions, f)
+            with open(os.path.join(os.path.dirname(__file__), &#x27;feature.pickle&#x27;), &#x27;wb&#x27;) as f:
+                pickle.dump(self.positions, f)
+            return &quot;RESET&quot;
+        if not self.ball_served:
+            if (pygame.K_a in keyboard):
+                self.ball_served = True
+                return &quot;SERVE_TO_LEFT&quot;
+            elif (pygame.K_d in keyboard):
+                self.ball_served = True
+                return &quot;SERVE_TO_RIGHT&quot;
+        else:
+            if pygame.K_LEFT in keyboard:
+                self.ball_served = True
+                self.positions.append([scene_info[&#x27;ball&#x27;][0], scene_info[&#x27;ball&#x27;][1]])
+                self.actions.append(1)
+                return &quot;MOVE_LEFT&quot;
+            elif pygame.K_RIGHT in keyboard:
+                self.ball_served = True
+                self.positions.append([scene_info[&#x27;ball&#x27;][0], scene_info[&#x27;ball&#x27;][1]])
+                self.actions.append(0)
+                return &quot;MOVE_RIGHT&quot;
+    def reset(self):
+        self.ball_served = False</code></pre><p id="48b2d562-457f-4d0e-a882-efecd1825310" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="fdaf0086-a9b3-4258-b30b-3f2bb23a5b3c"><div style="font-size:1.5em"><img class="icon" src="Exploring%20Generative%20AI%20in%20Game-based%20Learning%203dcd1a6ba4f842d6945e0a47f0237801/icons8-bing-240%201.png"/></div><div style="width:100%">這個腳本的功能是：<ul id="69e65f1b-ec05-4eea-b210-8a314cb08551" class="bulleted-list"><li style="list-style-type:disc">導入pickle、os和pygame模組。</li></ul><ul id="e9f2245d-a526-4ba2-97c5-1051786de2dc" class="bulleted-list"><li style="list-style-type:disc">定義一個名為MLPlay的類別，它有一個初始化方法，一個更新方法和一個重置方法。</li></ul><ul id="aba1b90b-3954-44d4-9b84-3cb26b84add9" class="bulleted-list"><li style="list-style-type:disc">初始化方法設置了三個屬性：self.ball_served表示球是否已發出，self.actions表示玩家的動作序列，self.positions表示球的位置序列。</li></ul><ul id="52441f1b-7f30-4e52-9163-bb990f35acba" class="bulleted-list"><li style="list-style-type:disc">更新方法接收四個參數：scene_info是一個字典，包含遊戲場景的資訊，keyboard是一個列表，包含按下的鍵盤按鍵，*args和**kwargs是可變參數，用於接收其他資訊。</li></ul><ul id="5686f7c8-c0db-49ce-9895-df45ab2b6af8" class="bulleted-list"><li style="list-style-type:disc">更新方法根據場景資訊和鍵盤輸入，返回一個字串，表示玩家的動作。如果場景資訊的狀態是&quot;GAME_PASS&quot;或&quot;GAME_OVER&quot;，則使用pickle模組將動作序列和位置序列分別保存到target.pickle和feature.pickle文件中，並返回&quot;RESET&quot;。如果球還沒有發出，則根據鍵盤輸入返回&quot;SERVE_TO_LEFT&quot;或&quot;SERVE_TO_RIGHT&quot;。如果球已經發出，則根據鍵盤輸入返回&quot;MOVE_LEFT&quot;或&quot;MOVE_RIGHT&quot;，並將球的位置和動作添加到相應的序列中。</li></ul><ul id="b0379acb-2776-442d-9558-f94d2e6eeb49" class="bulleted-list"><li style="list-style-type:disc">重置方法將self.ball_served設置為False，表示球還沒有發出。</li></ul><p id="25860907-10e6-481a-9071-788f91190702" class="">這段程式是用來實作一個 MLPlay 類別，它可以用來控制打磚塊遊戲的板子。它有以下的方法：</p><ul id="85e15fb3-c7c3-40cf-9910-28e49153a293" class="bulleted-list"><li style="list-style-type:disc"><strong>init</strong>：初始化一些屬性，如 ball_served（是否發球）、actions（記錄每次移動的方向）、positions（記錄每次球的位置）。</li></ul><ul id="be7ecfd2-574c-4672-9796-805bd7ed47a3" class="bulleted-list"><li style="list-style-type:disc">update：根據場景資訊和鍵盤輸入，回傳一個動作。如果遊戲結束或通關，就將 actions 和 positions 儲存成 pickle 檔案，並回傳 &quot;RESET&quot;。如果還沒發球，就根據 a 或 d 鍵來發球。如果已經發球，就根據左右鍵來移動板子，並將球的位置和移動方向記錄下來。</li></ul><ul id="e86e6a11-6fd2-4d8d-8c49-2333060207ca" class="bulleted-list"><li style="list-style-type:disc">reset：重置 ball_served 屬性。</li></ul></div></figure><p id="b98f31de-b9dd-4f66-a9cd-e59bde10b46a" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="75f55388-cd0b-4b2d-b1f4-ba1be252da71"><div style="font-size:1.5em"><img class="icon" src="Exploring%20Generative%20AI%20in%20Game-based%20Learning%203dcd1a6ba4f842d6945e0a47f0237801/icons8-chatgpt-480%201.png"/></div><div style="width:100%">這段程式是使用 Python 實作的一個遊戲代理程式（MLPlay），它使用了 pickle、os 和 pygame 這些模組。<p id="5f96256a-d339-4e52-adf3-2d243e138105" class="">程式碼中的 MLPlay 類別具有以下成員函式：</p><ul id="b7e408ac-3de8-4e5a-9c74-38e42611c7d6" class="bulleted-list"><li style="list-style-type:disc"><code>__init__(self, *args, **kwargs)</code>：初始化函式，用於初始化 MLPlay 物件的狀態。它設置了初始值，包括球是否已發射、動作清單和位置清單。</li></ul><ul id="eced6364-f936-4d07-af84-680c2fc4f2e8" class="bulleted-list"><li style="list-style-type:disc"><code>update(self, scene_info, keyboard, *args, **kwargs)</code>：更新函式，用於根據遊戲場景資訊和鍵盤輸入來更新代理程式的行為。如果遊戲狀態為 &quot;GAME_PASS&quot; 或 &quot;GAME_OVER&quot;，代表遊戲結束，它將把動作清單和位置清單儲存為 pickle 檔案。然後返回 &quot;RESET&quot;，表示要重新開始遊戲。如果球還沒發射，則檢查鍵盤輸入，如果按下 &quot;a&quot; 鍵，則返回 &quot;SERVE_TO_LEFT&quot;，表示向左發球；如果按下 &quot;d&quot; 鍵，則返回 &quot;SERVE_TO_RIGHT&quot;，表示向右發球。如果球已經發射，則檢查鍵盤輸入，如果按下左箭頭鍵，則返回 &quot;MOVE_LEFT&quot;，表示向左移動板子；如果按下右箭頭鍵，則返回 &quot;MOVE_RIGHT&quot;，表示向右移動板子。</li></ul><ul id="1e4b6e5c-0ad1-43cb-8735-c3e6a2c18d1c" class="bulleted-list"><li style="list-style-type:disc"><code>reset(self)</code>：重設函式，用於重設代理程式的狀態。它將球是否已發射的狀態重設為 False。</li></ul><p id="e839d1a1-4c1f-4d32-bcba-e51c37534975" class="">此外，程式碼還使用了 pickle 模組來將動作清單和位置清單儲存為 pickle 檔案。os 模組則用於處理檔案路徑。pygame 模組用於處理遊戲視窗和鍵盤輸入，並提供了相關的常數（如 pygame.K_a、pygame.K_d、pygame.K_LEFT、pygame.K_RIGHT）來檢查鍵盤輸入的狀態。</p></div></figure><p id="1f5fff27-9d3b-4d3f-938c-e20b70fa596c" class="">
+</p><h3 id="895e9e61-f1c4-48fe-8bd9-629dac48b0db" class="block-color-gray_background">【課堂練習 3】Unraveling the Model traninig with Generative AI</h3><h3 id="fbd2920d-3e77-4d21-b278-ac49d334e7c2" class="block-color-yellow">Arknoid Example Script - model_training.py</h3><pre id="b0db9a34-9830-4677-b855-9bd58c40c302" class="code"><code>import pickle
+import os
+from sklearn import neighbors
+
+with open(os.path.join(os.path.dirname(__file__), &#x27;feature.pickle&#x27;), &#x27;rb&#x27;) as f:
+    positions = pickle.load(f)
+with open(os.path.join(os.path.dirname(__file__), &#x27;target.pickle&#x27;), &#x27;rb&#x27;) as f:
+    actions = pickle.load(f)
+model = neighbors.KNeighborsRegressor(5, weights=&#x27;uniform&#x27;)
+model.fit(positions, actions)
+with open(os.path.join(os.path.dirname(__file__), &#x27;model.pickle&#x27;), &#x27;wb&#x27;) as f:
+    pickle.dump(model, f)</code></pre><p id="85425d13-c2b0-4b32-a387-f6858e15bdc8" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="bf24c4f4-fab2-4c74-9dc2-d75e74eecd2f"><div style="font-size:1.5em"><img class="icon" src="Exploring%20Generative%20AI%20in%20Game-based%20Learning%203dcd1a6ba4f842d6945e0a47f0237801/icons8-bing-240%202.png"/></div><div style="width:100%">這是一個用來訓練和儲存一個K近鄰回歸模型的python腳本。它使用了pickle模組來序列化和反序列化數據，os模組來獲取文件路徑，sklearn模組來創建和訓練模型。它的主要步驟如下：<ol type="1" id="d96be5cb-8bdf-4e79-abfc-1d040e748812" class="numbered-list" start="1"><li>打開當前文件夾下的feature.pickle文件，並將其內容讀取為一個列表，命名為positions。這個列表包含了每個樣本的特徵向量。</li></ol><ol type="1" id="3c2765f5-19c4-46a8-8fe6-625113db2cce" class="numbered-list" start="2"><li>打開當前文件夾下的target.pickle文件，並將其內容讀取為一個列表，命名為actions。這個列表包含了每個樣本的目標值。</li></ol><ol type="1" id="1e558c99-d5f1-483d-9945-3671f9b202c4" class="numbered-list" start="3"><li>創建一個K近鄰回歸模型，設置參數為5個鄰居和均勻權重。</li></ol><ol type="1" id="44356081-9c6d-4fbb-b232-ee93a928a1fa" class="numbered-list" start="4"><li>使用positions和actions作為訓練數據，對模型進行擬合。</li></ol><ol type="1" id="dedfb6a5-0164-4f64-831c-927e9c2633f6" class="numbered-list" start="5"><li>打開當前文件夾下的model.pickle文件，並將訓練好的模型序列化並首先，程式匯入了 pickle 和 os 庫，以及 sklearn 的 neighbors 模組。pickle 庫提供了 dump 和 load 函式來序列化和反序列化物件，os 庫提供了操作檔案路徑的函式，neighbors 模組提供了 KNeighborsRegressor 類別，用於建立一個 k-近鄰回歸模型。</li></ol><p id="d4101933-c4bf-46af-a252-6f1386550691" class="">然後，程式使用 open 函式以二進位制讀取模式（&#x27;rb&#x27;）打開兩個 pickle 檔案：feature.pickle 和 target.pickle。這兩個檔案分別儲存了訓練模型所需的特徵變數（positions）和目標變數（actions）。open 函式的第一個引數是檔案的路徑，第二個引數是檔案的模式。os.path.join 和 os.path.dirname 函式用於拼接和獲取檔案的路徑。</p><p id="45e0a29d-8cd4-4d7c-9183-af5e89dc3a67" class="">接下來，程式使用 pickle.load 函式將兩個 pickle 檔案的內容載入到兩個變數 positions 和 actions 中。pickle.load 函式的引數是一個已打開的檔案物件，返回值是一個 Python 物件。</p><p id="bc24ebf2-412a-47de-a6a8-8568c9858f1f" class="">然後，程式建立了一個 KNeighborsRegressor 物件，並將其賦值給變數 model。KNeighborsRegressor 類別的建構子接受兩個引數：n_neighbors 和 weights。n_neighbors 是指定 k 值的整數，即每個預測點要考慮的最近鄰居的數量。weights 是指定權重函式的字串，即如何根據鄰居與預測點的距離分配權重。在這裡，n_neighbors 設為 5，weights 設為 &#x27;uniform&#x27;，表示所有鄰居都有相同的權重。</p><p id="e79d9918-1cd4-41d0-8091-b567d082b03d" class="">接下來，程式使用 model 物件的 fit 方法來訓練模型。fit 方法接受兩個引數：X 和 y。X 是一個二維陣列或類似陣列的物件，表示特徵變數。y 是一個一維陣列或類似陣列的物件，表示目標變數。在這裡，X 和 y 分別是 positions 和 actions。</p><p id="4b7ccd58-100f-4acd-8407-112ad6bb7e97" class="">最後，程式使用 open 函式以二進位制寫入模式（&#x27;wb&#x27;）打開一個新的 pickle 檔案：model.pickle。這個檔案用於儲存訓練好的模型。然後，程式使用 pickle.dump 函式將 model 物件序列化並寫入到 model.pickle 檔案中。pickle.dump 函式接受兩個引數：obj 和 file。obj 是要序列化的物件，file 是要寫入的已打開的檔案物件。</p></div></figure><p id="a961e161-e517-45d3-9ff3-dcca8880d12d" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="1501566d-3937-4791-b8c1-5d3d4ec3b11c"><div style="font-size:1.5em"><img class="icon" src="Exploring%20Generative%20AI%20in%20Game-based%20Learning%203dcd1a6ba4f842d6945e0a47f0237801/icons8-chatgpt-480%202.png"/></div><div style="width:100%">這段程式碼使用了Python語言來建立一個k最近鄰回歸模型。<p id="91f0a4a5-a145-4e39-94e5-4886f4f29480" class="">首先，它引入了幾個必要的模組。<code>pickle</code>模組用於對象的序列化和反序列化，<code>os</code>模組用於處理文件路徑。<code>sklearn</code>模組中的<code>neighbors</code>子模組包含了k最近鄰相關的方法和類別。</p><p id="05f04d86-f6cb-4413-b687-c6b3fd000392" class="">接著，程式碼開始讀取兩個pickle檔案。<code>feature.pickle</code>檔案包含了特徵的資料，<code>target.pickle</code>檔案包含了對應的目標值。這些pickle檔案是以二進位格式存儲的。</p><p id="1c655a10-dcbe-4701-856b-654d4a8e8d19" class="">然後，程式碼建立了一個k最近鄰回歸模型的物件。<code>KNeighborsRegressor</code>是sklearn庫中用於回歸問題的類別，數字參數5表示模型選擇最近的5個鄰居來進行預測，<code>weights=&#x27;uniform&#x27;</code>表示所有鄰居的權重相等。</p><p id="2f4d637c-c1aa-4a7c-a68c-7ecb2806bff2" class="">接下來，模型使用<code>fit</code>方法來根據特徵和目標值進行訓練。<code>positions</code>代表特徵的資料，<code>actions</code>代表目標值的資料。</p><p id="8ff908d9-7f17-483c-a52c-ee2e96ff7a98" class="">最後，程式碼將訓練好的模型使用<code>pickle.dump</code>方法保存到<code>model.pickle</code>檔案中。這樣做是為了後續可以再次載入模型並使用。</p><p id="1422c2c0-1566-49d8-8c99-2b25f5636eab" class="">總結來說，這段程式碼是建立了一個k最近鄰回歸模型，並使用pickle檔案來保存特徵、目標值和模型本身。</p></div></figure><p id="1a7443a2-4615-482f-b1c6-d8d8cdea437f" class="">
+</p><h3 id="0517f5f4-59cb-4b0d-96e4-4193bfbe3ef6" class="block-color-gray_background">【課堂練習 4】Unraveling the Python Script with Generative AI</h3><h3 id="63a266d5-ebfc-46d1-aca1-ce4a7dc6e847" class="block-color-yellow">Arknoid Example Script - model_playing.py</h3><pre id="893a9526-7273-4b2b-ad4a-a633f65be3d1" class="code"><code>import pickle
+import os
+
+class MLPlay:
+    def __init__(self, *args, **kwargs):
+        self.ball_served = False
+        with open(os.path.join(os.path.dirname(__file__), &#x27;model.pickle&#x27;), &#x27;rb&#x27;) as f:
+            self.model = pickle.load(f)
+    def update(self, scene_info, keyboard=[], *args, **kwargs):
+        if scene_info[&#x27;status&#x27;] == &quot;GAME_PASS&quot; or scene_info[&#x27;status&#x27;] == &quot;GAME_OVER&quot;:
+            return &quot;RESET&quot;
+        if not self.ball_served:
+            self.ball_served = True
+            return &quot;SERVE_TO_LEFT&quot;
+        else:
+            self.action = self.model.predict([[scene_info[&#x27;ball&#x27;][0], scene_info[&#x27;ball&#x27;][1]]])
+
+            if self.action == 1:
+                return &quot;MOVE_LEFT&quot;
+            else:
+                return &quot;MOVE_RIGHT&quot;
+    def reset(self):
+        self.ball_served = False</code></pre><p id="3c2b4cc3-ef89-4b3f-82af-8d6710a94f87" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="37744387-e607-4afe-b7b1-631ba36754f2"><div style="font-size:1.5em"><img class="icon" src="Exploring%20Generative%20AI%20in%20Game-based%20Learning%203dcd1a6ba4f842d6945e0a47f0237801/icons8-bing-240%202.png"/></div><div style="width:100%">這是一個使用Python語言編寫的程式，它定義了一個名為MLPlay的類別，用於實現一個機器學習的打磚塊遊戲。程式的主要部分如下：<p id="e486b245-b0c0-49b1-a28f-a1f9ff3be4af" class="">首先，程式導入了pickle和os兩個模組，用於讀取和操作檔案。</p><p id="cfa2d966-7cb2-4b74-8e69-9c708f8b31e9" class="">然後，程式定義了MLPlay類別的初始化方法(<strong>init</strong>)，它接受任意數量的位置參數(args)和關鍵字參數(kwargs)。在這個方法中，程式設定了一個屬性ball_served，用於記錄球是否已經發出。程式還使用pickle模組的load函數，從當前目錄下的model.pickle檔案中讀取一個預先訓練好的機器學習模型，並將其賦值給另一個屬性model。</p><p id="54c5730f-a4e3-49cc-983f-cd574b51b13d" class="">接下來，程式定義了MLPlay類別的更新方法(update)，它接受三個參數：場景資訊(scene_info)、鍵盤輸入(keyboard)和任意數量的其他參數(args和kwargs)。在這個方法中，程式根據場景資訊中的狀態(status)來決定返回什麼指令。如果狀態是&quot;GAME_PASS&quot;或&quot;GAME_OVER&quot;，表示遊戲結束或通關，則返回&quot;RESET&quot;指令，重置遊戲。如果球還沒有發出，則將ball_served屬性設為True，並返回&quot;SERVE_TO_LEFT&quot;指令，向左發球。否則，程式使用model屬性中的predict方法，根據場景資訊中的球的位置(ball)來預測下一步的動作(action)，並將其賦值給另一個屬性action。如果動作是1，表示向左移動，則返回&quot;MOVE_LEFT&quot;指令。否則，返回&quot;MOVE_RIGHT&quot;指令。</p><p id="cd009949-fbdc-44f3-9943-8b5cdeb95751" class="">最後，程式定義了MLPlay類別的重置方法(reset)，它不接受任何參數。在這個方法中，程式將ball_served屬性設回False。</p></div></figure><p id="70020957-e6d6-4026-8b36-cb64e8901df4" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="c986d35f-042d-42fa-a442-963290156b71"><div style="font-size:1.5em"><img class="icon" src="Exploring%20Generative%20AI%20in%20Game-based%20Learning%203dcd1a6ba4f842d6945e0a47f0237801/icons8-chatgpt-480%202.png"/></div><div style="width:100%">這段程式是一個使用機器學習模型玩遊戲的範例。程式中包含了一個名為<code>MLPlay</code>的類別，並具有三個主要方法：<code>__init__</code>、<code>update</code>和<code>reset</code>。<ol type="1" id="c829f426-cd11-42cd-bd28-b299ea69aa7a" class="numbered-list" start="1"><li><code>__init__(self, *args, **kwargs)</code><ul id="8927243b-9018-43ba-9744-ba40a370986d" class="bulleted-list"><li style="list-style-type:disc">初始化方法，在建立<code>MLPlay</code>物件時被呼叫。</li></ul><ul id="0f601dc1-50de-4c1b-ad10-f1f26eae6081" class="bulleted-list"><li style="list-style-type:disc">該方法讀取了一個叫做<code>model.pickle</code>的檔案，使用<code>pickle</code>模組將其載入並儲存到<code>self.model</code>中。</li></ul><ul id="ad41179d-3830-46e0-9901-8378a576a5d1" class="bulleted-list"><li style="list-style-type:disc"><code>model.pickle</code>應該是包含了一個訓練好的機器學習模型，用於預測遊戲中球的移動方向。</li></ul></li></ol><ol type="1" id="6b3849d9-d088-43da-bf8e-27c6026f6179" class="numbered-list" start="2"><li><code>update(self, scene_info, keyboard=[], *args, **kwargs)</code><ul id="9e744a4f-795e-4414-a77c-eba616d3c77d" class="bulleted-list"><li style="list-style-type:disc">更新方法，在每個遊戲迭代中被呼叫。</li></ul><ul id="3e9e9009-09b9-45a0-b3a4-c7a8f73edeeb" class="bulleted-list"><li style="list-style-type:disc"><code>scene_info</code>是一個包含遊戲場景資訊的字典，包括球的位置、板子的位置、遊戲狀態等等。</li></ul><ul id="93841ce8-2fbe-49af-8565-a9b49b9886c0" class="bulleted-list"><li style="list-style-type:disc">如果遊戲狀態為&quot;GAME_PASS&quot;或&quot;GAME_OVER&quot;，表示遊戲結束，返回&quot;RESET&quot;重新開始遊戲。</li></ul><ul id="ea4c9672-e949-4a3f-9143-425977d10812" class="bulleted-list"><li style="list-style-type:disc">如果球還未發球，將<code>self.ball_served</code>設為True，並返回&quot;SERVE_TO_LEFT&quot;表示將球發向左邊。</li></ul><ul id="f3634c35-0b91-4857-881e-d467a7bd19fe" class="bulleted-list"><li style="list-style-type:disc">如果球已經發球，則使用存儲在<code>self.model</code>中的機器學習模型對球的位置進行預測，並根據預測結果返回&quot;MOVE_LEFT&quot;或&quot;MOVE_RIGHT&quot;，以移動板子的位置。</li></ul></li></ol><ol type="1" id="6f84793f-8c7b-448f-86a8-905c8e028c71" class="numbered-list" start="3"><li><code>reset(self)</code><ul id="86c032a9-26e7-4a06-bd05-4c14b35ee5fe" class="bulleted-list"><li style="list-style-type:disc">重置方法，在遊戲重新開始時被呼叫。</li></ul><ul id="a1aa5afc-5567-4cfa-9c26-999d531f3731" class="bulleted-list"><li style="list-style-type:disc">將<code>self.ball_served</code>設為False，表示球還未發球</li></ul></li></ol></div></figure><h1 id="51b39e97-d679-4a0f-9acf-0aaab27d3fe4" class="block-color-brown_background">課堂作業</h1><h3 id="c41d7193-04d8-4a05-b09f-679f37645abf" class="block-color-gray_background">【作業 1】Playing Arkanoid with Machine Learning and Blockly</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="66ba7386-479a-4a5a-8d64-04d5f87a786f"><div style="font-size:1.5em"><img class="icon" src="Exploring%20Generative%20AI%20in%20Game-based%20Learning%203dcd1a6ba4f842d6945e0a47f0237801/800x800.png"/></div><div style="width:100%">In this assignment, we will be utilizing Machine Learning techniques to play PAIA&#x27;s Arkanoid using Blockly. Blockly is a visual programming language that enables users to create programs by dragging and dropping blocks. We will explore Machine Learning by playing Arkanoid, a classic arcade game where the player controls a paddle to bounce a ball and break bricks. By using Blockly, users can manipulate the paddle&#x27;s movements and observe how they impact gameplay. Through playing Arkanoid with Blockly, users can develop computational thinking skills and foster creativity while enjoying the game.</div></figure><ul id="cbd596c6-7e1c-49ae-9ada-bc8d1628c967" class="bulleted-list"><li style="list-style-type:disc"><a  target="_blank" href="https://www.paia-arena.com/">PAIA Official Website</a></li></ul><ul id="94568a10-0481-4de4-8690-ba44080f0c94" class="bulleted-list"><li style="list-style-type:disc"><a  target="_blank" href="https://github.com/PAIA-Playful-AI-Arena/Paia-Desktop/releases/download/v2.4.1/PAIA-Desktop-win32-x64-2.4.1.zip">Download PAIA Desktop Application</a></li></ul><p id="ed93291e-3fc7-41d8-a40f-77e2163871c2" class="">
+</p><figure id="3fdbdc28-b69c-4784-a8f5-88dfde6218fb" class="image"><a href="Exploring%20Generative%20AI%20in%20Game-based%20Learning%203dcd1a6ba4f842d6945e0a47f0237801/%25E5%259C%2596%25E7%2589%25873.png"><img style="width:1322px" src="Exploring%20Generative%20AI%20in%20Game-based%20Learning%203dcd1a6ba4f842d6945e0a47f0237801/%25E5%259C%2596%25E7%2589%25873.png"/></a></figure></div></article>
+<script>hljs.highlightAll();</script>
+</body></html>
